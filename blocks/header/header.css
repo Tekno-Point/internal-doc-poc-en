@@ -1,4 +1,4 @@
-@import url(../header/header-new.css);
+@import url("../header/header-new.css");
 
 /* header and nav layout */
 header .nav-wrapper {
@@ -60,6 +60,7 @@ header nav a:any-link {
 header nav .nav-hamburger {
     grid-area: hamburger;
     height: 22px;
+
     /* display: flex; */
     display: none;
     align-items: center;
@@ -156,6 +157,7 @@ header nav .nav-brand img {
 header nav .nav-sections {
     grid-area: sections;
     flex: 1 1 auto;
+
     /* display: none;
     visibility: hidden; */
 }
