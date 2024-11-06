@@ -1,0 +1,47 @@
+footer {
+  background: url("../../icons/nippon-footer-bg.jpg") no-repeat center bottom;
+  margin-bottom: 40px;
+  .section:nth-child(1),
+  .section:nth-child(2) {
+    display: block;
+    padding: 15px;
+    background: #d7e3f1;
+    margin-bottom: 30px;
+    line-height: 1.8;
+    font-size: 13px;
+    font-weight: normal;
+  }
+  .section {
+    .default-content-wrapper {
+      p {
+        margin-bottom: 20px;
+        strong {
+          @media screen and(max-width:767px) {
+            font-size: 12px;
+          }
+        }
+      }
+      ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 0;
+        font-size: 11px;
+        @media screen and (max-width: 767px) {
+          flex-direction: column;
+        }
+        li {
+          list-style: none;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          a {
+            color: #494949;
+            // padding: 0 5px;
+          }
+        }
+      }
+    }
+  }
+}
