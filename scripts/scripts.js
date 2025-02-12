@@ -3,6 +3,7 @@ import {
   loadHeader,
   loadFooter,
   decorateButtons,
+  decorateExternalLinks,
   decorateIcons,
   decorateSections,
   decorateBlocks,
@@ -11,6 +12,7 @@ import {
   loadSection,
   loadSections,
   loadCSS,
+  wrapImgsInLinks,
 } from './aem.js';
 
 /**
@@ -47,6 +49,7 @@ async function loadFonts() {
 function buildAutoBlocks(main) {
   try {
     buildHeroBlock(main);
+    wrapImgsInLinks(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -60,6 +63,7 @@ function buildAutoBlocks(main) {
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
   // hopefully forward compatible button decoration
+  decorateExternalLinks(main);
   decorateButtons(main);
   decorateIcons(main);
   buildAutoBlocks(main);

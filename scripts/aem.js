@@ -123,6 +123,41 @@ function sampleRUM(checkpoint, data) {
 }
 
 /**
+ * Wraps images followed by links within a matching <a> tag.
+ * @param {Element} container The container element
+ */
+function wrapImgsInLinks(container) {
+  const pictures = container.querySelectorAll('picture');
+  pictures.forEach((pic) => {
+    const link = pic.nextElementSibling;
+    if (link && link.tagName === 'A' && link.href) {
+      link.innerHTML = pic.outerHTML;
+      pic.replaceWith(link);
+    }
+  });
+}
+
+/**
+ * Handles external links and PDFs to be opened in a new tab/window
+ * @param {Element} main The main element
+ */
+function decorateExternalLinks(main) {
+  main.querySelectorAll('a').forEach((a) => {
+    const href = a.getAttribute('href');
+    if (href) {
+      const extension = href.split('.').pop().trim();
+      if (!href.startsWith('/')
+        && !href.startsWith('#')) {
+        if (!href.includes('xyz.com') || (extension === 'pdf')) {
+          a.setAttribute('target', '_blank');
+        }
+      }
+    }
+  });
+}
+
+
+/**
  * Setup block utils.
  */
 function setup() {
@@ -483,7 +518,9 @@ function decorateSections(main) {
             .filter((style) => style)
             .map((style) => toClassName(style.trim()));
           styles.forEach((style) => section.classList.add(style));
-        } else {
+        } else if (key === 'id') {
+          section.id = toClassName(meta.id);
+        }  else {
           section.dataset[toCamelCase(key)] = meta[key];
         }
       });
@@ -727,4 +764,6 @@ export {
   toClassName,
   waitForFirstImage,
   wrapTextNodes,
+  decorateExternalLinks,
+  wrapImgsInLinks,
 };
