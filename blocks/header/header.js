@@ -103,7 +103,7 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
         if (list.firstElementChild.tagName === 'EM') {
           list.classList.add('active');
         }
-        list.addEventListener('click', () => {
+        list.addEventListener('click', function clickhandler() {
           lists.forEach((l) => {
             l.classList.remove('active');
           });
