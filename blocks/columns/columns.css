@@ -46,13 +46,18 @@
   background-color: #f6f7fd;
 }
 
+main > .section{
+  scroll-margin-top: 100px;
+}
+
 main > .section > div.default-content-wrapper{
   margin-bottom: 60px;
   position: relative;
   padding-bottom: 20px;
 }
 
-.default-content-wrapper::before{
+.contact-us .default-content-wrapper::before, .price-cards .default-content-wrapper::before,.newsletter .default-content-wrapper::before,
+.faq .default-content-wrapper::before{
   content: '';
   position: absolute;
   display: block;
@@ -63,7 +68,7 @@ main > .section > div.default-content-wrapper{
   left: calc(50% - 25px);
 }
 
-.default-content-wrapper h3{
+.contact-us .default-content-wrapper h3,.price-cards .contact-us .default-content-wrapper h3,.newsletter .default-content-wrapper h3 ,.faq  .default-content-wrapper h3{
   font-size: 36px;
   text-transform: uppercase;
   text-align: center;
