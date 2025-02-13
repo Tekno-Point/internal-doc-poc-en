@@ -97,6 +97,20 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
     window.addEventListener('keydown', closeOnEscape);
     // collapse menu on focus lost
     nav.addEventListener('focusout', closeOnFocusLost);
+    if (navSections.classList.contains('menu-list')) {
+      const lists = navSections.querySelectorAll('li');
+      lists.forEach((list) => {
+        if (list.firstElementChild.tagName === 'EM') {
+          list.classList.add('active');
+        }
+        list.addEventListener('click', () => {
+          lists.forEach((l) => {
+            l.classList.remove('active');
+          });
+          this.classList.add('active');
+        });
+      });
+    }
   } else {
     window.removeEventListener('keydown', closeOnEscape);
     nav.removeEventListener('focusout', closeOnFocusLost);

@@ -156,7 +156,6 @@ function decorateExternalLinks(main) {
   });
 }
 
-
 /**
  * Setup block utils.
  */
@@ -520,7 +519,7 @@ function decorateSections(main) {
           styles.forEach((style) => section.classList.add(style));
         } else if (key === 'id') {
           section.id = toClassName(meta.id);
-        }  else {
+        } else {
           section.dataset[toCamelCase(key)] = meta[key];
         }
       });
