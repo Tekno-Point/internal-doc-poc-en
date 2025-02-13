@@ -60,8 +60,10 @@ header nav p {
   line-height: 1;
 }
 
+
 header nav a:any-link {
   color: currentcolor;
+  text-decoration: none;
 }
 
 /* hamburger */
@@ -241,6 +243,30 @@ header nav .nav-sections ul > li > ul > li {
     justify-content: end;
   }
 
+  header nav .nav-sections .default-content-wrapper > ul > li.active{
+    position: relative;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li::before{
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #f82249;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+
+  }
+  
+  header nav .nav-sections .default-content-wrapper > ul > li.active::before{
+    visibility: visible;
+    width: 100%;
+  }
+
 
   header nav .nav-sections .default-content-wrapper > ul > li {
     /* flex: 0 1 auto;
@@ -255,7 +281,8 @@ header nav .nav-sections ul > li > ul > li {
     outline: none;
     position: relative;
   }
- 
+  
+
   header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
     padding: 8px 0;
   }
@@ -327,6 +354,15 @@ header nav .nav-tools {
     position: relative;
   }
 
+  header nav a:any-link {
+    font-size: 17px;
+    font-weight: 500;
+    padding: 10px 22px 10px 15px;
+    width: 100%;
+    display: block;
+    outline: none;
+}
+
   header nav .nav-sections .default-content-wrapper {
     position: absolute;
     top: 0;
@@ -337,4 +373,5 @@ header nav .nav-tools {
     color: #fff;
     padding-left: 20px;
 }
+
 }
