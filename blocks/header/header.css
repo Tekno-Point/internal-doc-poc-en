@@ -51,6 +51,7 @@ header nav[aria-expanded='true'] {
   header nav[aria-expanded='true'] {
     min-height: 0;
     overflow: visible;
+    
   }
 }
 
@@ -319,4 +320,21 @@ header nav .nav-sections ul > li > ul > li {
 /* tools */
 header nav .nav-tools {
   grid-area: tools;
+}
+
+@media only screen and (width <= 767px){
+  header nav{
+    position: relative;
+  }
+
+  header nav .nav-sections .default-content-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(6, 12, 34, 0.9);
+    width: 65%;
+    height: 100vh;
+    color: #fff;
+    padding-left: 20px;
+}
 }
