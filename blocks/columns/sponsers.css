@@ -1,0 +1,77 @@
+.sponsers {
+    padding: 60px 0;
+  }
+
+  .sponsers .default-content-wrapper{
+    margin-bottom: 60px;
+    position: relative;
+    padding-bottom: 20px;
+  }
+  
+  .sponsers .default-content-wrapper::before{
+    content: '';
+    position: absolute;
+    display: block;
+    width: 60px;
+    height: 5px;
+    background: #f82249;
+    bottom: 0;
+    left: calc(50% - 25px);
+  }
+
+  .sponsers .default-content-wrapper h3{
+    font-size: 36px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 10px;
+    margin: 0 0 20px;
+    padding: 0;
+    color: #0e1b4d;
+  }
+
+  .sponsers .sponsors-wrap {
+    border-top: 1px solid #e0e5fa;
+    border-left: 1px solid #e0e5fa;
+    margin-bottom: 30px;
+  }
+
+  .sponsers .columns > div{
+    gap:0;
+  }
+
+  .sponsers .columns-img-col {
+    padding: 30px;
+    display: -webkit-box;
+    display: flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-right: 1px solid #e0e5fa;
+    border-bottom: 1px solid #e0e5fa;
+    overflow: hidden;
+    background: rgb(255 255 255 / 50%);
+    height: 160px;
+  }
+  
+  .sponsers .columns-img-col:hover img {
+    transform: scale(1.2);
+  }
+  
+  .sponsers img {
+    transition: all 0.4s ease-in-out;
+  }
+  
+  @media only screen and (width <= 767px){
+    .sponsers .columns-img-col:hover img {
+        transform: unset;
+      }
+
+      .sponsers .columns-img-col{
+        height: unset;
+      }
+  }

@@ -1,0 +1,95 @@
+/* #faq {
+    padding: 60px 0;
+  } */
+  
+  .faq .accordion-wrapper{
+    display: flex;
+    justify-content: center;
+  }
+
+  .faq .accordion.block{
+    width: 75%;
+  }
+
+  #faq #faq-list {
+    padding: 0;
+    list-style: none;
+  }
+
+  .faq .accordion details[open] .accordion-item-body{
+    border-top: none;
+  }
+
+  .faq .accordion details[open] .accordion-item-label p{
+    color: #f82249;
+    transition: 0.5s;
+    background-color: none;
+    margin: 0;
+  }
+
+  .faq .accordion details {
+    border: none;
+    border-bottom: 1px solid #ddd;
+    margin-top: 0;
+  }
+  
+  .faq .accordion details p {
+    padding: 18px 0;
+    display: block;
+    position: relative;
+    font-family: Raleway, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    padding-right: 20px;
+    margin: 0;
+  }
+  
+  #faq #faq-list i {
+    font-size: 24px;
+    position: absolute;
+    right: 0;
+    top: 16px;
+  }
+  
+  #faq #faq-list p {
+    margin-bottom: 20px;
+  }
+  
+  #faq #faq-list a.collapse {
+    color: #f82249;
+  }
+  
+  #faq #faq-list a.collapsed {
+    color: #000;
+  }
+  
+  #faq #faq-list a.collapsed i::before {
+    content: "\f055" !important;
+  }
+
+  .faq .accordion details[open] summary{
+    background-color: unset;
+  }
+
+  .faq .accordion details summary:focus, .accordion details summary:hover{
+    background-color: unset;
+  }
+
+  .faq .accordion details .accordion-item-body p{
+    font-weight: 400;
+    font-size: 16px;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+
+  @media only screen and (width <= 767px) {
+    .faq .accordion-wrapper{
+        display: flex;
+        justify-content: center;
+      }
+
+      .faq .accordion.block{
+        width: 100%;
+      }
+  }

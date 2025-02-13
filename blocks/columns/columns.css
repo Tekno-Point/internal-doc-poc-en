@@ -1,6 +1,16 @@
+@import url("./aboutus.css");
+@import url("./speakers.css");
+@import url("./venue.css");
+@import url("./sponsers.css");
+@import url("./price-cards.css");
+
 .columns > div {
   display: flex;
   flex-direction: column;
+}
+
+.dsp-none{
+  display: none;
 }
 
 .columns img {
@@ -30,4 +40,36 @@
     flex: 1;
     order: unset;
   }
+}
+
+.section-with-bg {
+  background-color: #f6f7fd;
+}
+
+main > .section > div.default-content-wrapper{
+  margin-bottom: 60px;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.default-content-wrapper::before{
+  content: '';
+  position: absolute;
+  display: block;
+  width: 60px;
+  height: 5px;
+  background: #f82249;
+  bottom: 0;
+  left: calc(50% - 25px);
+}
+
+.default-content-wrapper h3{
+  font-size: 36px;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 10px;
+  margin: 0 0 20px;
+  padding: 0;
+  color: #0e1b4d;
 }

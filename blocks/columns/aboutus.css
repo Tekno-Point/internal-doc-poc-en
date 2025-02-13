@@ -1,0 +1,72 @@
+.about-us {
+    background: url("../../images/about-bg.jpg");
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
+    color: #fff;
+    padding: 60px 0 40px;
+}
+
+.about-us::before{
+    content: "";
+    background: rgb(13 20 41 / 80%);
+    position: absolute;
+    inset: 0;
+}
+
+.about-us .columns-wrapper > .block > div{
+  z-index: 1;
+  position: relative;
+  display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+
+}
+
+.about-us .columns-wrapper > .block > div > div{
+    padding-left: 15px;
+    padding-right: 15px;
+    flex: 0 0 22%;
+    max-width: 22%;
+}
+
+.about-us .columns-wrapper > .block > div > div:first-child{
+    flex: 0 0 44%;
+    max-width: 50%;
+    margin-bottom: 10px;
+}
+
+.about-us .columns-wrapper > .block > div > div h2{
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.about-us .columns-wrapper > .block > div > div:first-child h2{
+    font-size: 36px;
+}
+
+.about-us .columns-wrapper > .block > div > div p{
+    font-size: 14px;
+    margin-bottom: 20px;
+    
+}
+
+@media only screen and (width <= 767px){
+    .about-us .columns-wrapper > .block > div > div:first-child,.about-us .columns-wrapper > .block > div > div{
+        flex: unset;
+        max-width: unset;
+        margin-bottom: 0;
+    }
+
+    .about-us .columns-wrapper > .block > div > div p{
+        margin-bottom: 20px;
+    }
+
+    .about-us .columns-wrapper > .block > div > div h2{
+        margin-top: 0;
+    }
+}
