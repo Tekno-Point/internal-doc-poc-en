@@ -1,3 +1,4 @@
+
 /* header and nav layout */
 header .nav-wrapper {
   /* background-color: var(--background-color);
@@ -205,6 +206,7 @@ header nav .nav-sections ul > li > ul > li {
     visibility: visible;
     white-space: nowrap;
   }
+  
   header nav .nav-sections .default-content-wrapper > ul > li strong a {
     color: #fff;
     background: #f82249;
@@ -257,6 +259,7 @@ header nav .nav-sections ul > li > ul > li {
 
   header nav .nav-sections .default-content-wrapper > ul > li.active{
     position: relative;
+    color: #fff;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li::before{
@@ -273,7 +276,15 @@ header nav .nav-sections ul > li > ul > li {
 
 
   }
-  
+
+  header nav .nav-sections .default-content-wrapper > ul > li:last-child::before{
+    content: unset;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li em{
+    font-style: normal;
+  }
+
   header nav .nav-sections .default-content-wrapper > ul > li.active::before{
     visibility: visible;
     width: 100%;
@@ -342,7 +353,7 @@ header nav .nav-sections ul > li > ul > li {
   }
 
   
-}
+
 
 /* tools */
 header nav .nav-tools {
