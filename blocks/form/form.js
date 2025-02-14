@@ -76,11 +76,11 @@ async function handleSubmit(form) {
     } else {
       const error = await response.text();
       showMsg(false, 'Something went wrong');
-      throw new Error(error);
+      // throw new Error(error);
     }
   } catch (e) {
     // eslint-disable-next-line no-console
-    showMsg(false, e.message);
+    showMsg(false, 'Something went wrong');
     console.error(e);
   } finally {
     form.setAttribute('data-submitting', 'false');
