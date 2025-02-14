@@ -28,11 +28,13 @@ async function createForm(formHref, submitHref) {
 
 function generatePayload(form) {
   const payload = {};
-
+  const ignorepayload = {};
   [...form.elements].forEach((field) => {
     if (field.name && field.type !== 'submit' && !field.disabled) {
       if (field.type === 'radio') {
         if (field.checked) payload[field.name] = field.value;
+      } else if (field.type === 'fieldset') {
+        ignorepayload[field.name] = field.value;
       } else if (field.type === 'checkbox') {
         if (field.checked) payload[field.name] = payload[field.name] ? `${payload[field.name]},${field.value}` : field.value;
       } else {
@@ -55,7 +57,7 @@ async function handleSubmit(form) {
     const payload = generatePayload(form);
     const response = await fetch(form.dataset.action, {
       method: 'POST',
-      body: JSON.stringify({ data: payload }),
+      body: JSON.stringify({ Master: [payload] }),
       headers: {
         'Content-Type': 'application/json',
       },
