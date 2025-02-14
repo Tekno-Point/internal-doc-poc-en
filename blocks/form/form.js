@@ -75,7 +75,7 @@ async function handleSubmit(form) {
       // }
     } else {
       const error = await response.text();
-      showMsg(false, error);
+      showMsg(false, 'Something went wrong');
       throw new Error(error);
     }
   } catch (e) {
