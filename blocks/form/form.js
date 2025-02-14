@@ -1,8 +1,6 @@
+import { showMsg } from '../popup/popup.js';
 import createField from './form-fields.js';
 
-function showMsg(status, message) {
-  alert(message);
-}
 async function createForm(formHref, submitHref) {
   const { pathname } = new URL(formHref);
   const resp = await fetch(pathname);
@@ -82,6 +80,7 @@ async function handleSubmit(form) {
     }
   } catch (e) {
     // eslint-disable-next-line no-console
+    showMsg(false, e.message);
     console.error(e);
   } finally {
     form.setAttribute('data-submitting', 'false');
