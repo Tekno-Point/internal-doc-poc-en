@@ -1,5 +1,8 @@
 import createField from './form-fields.js';
 
+function showMsg(status, message) {
+  alert(message);
+}
 async function createForm(formHref, submitHref) {
   const { pathname } = new URL(formHref);
   const resp = await fetch(pathname);
@@ -63,11 +66,18 @@ async function handleSubmit(form) {
       },
     });
     if (response.ok) {
-      if (form.dataset.confirmation) {
-        window.location.href = form.dataset.confirmation;
+      const respData = await response.json();
+      if (respData.status) {
+        showMsg(true, respData.response[0].message);
+      } else {
+        showMsg(false, respData.response[0].message);
       }
+      // if (form.dataset.confirmation) {
+      //   window.location.href = form.dataset.confirmation;
+      // }
     } else {
       const error = await response.text();
+      showMsg(false, error);
       throw new Error(error);
     }
   } catch (e) {
