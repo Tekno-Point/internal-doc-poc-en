@@ -5,7 +5,7 @@
             "id":"google-assist",
             "title":"Google Assist",
             "environments":["edit","dev","preview","live","prod"],
-            "url":"http://wwwgoogle.com/search?q=edge+delivery+service",
+            "url":"http://www.google.com/search?q=edge+delivery+service",
             "passConfig":true,
             "passReferrer":true,
             "excludePaths":[
