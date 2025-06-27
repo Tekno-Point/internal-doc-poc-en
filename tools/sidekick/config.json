@@ -1,0 +1,22 @@
+{
+    "project":"internal-doc-poc-en",
+    "plugins":[
+        {
+            "id":"google-assist",
+            "title":"Google Assist",
+            "environments":["edit","dev","preview","live","prod"],
+            "url":"http://wwwgoogle.com/search?q=edge+delivery+service",
+            "passConfig":true,
+            "passReferrer":true,
+            "excludePaths":[
+                "**/fr/**"
+            ],
+            "includePaths":[
+                "**.docx**",
+                "**/fr/blocks/**"
+            ],
+            "isPalette": true,
+            "paletteRect": "top: 50px; bottom: 10px; right: 10px; left: auto; width:400px; height: calc(100vh - 60px)"
+        }
+    ]
+}
