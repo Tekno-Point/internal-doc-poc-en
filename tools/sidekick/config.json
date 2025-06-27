@@ -2,7 +2,7 @@
     "project":"internal-doc-poc-en",
     "plugins":[
         {
-            "id":"google-assist",
+            "id":"googleasd-assister",
             "title":"Google Assist",
             "environments":["edit","dev","preview","live","prod"],
             "url":"http://www.google.com/search?q=edge+delivery+service",
