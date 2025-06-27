@@ -8,9 +8,6 @@
             "url":"http://www.google.com/search?q=edge+delivery+service",
             "passConfig":true,
             "passReferrer":true,
-            "excludePaths":[
-                "**/fr/**"
-            ],
             "includePaths":[
                 "**.docx**",
                 "**/fr/blocks/**"
