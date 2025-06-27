@@ -1,7 +1,10 @@
 {
-  "id": "test-button",
-  "title": "Test Plugin",
-  "url": "https://jsonplaceholder.typicode.com/todos/1",
-  "includePaths": ["**"],
-  "passConfig": true
+    "project": "internal-doc-poc-en",
+    "plugins": [{
+        "id": "test-button",
+        "title": "Test Plugin",
+        "url": "https://jsonplaceholder.typicode.com/todos/1",
+        "includePaths": ["**"],
+        "passConfig": true
+    }]
 }
