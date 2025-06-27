@@ -1,0 +1,10 @@
+{
+    "project": "INTERNAL EDS",
+    "plugins": [{
+        "id": "library",
+        "title": "Library",
+        "environments": ["edit"],
+        "url": "https://main--wknd--hlxsites.hlx.live/tools/sidekick/library.html",
+        "includePaths": ["**.docx**"]
+    }]
+}
