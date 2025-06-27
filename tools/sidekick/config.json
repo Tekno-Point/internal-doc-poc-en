@@ -1,36 +1,10 @@
 {
-    "project": "internal-doc-poc-en",
+    "project": "INTERNAL EDS",
     "plugins": [{
-            "id": "googleasd-assister",
-            "title": "Google Assist",
-            "environments": ["edit", "dev", "preview", "live", "prod"],
-            "url": "http://www.google.com/search?q=edge+delivery+service",
-            "passConfig": true,
-            "passReferrer": true,
-            "includePaths": [
-                "**.docx**"
-            ]
-        },
-        {
-            "id": "tools",
-            "title": "Tools",
-            "isContainer": true
-        },
-        {
-            "containerId": "tools",
-            "id": "localize",
-            "title": "Localize",
-            "environments": ["edit", "dev", "preview", "live", "prod"],
-            "url": "https://jsonplaceholder.typicode.com/todos/1",
-            "passReferrer": true
-        },
-        {
-            "containerId": "tools",
-            "id": "youtube",
-            "title": "YouTube",
-            "environments": ["edit", "dev", "preview", "live", "prod"],
-            "url": "https://www.youtube.com/watch?v=jFfjeQnszi4",
-            "passReferrer": true
-        }
-    ]
+        "id": "library",
+        "title": "Library",
+        "environments": ["edit"],
+        "url": "https://main--wknd--hlxsites.hlx.live/tools/sidekick/library.html",
+        "includePaths": ["**.docx**"]
+    }]
 }
