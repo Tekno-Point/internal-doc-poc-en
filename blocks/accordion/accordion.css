@@ -1,4 +1,4 @@
-/* .accordion-container .accordion-wrapper {
+.accordion-container .accordion-wrapper {
   margin-bottom: 50px;
   padding-top: 18px
 }
@@ -6,6 +6,7 @@
 .accordion a {
   color: #fff;
 }
+
 .accordion a:hover {
   text-decoration: none;
 }
@@ -61,7 +62,9 @@
 }
 
 .accordion details summary::-webkit-details-marker {
-	@@ -37,25 +67,66 @@
+  display: none;
+}
+
 .accordion details summary::after {
   content: '';
   position: absolute;
@@ -106,8 +109,10 @@
 .accordion-item .accordion-item-body>ul>li>p {
   visibility: hidden;
 }
-
-.accordion-item .accordion-item-body>ul>li ul li p {
+.hyphens .accordion-item .accordion-item-body>ul>li ul li strong {
+  display: block;
+}
+.accordion-item .accordion-item-body>ul>li ul li p, .hyphens .accordion-item .accordion-item-body>ul>li ul li strong  {
   margin-bottom: 10px;
   word-wrap: break-word;
   color: #fff;
@@ -125,6 +130,32 @@
   color: #fff;
 }
 
+.accordion-item[open] {
+  padding: 0px 0 18px 0;
+  border-bottom: 1px solid #FFFFFF;
+}
+
 .accordion details[open] .accordion-item-label {
   border-bottom: none;
-} */
+}
+
+@media screen and (max-width: 768px) {
+  .accordion-item .accordion-item-label p {
+    font-size: 14px;
+    padding: 16px 0;
+  }
+
+  .accordion details summary::after {
+    width: 24px;
+    height: 24px;
+  }
+
+  .accordion-item .accordion-item-body>ul>li ul li p {
+    font-size: 14px;
+  }
+
+  .accordion-item .accordion-item-body>ul>li ul li ul li a {
+    font-size: 13px;
+    line-height: 14px;
+  }
+}

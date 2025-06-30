@@ -185,11 +185,14 @@ export default async function decorate(block) {
           const expanded = navSection.getAttribute('aria-expanded') === 'true';
           toggleAllNavSections(navSections);
           navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          if(navSection.getAttribute('aria-expanded') === 'true'){
+            navSection.classList.toggle('active');
+          }
           if (isDesktop.matches) document.body.style.overflow = !expanded ? 'hidden' : 'auto';
         }
       });
       navSection.querySelectorAll("ul >li").forEach((subLi, ind) => {
-        subLi?.querySelector("p, a")?.addEventListener("click", (ele) => {
+        subLi?.querySelector("p, a, strong")?.addEventListener("click", (ele) => {
           const li = ele.target?.closest("li");
           const expanded = li?.getAttribute("aria-expanded");
           if (expanded === "false") {

@@ -202,13 +202,18 @@ header nav .nav-sections ul>li>ul>li {
     cursor: pointer;
   }
 
-  header nav .nav-sections .nav-drop p {
+  header nav .nav-sections .nav-drop p,
+  header nav .nav-sections .nav-drop strong {
     position: relative;
     padding-right: 16px;
-    font-weight: 600;
+    /* font-weight: 600; */
+    font-weight: 400;
+  }
+  header nav .nav-sections .nav-drop strong {
+   display: block;
   }
 
-  header nav .nav-sections .nav-drop p::after {
+  header nav .nav-sections .nav-drop p::after, header nav .nav-sections .nav-drop strong::after {
     content: '';
     display: inline-block;
     position: absolute;
@@ -223,7 +228,7 @@ header nav .nav-sections ul>li>ul>li {
     rotate: 135deg;
   }
 
-  header nav .nav-sections .nav-drop[aria-expanded='true'] p::after {
+  header nav .nav-sections .nav-drop[aria-expanded='true'] p::after, header nav .nav-sections .nav-drop[aria-expanded='true'] strong::after {
     top: 31%;
     right: -4px;
     /* bottom: 0.5em; */
@@ -231,9 +236,10 @@ header nav .nav-sections ul>li>ul>li {
     rotate: 315deg;
   }
 
-  header nav .nav-sections .nav-drop[aria-expanded='true']>p {
-    font-weight: 700;
+  header nav .nav-sections .nav-drop[aria-expanded='true']>p, header nav .nav-sections .nav-drop[aria-expanded='true']>strong {
+    font-weight: 400;
     color: #000;
+    font-family: Montserrat-Bold, sans-serif;
   }
 
   header nav .nav-sections ul {
@@ -318,7 +324,10 @@ header nav .nav-tools .default-content-wrapper>p>a {
 }
 
 header nav .nav-sections .nav-drop .inner-ul p::after,
-header nav .nav-sections .nav-drop[aria-expanded='true'] .inner-ul li[aria-expanded='false'] p::after {
+header nav .nav-sections .nav-drop[aria-expanded='true'] .inner-ul li[aria-expanded='false'] p::after,
+
+header nav .nav-sections .nav-drop .inner-ul strong::after,
+header nav .nav-sections .nav-drop[aria-expanded='true'] .inner-ul li[aria-expanded='false'] strong::after {
   rotate: 401deg;
   content: '';
   display: inline-block;
@@ -335,7 +344,7 @@ header nav .nav-sections .nav-drop[aria-expanded='true'] .inner-ul li[aria-expan
   rotate: 401deg;
 }
 
-header nav .nav-sections .nav-drop[aria-expanded='true'] .inner-ul p::after {
+header nav .nav-sections .nav-drop[aria-expanded='true'] .inner-ul p::after, header nav .nav-sections .nav-drop[aria-expanded='true'] .inner-ul strong::after {
   width: 7px;
   height: 7px;
   border: 2px solid currentcolor;
@@ -412,8 +421,20 @@ header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li>p {
   font-size: 14px;
   font-weight: 500;
 }
+header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li>strong {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 400;
+}
 
-header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li[aria-expanded='true']>p {
+header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li[aria-expanded='true']> strong  {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li[aria-expanded='true']>p, header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li[aria-expanded='true']> strong {
   color: rgb(106, 188, 255);
   font-size: 15px;
 }
@@ -440,6 +461,7 @@ header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li[aria-expa
 
 header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li[aria-expanded='true']>.default-content-wrapper>p>picture>img {
   width: 100%;
+  object-fit: cover;
 }
 
 header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li>.default-content-wrapper>ul {
@@ -468,6 +490,10 @@ header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li>.default-
 }
 
 /* tools CSS */
+
+header nav .nav-tools .default-content-wrapper {
+  font-size: 14px;
+}
 
 header nav .nav-tools .default-content-wrapper,
 header nav .nav-tools .default-content-wrapper>ul {
@@ -507,6 +533,8 @@ header nav .nav-tools .default-content-wrapper>ul {
   list-style: none;
   margin: 0;
   padding: 0;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 header nav .nav-tools .default-content-wrapper>ul>li {
@@ -575,6 +603,8 @@ header nav .nav-tools .default-content-wrapper>p .button.primary {
   background-color: #034EA2;
   color: #fff;
   border-radius: 7px;
+  font-family: Montserrat-SemiBold, sans-serif;
+  font-weight: 400;
 }
 
 /* } */
@@ -676,6 +706,9 @@ header nav .nav-tools .default-content-wrapper>p .button.primary {
     padding: 10px 20px;
   }
 
+  header nav .nav-sections .default-content-wrapper >ul >li[aria-expanded='true'] {
+    color: #000;
+  }
 
   header nav .nav-sections .nav-drop[aria-expanded='true'] .inner-ul>li[aria-expanded='true'] p {
     color: #000;
@@ -689,7 +722,7 @@ header nav .nav-tools .default-content-wrapper>p .button.primary {
 
   }
 
-  header nav .nav-sections .nav-drop p::after {
+  header nav .nav-sections .nav-drop p::after, header nav .nav-sections .nav-drop strong::after {
     content: "";
     display: inline-block;
     position: absolute;
@@ -710,7 +743,7 @@ header nav .nav-tools .default-content-wrapper>p .button.primary {
     background: linear-gradient(#0056b3 0 0) center / 2px 100% no-repeat, linear-gradient(#0056b3 0 0) center / 100% 2px no-repeat;
   }
 
-  header nav .nav-sections .nav-drop[aria-expanded='true'] p::after {
+  header nav .nav-sections .nav-drop[aria-expanded='true'] p::after,  header nav .nav-sections .nav-drop[aria-expanded='true'] strong::after {
     content: "";
     display: inline-block;
     position: absolute;
