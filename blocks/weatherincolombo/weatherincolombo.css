@@ -1,0 +1,122 @@
+#weather-in-colombo{
+    color: #0088DD 
+}
+
+.weatherincolombo > div:nth-child(2) {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap; /* Optional: helps on smaller screens */
+}
+
+.weatherincolombo > div:nth-child(2) p {
+  font-weight: 500;
+  font-size: 16px;
+  margin: 0;
+}
+
+.weather-unit-dropdown {
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  appearance: none; /* Removes default arrow in some browsers */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  padding-right: 36px; /* Extra space for arrow */
+}
+
+/* Wrapper to align all cards */
+.cards.block > ul {
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: center;
+  gap: 6px;
+  padding: 20px;
+  margin: 0 auto;
+  list-style: none;
+  max-width: 1200px;
+  box-sizing: border-box;
+}
+
+.cards.block > ul > li {
+  flex: 1 1 140px; /* Grow and shrink, base width 140px */
+  max-width: 160px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  /* padding: 20px; */
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.cards.block > ul > li:hover {
+  transform: translateY(-5px);
+}
+
+/* .cards-card-body .icon img {
+  width: 150px;
+  height: auto;
+  margin-bottom: 10px;
+} */
+
+.cards-card-body h3 {
+  margin: 10px 0 5px;
+  font-size: 16px;
+}
+
+.cards-card-body p {
+  margin: 4px 0;
+  color: #555;
+}
+
+.cards-card-body p:nth-of-type(2) {
+  font-weight: bold;
+  color: #0078d7; /* temperature color */
+}
+
+
+/* Icon section */
+.cards-card-body:first-child {
+  background-color: #e0e0e0;
+  padding: 20px 10px;
+}
+
+.cards-card-body:first-child img {
+  width: 48px;
+  height: 48px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Text section */
+.cards-card-body[data-align="center"] {
+  padding: 10px;
+}
+
+.cards-card-body[data-align="center"] h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 5px 0;
+  color: #333;
+}
+
+.cards-card-body[data-align="center"] p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.cards-card-body[data-align="center"] p:nth-of-type(2) {
+  color: #007BFF;
+  font-weight: bold;
+  font-size: 16px;
+}
