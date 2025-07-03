@@ -1,0 +1,27 @@
+.mySwiper {
+  width: 100%;
+  padding: 20px 0;
+}
+
+.swiper-slide {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  font-family: sans-serif;
+  width: auto;
+  text-align: center;
+}
+
+.swiper-slide p {
+  margin: 6px 0;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: #007bff;
+}
+
+.swiper-pagination-bullet {
+  background: #007bff;
+}

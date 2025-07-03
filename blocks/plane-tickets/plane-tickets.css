@@ -1,0 +1,168 @@
+/* Section container */
+.cards-wrapper {
+    display: none;
+}
+.book-now-button{
+    display: none;
+}
+.plane-tickets {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 1100px;
+    margin: auto;
+    padding: 32px 16px;
+}
+
+/* Header title */
+.plane-tickets h2 {
+    color: #0070c9;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+
+/* Filter input section */
+.plane-filters {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.plane-filters label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #555;
+}
+
+.plane-filters input {
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 280px;
+    font-size: 14px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.plane-table {
+    overflow-x: auto;
+}
+
+/* Table styling */
+.plane-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+.plane-table th,
+.plane-table td {
+    padding: 16px;
+    text-align: left;
+    font-size: 14px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.plane-table thead {
+    background-color: #f9f9f9;
+}
+
+.plane-table th {
+    color: #333;
+    font-weight: 600;
+}
+
+/* Price cell styling */
+.price-cell strong {
+    color: #0070c9;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.price-cell small {
+    display: block;
+    color: #666;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* Fare note at bottom */
+.fare-note {
+    font-size: 12px;
+    color: #777;
+    margin-top: 16px;
+}
+
+@media screen and (max-width: 768px) {
+   .plane-table table thead {
+    display: none;
+  }
+
+  .plane-table table,
+  .plane-table tbody,
+  .plane-table tr,
+  .plane-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .plane-table tr {
+    background: #fff;
+    margin-bottom: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+  }
+
+  .plane-table td {
+    padding: 4px 0;
+    font-size: 14px;
+    color: #333;
+    border: none;
+  }
+
+  .plane-table td strong {
+    font-size: 16px;
+    color: #007bff;
+  }
+
+  .plane-table .price-cell {
+    margin-top: 8px;
+  }
+
+  .plane-filters {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .plane-filters .from,
+  .plane-filters .to {
+    width: 100%;
+  }
+
+  .plane-filters input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  .book-now-button {
+  display: block;
+  margin-top: 8px;
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  width: 100%;
+}
+.book-now-button{
+    display: block;
+}
+
+
+}

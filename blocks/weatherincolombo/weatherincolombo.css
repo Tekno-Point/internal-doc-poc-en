@@ -35,7 +35,7 @@
 }
 
 /* Wrapper to align all cards */
-.cards.block > ul {
+.weatherincolombo-container .cards.block > ul {
   display: flex;
   /* flex-wrap: wrap; */
   justify-content: center;
@@ -47,7 +47,7 @@
   box-sizing: border-box;
 }
 
-.cards.block > ul > li {
+.weatherincolombo-container .cards.block > ul > li {
   flex: 1 1 140px; /* Grow and shrink, base width 140px */
   max-width: 160px;
   background: #fff;
@@ -58,7 +58,7 @@
   transition: transform 0.2s ease-in-out;
 }
 
-.cards.block > ul > li:hover {
+.weatherincolombo-container .cards.block > ul > li:hover {
   transform: translateY(-5px);
 }
 
@@ -68,29 +68,29 @@
   margin-bottom: 10px;
 } */
 
-.cards-card-body h3 {
+.weatherincolombo-container .cards-card-body h3 {
   margin: 10px 0 5px;
   font-size: 16px;
 }
 
-.cards-card-body p {
+.weatherincolombo-container .cards-card-body p {
   margin: 4px 0;
   color: #555;
 }
 
-.cards-card-body p:nth-of-type(2) {
+.weatherincolombo-container .cards-card-body p:nth-of-type(2) {
   font-weight: bold;
   color: #0078d7; /* temperature color */
 }
 
 
 /* Icon section */
-.cards-card-body:first-child {
+.weatherincolombo-container .cards-card-body:first-child {
   background-color: #e0e0e0;
   padding: 20px 10px;
 }
 
-.cards-card-body:first-child img {
+.weatherincolombo-container .cards-card-body:first-child img {
   width: 48px;
   height: 48px;
   display: block;
@@ -98,25 +98,28 @@
 }
 
 /* Text section */
-.cards-card-body[data-align="center"] {
+.weatherincolombo-container .cards-card-body[data-align="center"] {
   padding: 10px;
 }
 
-.cards-card-body[data-align="center"] h3 {
+.weatherincolombo-container .cards-card-body[data-align="center"] h3 {
   font-size: 16px;
   font-weight: bold;
   margin: 5px 0;
   color: #333;
 }
 
-.cards-card-body[data-align="center"] p {
+.weatherincolombo-container .cards-card-body[data-align="center"] p {
   margin: 4px 0;
   font-size: 14px;
   color: #666;
 }
 
-.cards-card-body[data-align="center"] p:nth-of-type(2) {
+.weatherincolombo-container .cards-card-body[data-align="center"] p:nth-of-type(2) {
   color: #007BFF;
   font-weight: bold;
   font-size: 16px;
+}
+#weather-in-colombo{
+    font-size: 40px;
 }
