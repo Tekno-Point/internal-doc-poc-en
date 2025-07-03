@@ -1,0 +1,75 @@
+.month-graph {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 4px;
+  /* overflow-x: auto; */
+  padding: 20px 0;
+  /* border-top: 1px solid #ccc; */
+  position: relative;
+}
+
+.graph-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 auto;
+  width: 24px;
+  /* height: 90px; */
+  position: relative;
+}
+
+.bar {
+  width: 100%;
+  height: 150px;
+  background-color: #cceeff;
+  border-radius: 4px 4px 0 0;
+}
+.bar:hover{
+    background-color: #0080bb
+}
+.day-num, .day-name {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 4px;
+  color: #333;
+}
+
+.month-label {
+  position: absolute;
+  bottom: -30px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+}
+
+
+.tooltip {
+  position: absolute;
+  top: -70px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  font-size: 11px;
+  padding: 8px;
+  border-radius: 5px;
+  white-space: nowrap;
+  display: none;
+  z-index: 10;
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+.graph-bar:hover .tooltip {
+  display: block;
+}
