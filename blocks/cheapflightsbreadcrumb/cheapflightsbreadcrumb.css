@@ -61,8 +61,9 @@
     > div
     > div
     > ul
-    > li:last-child {
-    position: static;
+    > li:last-child::after {
+   
+   content: none;
 }
 
 .cheapflightsbreadcrumb-wrapper
