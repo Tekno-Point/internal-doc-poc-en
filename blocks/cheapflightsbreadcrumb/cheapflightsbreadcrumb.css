@@ -1,87 +1,72 @@
-/* Container Padding */
-.dailycheap-header-container {
-  padding: 20px;
-  font-family: Arial, sans-serif;
+.cheapflightsbreadcrumb-wrapper > .cheapflightsbreadcrumb > div > div > ul {
+    padding: 0px;
+    display: flex;
+    gap: 15px;
+    list-style: none;
 }
 
-/* Breadcrumb Styling */
-.cheapflightsbreadcrumb {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 16px;
-  font-size: 14px;
+.cheapflightsbreadcrumb-wrapper
+    > .cheapflightsbreadcrumb
+    > div
+    > div
+    > ul
+    > li
+    > a {
+    font-family: "HelveticaNeueRegular";
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: underline;
+    color: #0088DD;
+        letter-spacing: 0;
 }
 
-.cheapflightsbreadcrumb p {
-  margin: 0;
-  color: #007bff;
-  cursor: pointer;
-  text-decoration: underline;
+.cheapflightsbreadcrumb-wrapper
+    > .cheapflightsbreadcrumb
+    > div
+    > div
+    > ul
+    > li{
+      display: inline-block;
+  position: relative;
+  margin-right: 20px;
+    }
+
+.cheapflightsbreadcrumb-wrapper
+    > .cheapflightsbreadcrumb
+    > div
+    > div
+    > ul
+    > li::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 11px;
+    transform: rotate(39deg);
+    width: 6px;
+    height: 6px;
+    border: 2px solid currentcolor;
+    border-radius: 0 1px 0 0;
+    border-width: 3px 3px 0 0;
+    color: #777777;
+    /* left: 46px; */
+    right: -15px;
 }
 
-.cheapflightsbreadcrumb p:last-child {
-  color: #333;
-  text-decoration: none;
-  cursor: default;
+.cheapflightsbreadcrumb-wrapper > .cheapflightsbreadcrumb > div > div > ul >li:last-child{
+  position:static;
+
 }
 
-/* Heading */
-.dailycheap-header h2 {
-  font-size: 24px;
-  color: #007bff;
-  font-weight: 700;
-  margin-bottom: 20px;
-}
 
-/* Label row ("To" and "From") */
-.dailycheap-header > div:nth-child(2) {
-  display: flex;
-  gap: 16px;
-  font-weight: 600;
-  margin-bottom: 6px;
-  color: #333;
-}
+.dailycheap-header-wrapper>.dailycheap-header>div:first-child>div>h2{
 
-/* Input row */
-.dailycheap-header > div:nth-child(3) {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  flex-wrap: wrap;
-}
+  font-family: "Roboto-regular";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1.2;
+    letter-spacing: normal;
+    text-transform: none;
+    color: #0088DD;
 
-/* Input Fields */
-.input-field {
-  padding: 10px 14px;
-  font-size: 15px;
-  width: 100%;
-  max-width: 360px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  box-sizing: border-box;
-  transition: all 0.3s ease;
-}
-
-.input-field:focus {
-  border-color: #007bff;
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .dailycheap-header > div:nth-child(2),
-  .dailycheap-header > div:nth-child(3) {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .input-field {
-    max-width: 100%;
-  }
-}
-.section.light{
-  background-color: red;
 }
