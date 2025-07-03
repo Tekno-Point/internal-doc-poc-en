@@ -1,6 +1,9 @@
-.mySwiper {
+@import url("./swiper-bundle.min.css");
+.swiper-wrapper {
   width: 100%;
   padding: 20px 0;
+  display: flex;
+ 
 }
 
 .swiper-slide {
@@ -11,6 +14,7 @@
   font-family: sans-serif;
   width: auto;
   text-align: center;
+  background-color: #2f72b9;
 }
 
 .swiper-slide p {
@@ -22,6 +26,6 @@
   color: #007bff;
 }
 
-.swiper-pagination-bullet {
+/* .swiper-pagination-bullet {
   background: #007bff;
-}
+} */
