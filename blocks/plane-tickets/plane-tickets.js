@@ -230,7 +230,10 @@ async function fecthData() {
   try {
     // 🟡 API Payload
     const requestBody = {
-      header: {},
+      header: {
+          "Content-Type": "application/json",
+          "authorization": "Bearer QwtwjX15dtmuoGq9awZnCmC9UqBC",
+      },
       body: {
         originLocationCode: "BOM",
         destinationLocationCode: "CMB",
