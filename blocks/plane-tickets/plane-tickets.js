@@ -1,3 +1,60 @@
+async function getAccessToken() {
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  const raw = JSON.stringify({
+    "header": {
+      "authToken": ""
+    },
+    "body": {
+      "clientId": "ZJRz6bDFxfRPaABeZOShvesqoatIx0AS",
+      "clientSecret": "UNXbe2JgHEJ5BFsp",
+      "grantType": "client_credentials"
+    }
+  });
+
+const requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+
+  const response = await fetch("https://shaft.eastus2.cloudapp.azure.com/shaft/api/eds-channel/grant-access/v1", requestOptions);
+  const responseData = await response.json();
+  return responseData.body.access_token;
+}
+async function getData(auth, data) { 
+const myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+myHeaders.append("authorization", "Bearer "+auth);
+
+const raw = JSON.stringify({
+  "header": {},
+  "body": {
+    "originLocationCode": "SYD",
+    "destinationLocationCode": "BKK",
+    "departureDate": "2025-07-16",
+    "returnDate": "2025-07-30",
+    "adults": "2",
+    "includedAirlineCodes": "TG",
+    "max": "5"
+  }
+});
+
+const requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+
+const response = await fetch("https://shaft.eastus2.cloudapp.azure.com/shaft/api/eds-channel/flight-offers-search/v1", requestOptions);
+const responseData = await response.json();
+return responseData;
+}
+getData(getAccessToken())
+
 export default async function decorate(block) {
   block.innerHTML = `
     <div class="plane-header">
@@ -33,27 +90,52 @@ export default async function decorate(block) {
     </p>
   `;
   async function getAccessToken() {
-  const tokenRes = await fetch("https://shaft.eastus2.cloudapp.azure.com/shaft/api/eds-channel/grant-access/v1", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      header: {
-        authToken: ""
-      },
-      body: {
-        clientId: "ZJRz6bDFxfRPaABeZOShvesqoatIx0AS",
-        clientSecret: "UNXbe2JgHEJ5BFsp",
-        grantType: "client_credentials"
-      }
-    })
-  });
+    const myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
 
-  const result = await tokenRes.json();
-  const token = result?.body?.accessToken;
-  if (!token) throw new Error("Token not received");
-  return token;
+const raw = JSON.stringify({
+  "header": {
+    "authToken": ""
+  },
+  "body": {
+    "clientId": "ZJRz6bDFxfRPaABeZOShvesqoatIx0AS",
+    "clientSecret": "UNXbe2JgHEJ5BFsp",
+    "grantType": "client_credentials"
+  }
+});
+
+const requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+
+fetch("https://shaft.eastus2.cloudapp.azure.com/shaft/api/eds-channel/grant-access/v1", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+  // const tokenRes = await fetch("https://shaft.eastus2.cloudapp.azure.com/shaft/api/eds-channel/grant-access/v1", {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify({
+  //     header: {
+  //       authToken: ""
+  //     },
+  //     body: {
+  //       clientId: "ZJRz6bDFxfRPaABeZOShvesqoatIx0AS",
+  //       clientSecret: "UNXbe2JgHEJ5BFsp",
+  //       grantType: "client_credentials"
+  //     }
+  //   })
+  // });
+
+  // const result = await tokenRes.json();
+  // const token = result?.body?.accessToken;
+  // if (!token) throw new Error("Token not received");
+  // return token;
 }
 const accessToken = await getAccessToken();
   await fecthData(accessToken);
@@ -226,13 +308,13 @@ const accessToken = await getAccessToken();
 //   }
 // }
 
-async function fecthData() {
+async function fecthData(auth) {
   try {
     // 🟡 API Payload
     const requestBody = {
       header: {
           "Content-Type": "application/json",
-          "authorization": "Bearer QwtwjX15dtmuoGq9awZnCmC9UqBC",
+          "authorization": "Bearer " + auth,
       },
       body: {
         originLocationCode: "BOM",
@@ -261,3 +343,4 @@ async function fecthData() {
     console.log(err);
   }
 }
+
