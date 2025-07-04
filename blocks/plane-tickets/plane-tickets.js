@@ -1017,6 +1017,7 @@ async function getAccessToken() {
     return value;
   }
 }
+
 async function getData(auth, data) {
   const myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/json');
@@ -1025,8 +1026,8 @@ async function getData(auth, data) {
   const raw = JSON.stringify({
     header: {},
     body: {
-      originLocationCode: 'SYD',
-      destinationLocationCode: 'BKK',
+      originLocationCode: data?.originLocationCode || "BOM",
+      destinationLocationCode: data?.destinationLocationCode || "CMB",
       departureDate: '2025-07-16',
       returnDate: '2025-07-30',
       adults: '2',
@@ -1157,5 +1158,11 @@ export default async function decorate(block) {
     td.style.paddingTop = '8px';
     row.appendChild(td);
   });
+
+//   block.getElementById('to').addEventListener("blur",function(e) {
+//    data.originLocationCode= document.getElementById('from').value
+//     data.destinationLocationCode=document.getElementById('to').value
+//     getData(auth, data)
+// })
   // }
 }
