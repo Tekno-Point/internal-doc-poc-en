@@ -646,9 +646,37 @@ export default async function decorate(block) {
 
   const tbody = block.querySelector('#ticket-rows');
 
-  flights.forEach(({
-    from, to, fare, dates, price, seen,
-  }) => {
+  // flights.forEach(({
+  //   from, to, fare, dates, price, seen,
+  // }) => {
+  //   const row = document.createElement('tr');
+  //   row.innerHTML = `
+  //     <td>${from}</td>
+  //     <td>${to}</td>
+  //     <td>${fare}</td>
+  //     <td>${dates}</td>
+  //     <td>
+  //       <div class="price-cell">
+  //         <strong>${price}</strong><br/>
+  //         <small>${seen}</small>
+  //       </div>
+  //     </td>
+  //   `;
+  //   tbody.appendChild(row);
+  // });
+   flights.forEach((flight) => {
+    debugger
+    const itineraries = flight.body.data;
+    const from = flight.body.data[0].itineraries[0].segments[0].departure.iataCode;
+    const to = flight.body.data[0].itineraries[0].segments[1].arrival.iataCode;
+
+    const departureDate = flight.body.data[0].lastTicketingDate ;
+    const returnDate = flight.body.data[0].lastTicketingDateTime;
+    const dates = departureDate && returnDate ? `${departureDate} - ${returnDate}` : '—';
+
+    const fare = flight.travelerPricings?.[0]?.fareOption || 'Economy';
+    const price = flight.price?.grandTotal ? `€${flight.price.grandTotal}` : '—';
+
     const row = document.createElement('tr');
     row.innerHTML = `
       <td>${from}</td>
@@ -658,12 +686,13 @@ export default async function decorate(block) {
       <td>
         <div class="price-cell">
           <strong>${price}</strong><br/>
-          <small>${seen}</small>
+          <small>Just now</small>
         </div>
       </td>
+      <td><a href="#book" class="book-now-button">Book now</a></td>
     `;
     tbody.appendChild(row);
-  });
+   });
 
   //   if (window.innerWidth < 768) {
   const rows = document.querySelectorAll('.plane-table tbody tr');
