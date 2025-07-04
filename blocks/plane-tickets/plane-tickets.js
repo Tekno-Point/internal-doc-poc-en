@@ -1967,13 +1967,26 @@ export default async function decorate(block) {
     </div>
     <div class="plane-filters">
       <div class="from">
-        <label for="from">From</label>
-        <input type="text" id="from" placeholder="Mumbai - India (BOM)" />
-      </div>
+    <label for="from">From</label>
+    <input type="text" id="from" list="from-options" placeholder="Mumbai - India (BOM)" />
+    <datalist id="from-options">
+      <option value="Mumbai - India (BOM)">
+      <option value="Delhi - India (DEL)">
+      <option value="Bangalore - India (BLR)">
+      <option value="Chennai - India (MAA)">
+    </datalist>
+  </div>
       <div class="to">
-        <label for="to">To</label>
-        <input type="text" id="to" placeholder="Colombo - Sri Lanka (CMB)" />
-      </div>
+    <label for="to">To</label>
+    <input type="text" id="to" list="to-options" placeholder="Colombo - Sri Lanka (CMB)" />
+    <datalist id="to-options">
+      <option value="Colombo - Sri Lanka (CMB)">
+      <option value="Bangkok - Thailand (BKK)">
+      <option value="Singapore (SIN)">
+      <option value="Dubai - UAE (DXB)">
+    </datalist>
+  </div>
+</div>
     </div>
     <div class="plane-table">
       <table>
@@ -2024,7 +2037,7 @@ export default async function decorate(block) {
     const returnDate = flight.lastTicketingDateTime;
     const dates = departureDate && returnDate ? `${departureDate} - ${returnDate}` : '—';
 
-    const fare = flight.travelerPricings[0].fareDetailsBySegment[0].cabin;
+    const fare = flight.travelerPricings[0].fareDetailsBySegment[1].cabin;
     
     const inrPrice = convertEurToInr(flight.price.grandTotal);
     console.log(inrPrice);
@@ -2046,20 +2059,37 @@ export default async function decorate(block) {
     tbody.appendChild(row);
    });
 
-  //   if (window.innerWidth < 768) {
-  const rows = document.querySelectorAll('.plane-table tbody tr');
-
-  rows.forEach((row) => {
-    const td = document.createElement('td');
-    td.innerHTML = '<a href="#book" class="book-now-button">Book now</a>';
-    td.style.paddingTop = '8px';
-    row.appendChild(td);
-  });
-
 //   block.getElementById('to').addEventListener("blur",function(e) {
 //    data.originLocationCode= document.getElementById('from').value
 //     data.destinationLocationCode=document.getElementById('to').value
 //     getData(auth, data)
 // })
   // }
+  const fromAirports = [
+  "Mumbai - India (BOM)",
+  "Delhi - India (DEL)",
+  "Chennai - India (MAA)",
+  "Hyderabad - India (HYD)",
+];
+
+const toAirports = [
+  "Colombo - Sri Lanka (CMB)",
+  "Bangkok - Thailand (BKK)",
+  "Dubai - UAE (DXB)",
+  "Singapore (SIN)",
+];
+
+function populateDatalist(id, options) {
+  const datalist = document.getElementById(id);
+  datalist.innerHTML = "";
+  options.forEach((val) => {
+    const opt = document.createElement("option");
+    opt.value = val;
+    datalist.appendChild(opt);
+  });
+}
+
+populateDatalist("from-options", fromAirports);
+populateDatalist("to-options", toAirports);
+
 }

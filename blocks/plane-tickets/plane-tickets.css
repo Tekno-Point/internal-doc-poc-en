@@ -1,7 +1,5 @@
 /* Section container */
-.cards-wrapper {
-    display: none;
-}
+
 .book-now-button {
     display: none;
 }
@@ -97,6 +95,51 @@
 
 .section.plane-tickets-container > .plane-tickets-wrapper {
     padding: 0px;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 5px;
+  color: #1a1a1a;
+}
+
+.airport-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.airport-input-wrapper .icon {
+  position: absolute;
+  left: 10px;
+  font-size: 18px;
+  color: #888;
+  pointer-events: none;
+}
+
+.airport-input-wrapper input {
+  width: 100%;
+  padding: 10px 10px 10px 35px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s;
+}
+
+.airport-input-wrapper input:focus {
+  border-color: #0078d4;
+  outline: none;
+}
+
+/* Optional: Smooth datalist dropdown look */
+input::-webkit-calendar-picker-indicator {
+  display: none !important;
 }
 
 @media screen and (max-width: 768px) {
