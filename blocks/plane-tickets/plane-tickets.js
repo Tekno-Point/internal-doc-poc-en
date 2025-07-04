@@ -1,46 +1,5 @@
 /* eslint-disable */
-const dummyData = [
-  // {
-  //   from: 'Mumbai (BOM)',
-  //   to: 'Colombo (CMB)',
-  //   fare: 'Round-trip / Economy',
-  //   dates: '08/30/2025 - 09/04/2025',
-  //   price: 'INR 20,186*',
-  //   seen: 'Seen: 54 minutes ago',
-  // },
-  // {
-  //   from: 'Mumbai (BOM)',
-  //   to: 'Colombo (CMB)',
-  //   fare: 'Round-trip / Economy',
-  //   dates: '08/13/2025 - 08/23/2025',
-  //   price: 'INR 20,186*',
-  //   seen: 'Seen: 2 hrs ago',
-  // },
-  // {
-  //   from: 'Mumbai (BOM)',
-  //   to: 'Colombo (CMB)',
-  //   fare: 'Round-trip / Economy',
-  //   dates: '08/06/2025 - 08/11/2025',
-  //   price: 'INR 20,186*',
-  //   seen: 'Seen: 4 hrs ago',
-  // },
-  // {
-  //   from: 'Mumbai (BOM)',
-  //   to: 'Colombo (CMB)',
-  //   fare: 'Round-trip / Economy',
-  //   dates: '08/11/2025 - 08/19/2025',
-  //   price: 'INR 20,186*',
-  //   seen: 'Seen: 3 hrs ago',
-  // },
-  // {
-  //   from: 'Mumbai (BOM)',
-  //   to: 'Colombo (CMB)',
-  //   fare: 'Round-trip / Economy',
-  //   dates: '08/11/2025 - 08/20/2025',
-  //   price: 'INR 20,186*',
-  //   seen: 'Seen: 6 hrs ago',
-  // },
- {
+const dummyData = {
     "header": {
         "status": "SUCCESS",
         "requestId": "REQ-1751544521783"
@@ -1878,8 +1837,7 @@ const dummyData = [
         }
     },
     "errorBody": {}
-}
-];
+};
 async function getAccessToken() {
   const myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/json');
@@ -2011,25 +1969,7 @@ export default async function decorate(block) {
 
   const tbody = block.querySelector('#ticket-rows');
 
-  // flights.forEach(({
-  //   from, to, fare, dates, price, seen,
-  // }) => {
-  //   const row = document.createElement('tr');
-  //   row.innerHTML = `
-  //     <td>${from}</td>
-  //     <td>${to}</td>
-  //     <td>${fare}</td>
-  //     <td>${dates}</td>
-  //     <td>
-  //       <div class="price-cell">
-  //         <strong>${price}</strong><br/>
-  //         <small>${seen}</small>
-  //       </div>
-  //     </td>
-  //   `;
-  //   tbody.appendChild(row);
-  // });
-   flights[0].body.data.forEach((flight,index) => {
+   flights.body.data.forEach((flight,index) => {
     const from = flight.itineraries[0].segments[0].departure.iataCode;
     const to = flight.itineraries[0].segments[1].arrival.iataCode;
 
@@ -2059,12 +1999,6 @@ export default async function decorate(block) {
     tbody.appendChild(row);
    });
 
-//   block.getElementById('to').addEventListener("blur",function(e) {
-//    data.originLocationCode= document.getElementById('from').value
-//     data.destinationLocationCode=document.getElementById('to').value
-//     getData(auth, data)
-// })
-  // }
   const fromAirports = [
   "Mumbai - India (BOM)",
   "Delhi - India (DEL)",
