@@ -1,10 +1,11 @@
+/* eslint-disable */
 export default function decorate(block) {
   const container = document.createElement('div');
   container.className = 'month-graph';
 
   const today = new Date();
-  const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", 
-                      "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+  const monthNames = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
+    'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 
   for (let i = 0; i < 30; i++) {
     const day = new Date();
