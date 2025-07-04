@@ -8,7 +8,9 @@
   padding: 40px 24px;
   min-height: 300px;
 }
-
+.hero-banner{
+  height: 350px;
+}
 .hero h1 {
   max-width: 1200px;
   margin-left: auto;
