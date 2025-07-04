@@ -33,7 +33,7 @@ export default async function decorate(block) {
     </p>
   `;
   async function getAccessToken() {
-  const tokenRes = await fetch("https://20.122.184.148:7501/shaft/api/eds-channel/grant-access/v1", {
+  const tokenRes = await fetch("https://shaft.eastus2.cloudapp.azure.com/shaft/api/eds-channel/grant-access/v1", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
