@@ -1057,7 +1057,7 @@ async function getData(auth, data) {
 }
   function convertEurToInr(eurAmount, rate = 90) {
     const inr = eurAmount * rate;
-    return `₹${inr.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
+    return `₹${Math.round(inr).toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
   }
 
 export default async function decorate(block) {
@@ -1119,7 +1119,6 @@ export default async function decorate(block) {
   //   tbody.appendChild(row);
   // });
    flights[0].body.data.forEach((flight,index) => {
-    debugger
     const from = flight.itineraries[0].segments[0].departure.iataCode;
     const to = flight.itineraries[0].segments[1].arrival.iataCode;
 
