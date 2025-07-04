@@ -5,19 +5,8 @@
     list-style: none;
 }
 
-.cheapflightsbreadcrumb-wrapper
-    > .cheapflightsbreadcrumb
-    > div
-    > div
-    > ul
-    > li
-    > a {
-    font-family: "HelveticaNeueRegular";
-    font-size: 16px;
-    font-weight: 400;
-    text-decoration: underline;
-    color: #0088DD;
-        letter-spacing: 0;
+.dailycheap-header {
+    padding: 40px 0px 40px 0px;
 }
 
 .cheapflightsbreadcrumb-wrapper
@@ -25,11 +14,26 @@
     > div
     > div
     > ul
-    > li{
-      display: inline-block;
-  position: relative;
-  margin-right: 20px;
-    }
+    > li
+    > a {
+    font-family: "Roboto";
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: underline;
+    color: #0088dd;
+    letter-spacing: 0;
+}
+
+.cheapflightsbreadcrumb-wrapper
+    > .cheapflightsbreadcrumb
+    > div
+    > div
+    > ul
+    > li {
+    display: inline-block;
+    position: relative;
+    margin-right: 20px;
+}
 
 .cheapflightsbreadcrumb-wrapper
     > .cheapflightsbreadcrumb
@@ -52,21 +56,113 @@
     right: -15px;
 }
 
-.cheapflightsbreadcrumb-wrapper > .cheapflightsbreadcrumb > div > div > ul >li:last-child{
-  position:static;
-
+.cheapflightsbreadcrumb-wrapper
+    > .cheapflightsbreadcrumb
+    > div
+    > div
+    > ul
+    > li:last-child::after {
+   
+   content: none;
 }
 
+.cheapflightsbreadcrumb-wrapper
+    > .cheapflightsbreadcrumb
+    > div
+    > div
+    > ul
+    > li:last-child
+    > u {
+    text-decoration: none;
+}
 
-.dailycheap-header-wrapper>.dailycheap-header>div:first-child>div>h2{
-
-  font-family: "Roboto-regular";
+.dailycheap-header-wrapper > .dailycheap-header > div:first-child > div > h2 {
+    font-family: "Roboto";
     font-style: normal;
     font-weight: 700;
     font-size: 30px;
     line-height: 1.2;
     letter-spacing: normal;
     text-transform: none;
-    color: #0088DD;
+    color: #0088dd;
+}
+.dailycheap-header > div:nth-child(2) {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
 
+.dailycheap-header > div:nth-child(2) > div {
+    width: 100%;
+}
+
+.dailycheap-header > div:nth-child(2) > div > p {
+    cursor: inherit;
+    font-family: "Helvetica Nue, Helvetica, Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-transform: none;
+    color: #424345;
+}
+.dailycheap-header-wrapper
+    > .dailycheap-header
+    > div:nth-child(2)
+    > div:nth-child(2) {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.dailycheap-header-wrapper > .dailycheap-header > div:nth-child(3) {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.dailycheap-header-wrapper > .dailycheap-header > div:nth-child(3) > div {
+    width: 100%;
+}
+
+.dailycheap-header-wrapper
+    > .dailycheap-header
+    > div:nth-child(3)
+    > div
+    > input {
+    width: 100%;   
+    color: inherit;
+     background-color: transparent;
+     outline: none;
+     border: 1px solid #424345;
+     border-radius: 5px;
+     padding: 10px;
+}
+
+
+.dailycheap-header-wrapper
+    > .dailycheap-header
+    > div:nth-child(3)
+    > div>input:focus {
+    outline: 3px solid #0088dd;
+    outline-offset: 2px; /* optional */
+}
+
+@media (max-width:768px){
+  .cheapflightsbreadcrumb-wrapper > .cheapflightsbreadcrumb > div > div > ul{
+    flex-wrap: wrap;
+  }
+
+  .dailycheap-header-wrapper > .dailycheap-header > div:nth-child(3){
+    flex-wrap: wrap;
+  }
+
+  .dailycheap-header-wrapper
+    > .dailycheap-header
+    > div:nth-child(3)
+    > div
+    > input{
+      padding: 5px;
+      font-size: 15px;
+    }
 }

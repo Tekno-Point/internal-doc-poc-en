@@ -1,31 +1,39 @@
 @import url("./swiper-bundle.min.css");
 .swiper-wrapper {
-  width: 100%;
-  padding: 20px 0;
-  display: flex;
- 
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
 }
 
 .swiper-slide {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-  padding: 16px;
-  font-family: sans-serif;
-  width: auto;
-  text-align: center;
-  background-color: #2f72b9;
+    max-width: 348px;
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Darker and deeper shadow */
+    margin: 9px;
+    text-align: center;
+    font-family: sans-serif;
+    cursor: pointer;
 }
 
 .swiper-slide p {
-  margin: 6px 0;
+    margin: 6px 0;
 }
 
+.swipercust {
+    padding: 0px 40px 0px 40px;
+}
+
+.swiper-button-prev {
+    position: absolute;
+    left: 0px;
+}
+.swiper-button-next {
+    position: absolute;
+    right: -4px;
+}
 .swiper-button-prev,
 .swiper-button-next {
-  color: #007bff;
+    color: #007bff;
 }
-
-/* .swiper-pagination-bullet {
-  background: #007bff;
-} */
