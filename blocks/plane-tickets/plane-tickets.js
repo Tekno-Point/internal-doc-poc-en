@@ -32,7 +32,31 @@ export default async function decorate(block) {
       *Fares displayed have been collected within the last 48hrs and may no longer be available at time of booking.
     </p>
   `;
-  await fecthData();
+  async function getAccessToken() {
+  const tokenRes = await fetch("https://20.122.184.148:7501/shaft/api/eds-channel/grant-access/v1", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      header: {
+        authToken: ""
+      },
+      body: {
+        clientId: "ZJRz6bDFxfRPaABeZOShvesqoatIx0AS",
+        clientSecret: "UNXbe2JgHEJ5BFsp",
+        grantType: "client_credentials"
+      }
+    })
+  });
+
+  const result = await tokenRes.json();
+  const token = result?.body?.accessToken;
+  if (!token) throw new Error("Token not received");
+  return token;
+}
+const accessToken = await getAccessToken();
+  await fecthData(accessToken);
   // Sample Data
   const flights = [
     {
@@ -77,6 +101,7 @@ export default async function decorate(block) {
     },
   ];
 
+  
   const tbody = block.querySelector("#ticket-rows");
 
   flights.forEach(({ from, to, fare, dates, price, seen }) => {
@@ -200,6 +225,7 @@ export default async function decorate(block) {
 //     tbody.innerHTML = `<tr><td colspan="6">Error loading flight data.</td></tr>`;
 //   }
 // }
+
 async function fecthData() {
   try {
     // 🟡 API Payload
@@ -216,7 +242,7 @@ async function fecthData() {
       },
     };
     const res = await fetch(
-      "http://20.122.184.148:7501/shaft/api/eds-channel/flight-offers-search/v1",
+      "https://shaft.eastus2.cloudapp.azure.com/shaft/api/eds-channel/grant-access/v1",
       {
         method: "POST",
         headers: {
