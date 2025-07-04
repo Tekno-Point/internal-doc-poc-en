@@ -1,6 +1,8 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
-import {div, ul, li, a, h3} from '../../scripts/dom-helper.js'
+import {
+  div, ul, li, a, h3,
+} from '../../scripts/dom-helper.js';
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
 
@@ -164,28 +166,26 @@ export default async function decorate(block) {
   navWrapper.append(nav);
   block.append(navWrapper);
 
-
-  //multilang div append
+  // multilang div append
   function createLangStructure() {
     return div(
-      { class: "langStructure" },
-      h3("Choose your country/region and language"),
-      ul(li("India"), li("English"), li(a("Go")))
+      { class: 'langStructure' },
+      h3('Choose your country/region and language'),
+      ul(li('India'), li('English'), li(a('Go'))),
     );
   }
 
   function setupLangDropdown(container) {
     const structure = createLangStructure();
     container.appendChild(structure);
-    container.addEventListener("click", function () {
-      container.classList.toggle("active");
+    container.addEventListener('click', () => {
+      container.classList.toggle('active');
     });
   }
 
-  const multilang = block.querySelector(".nav-tools ul li .button-container");
-  const multiLangMob = block.querySelector(".nav-sections .button-container");
+  const multilang = block.querySelector('.nav-tools ul li .button-container');
+  const multiLangMob = block.querySelector('.nav-sections .button-container');
 
   setupLangDropdown(multilang);
   setupLangDropdown(multiLangMob);
-   
 }

@@ -1838,6 +1838,21 @@ const dummyData = {
     },
     "errorBody": {}
 };
+
+function getIATACode(location) {
+const match = location.match(/\(([^)]+)\)/);
+const code = match ? match[1] : null;
+console.log(code); // Output: "BOM"
+return code;
+}
+function getDate(num) {
+  const date = new Date();
+date.setDate(date.getDate() + num);
+// Pad month and day with leading zero if needed
+return date.toISOString().split('T')[0]; // "2025-07-16"
+
+
+}
 async function getAccessToken() {
   const myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/json');
@@ -1874,22 +1889,22 @@ async function getAccessToken() {
   }
 }
 
-async function getData(auth, data) {
+async function getData(auth, data = {
+      originLocationCode:  "BOM",
+      destinationLocationCode:  "CMB",
+      departureDate: '2025-07-16',
+      returnDate: '2025-07-30',
+      adults: '1',
+      includedAirlineCodes: 'TG',
+      max: '10',
+}) {
   const myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/json');
   myHeaders.append('authorization', `Bearer ${auth}`);
 
   const raw = JSON.stringify({
     header: {},
-    body: {
-      originLocationCode: data?.originLocationCode || "BOM",
-      destinationLocationCode: data?.destinationLocationCode || "CMB",
-      departureDate: '2025-07-16',
-      returnDate: '2025-07-30',
-      adults: '2',
-      includedAirlineCodes: 'TG',
-      max: '5',
-    },
+    body: {...data },
   });
 
   const requestOptions = {
@@ -1911,10 +1926,10 @@ async function getData(auth, data) {
     return value;
   }
 }
-  function convertEurToInr(eurAmount, rate = 90) {
+function convertEurToInr(eurAmount, rate = 90) {
     const inr = eurAmount * rate;
     return `₹${Math.round(inr).toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
-  }
+}
 
 export default async function decorate(block) {
   const auth = await getAccessToken();
@@ -1967,8 +1982,9 @@ export default async function decorate(block) {
   `;
   // Sample Data
 
-  const tbody = block.querySelector('#ticket-rows');
-
+  function renderList(flights) {
+    const tbody = block.querySelector('#ticket-rows');
+    tbody.innerHTML = ''
    flights.body.data.forEach((flight,index) => {
     const from = flight.itineraries[0].segments[0].departure.iataCode;
     const to = flight.itineraries[0].segments[1].arrival.iataCode;
@@ -1998,7 +2014,10 @@ export default async function decorate(block) {
     `;
     tbody.appendChild(row);
    });
+    
+  }
 
+  renderList(flights);
   const fromAirports = [
   "Mumbai - India (BOM)",
   "Delhi - India (DEL)",
@@ -2025,5 +2044,28 @@ function populateDatalist(id, options) {
 
 populateDatalist("from-options", fromAirports);
 populateDatalist("to-options", toAirports);
+  const fromInput = block.querySelector('#from')
+  const toInput = block.querySelector('#to')
+  fromInput.addEventListener('focusout', inputHandler);
+  toInput.addEventListener('focusout', inputHandler);
+  async function inputHandler() {
+    const from = fromInput.value.trim();
+    const to = toInput.value.trim();
+    if(from && to){
+      const auth = await getAccessToken()
+      const data = await getData(auth , {
+      originLocationCode:  getIATACode(from),
+      destinationLocationCode:  getIATACode(to),
+      departureDate: getDate(3),
+      returnDate: getDate(7),
+      adults: '1',
+      includedAirlineCodes: 'TG',
+      max: '10',
+})
 
+renderList(data);
+
+
+    }
+  }
 }
