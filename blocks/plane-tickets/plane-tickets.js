@@ -204,7 +204,10 @@ async function fecthData() {
   try {
     // 🟡 API Payload
     const requestBody = {
-      header: {},
+      header: {
+          "Content-Type": "application/json",
+          "authorization": "Bearer QwtwjX15dtmuoGq9awZnCmC9UqBC",
+      },
       body: {
         originLocationCode: "BOM",
         destinationLocationCode: "CMB",
@@ -216,7 +219,7 @@ async function fecthData() {
       },
     };
     const res = await fetch(
-      "http://20.122.184.148:7501/shaft/api/eds-channel/flight-offers-search/v1",
+      "https://shaft.eastus2.cloudapp.azure.com/shaft/api/eds-channel/grant-access/v1",
       {
         method: "POST",
         headers: {
