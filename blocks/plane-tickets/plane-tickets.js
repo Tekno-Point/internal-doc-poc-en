@@ -40,7 +40,7 @@ const dummyData = [
   //   price: 'INR 20,186*',
   //   seen: 'Seen: 6 hrs ago',
   // },
-  {
+ {
     "header": {
         "status": "SUCCESS",
         "requestId": "REQ-1751544521783"
@@ -53,6 +53,455 @@ const dummyData = [
             }
         },
         "data": [
+            {
+                "type": "flight-offer",
+                "id": "1",
+                "source": "GDS",
+                "instantTicketingRequired": false,
+                "nonHomogeneous": false,
+                "oneWay": false,
+                "isUpsellOffer": false,
+                "lastTicketingDate": "2025-07-16",
+                "lastTicketingDateTime": "2025-07-16",
+                "numberOfBookableSeats": 9,
+                "itineraries": [
+                    {
+                        "duration": "PT24H20M",
+                        "segments": [
+                            {
+                                "departure": {
+                                    "iataCode": "BOM",
+                                    "terminal": "2",
+                                    "at": "2025-07-16T23:35:00"
+                                },
+                                "arrival": {
+                                    "iataCode": "BKK",
+                                    "at": "2025-07-17T05:35:00"
+                                },
+                                "carrierCode": "TG",
+                                "number": "318",
+                                "aircraft": {
+                                    "code": "333"
+                                },
+                                "operating": {
+                                    "carrierCode": "TG"
+                                },
+                                "duration": "PT4H30M",
+                                "id": "1",
+                                "numberOfStops": 0,
+                                "blacklistedInEU": false
+                            },
+                            {
+                                "departure": {
+                                    "iataCode": "BKK",
+                                    "at": "2025-07-17T21:40:00"
+                                },
+                                "arrival": {
+                                    "iataCode": "CMB",
+                                    "at": "2025-07-17T23:55:00"
+                                },
+                                "carrierCode": "TG",
+                                "number": "307",
+                                "aircraft": {
+                                    "code": "320"
+                                },
+                                "operating": {
+                                    "carrierCode": "TG"
+                                },
+                                "duration": "PT3H45M",
+                                "id": "2",
+                                "numberOfStops": 0,
+                                "blacklistedInEU": false
+                            }
+                        ]
+                    },
+                    {
+                        "duration": "PT21H",
+                        "segments": [
+                            {
+                                "departure": {
+                                    "iataCode": "CMB",
+                                    "at": "2025-07-30T00:55:00"
+                                },
+                                "arrival": {
+                                    "iataCode": "BKK",
+                                    "at": "2025-07-30T06:10:00"
+                                },
+                                "carrierCode": "TG",
+                                "number": "308",
+                                "aircraft": {
+                                    "code": "320"
+                                },
+                                "operating": {
+                                    "carrierCode": "TG"
+                                },
+                                "duration": "PT3H45M",
+                                "id": "3",
+                                "numberOfStops": 0,
+                                "blacklistedInEU": false
+                            },
+                            {
+                                "departure": {
+                                    "iataCode": "BKK",
+                                    "at": "2025-07-30T18:55:00"
+                                },
+                                "arrival": {
+                                    "iataCode": "BOM",
+                                    "terminal": "2",
+                                    "at": "2025-07-30T21:55:00"
+                                },
+                                "carrierCode": "TG",
+                                "number": "317",
+                                "aircraft": {
+                                    "code": "333"
+                                },
+                                "operating": {
+                                    "carrierCode": "TG"
+                                },
+                                "duration": "PT4H30M",
+                                "id": "4",
+                                "numberOfStops": 0,
+                                "blacklistedInEU": false
+                            }
+                        ]
+                    }
+                ],
+                "price": {
+                    "currency": "EUR",
+                    "total": "980.89",
+                    "base": "546.00",
+                    "fees": [
+                        {
+                            "amount": "0.00",
+                            "type": "SUPPLIER"
+                        },
+                        {
+                            "amount": "0.00",
+                            "type": "TICKETING"
+                        }
+                    ],
+                    "grandTotal": "980.89"
+                },
+                "pricingOptions": {
+                    "fareType": [
+                        "PUBLISHED"
+                    ],
+                    "includedCheckedBagsOnly": true
+                },
+                "validatingAirlineCodes": [
+                    "TG"
+                ],
+                "travelerPricings": [
+                    {
+                        "travelerId": "1",
+                        "fareOption": "STANDARD",
+                        "travelerType": "ADULT",
+                        "price": {
+                            "currency": "EUR",
+                            "total": "980.89",
+                            "base": "546.00"
+                        },
+                        "fareDetailsBySegment": [
+                            {
+                                "segmentId": "1",
+                                "cabin": "PREMIUM_ECONOMY",
+                                "fareBasis": "VLRSTU1",
+                                "brandedFare": "ECOST",
+                                "brandedFareLabel": "ECOSTANDARD",
+                                "class": "U",
+                                "includedCheckedBags": {
+                                    "weight": 35,
+                                    "weightUnit": "KG"
+                                },
+                                "includedCabinBags": {
+                                    "weight": 7,
+                                    "weightUnit": "KG"
+                                },
+                                "amenities": [
+                                    {
+                                        "description": "EXTRA BAGGAGE PER ONE KILOGRAM",
+                                        "isChargeable": true,
+                                        "amenityType": "BAGGAGE",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    },
+                                    {
+                                        "description": "PRE RESERVED SEAT ASSIGNMENT",
+                                        "isChargeable": true,
+                                        "amenityType": "PRE_RESERVED_SEAT",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    },
+                                    {
+                                        "description": "HOT MEAL",
+                                        "isChargeable": false,
+                                        "amenityType": "MEAL",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    },
+                                    {
+                                        "description": "NAME CORRECTION",
+                                        "isChargeable": true,
+                                        "amenityType": "TRAVEL_SERVICES",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    },
+                                    {
+                                        "description": "BASIC SEAT",
+                                        "isChargeable": false,
+                                        "amenityType": "BRANDED_FARES",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    },
+                                    {
+                                        "description": "REFUND",
+                                        "isChargeable": true,
+                                        "amenityType": "BRANDED_FARES",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    },
+                                    {
+                                        "description": "CHANGEABLE TICKET",
+                                        "isChargeable": true,
+                                        "amenityType": "BRANDED_FARES",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "segmentId": "2",
+                                "cabin": "ECONOMY",
+                                "fareBasis": "VLRSTU1",
+                                "brandedFare": "ECOST",
+                                "brandedFareLabel": "ECOSTANDARD",
+                                "class": "V",
+                                "includedCheckedBags": {
+                                    "weight": 35,
+                                    "weightUnit": "KG"
+                                },
+                                "includedCabinBags": {
+                                    "weight": 7,
+                                    "weightUnit": "KG"
+                                },
+                                "amenities": [
+                                    {
+                                        "description": "EXTRA BAGGAGE PER ONE KILOGRAM",
+                                        "isChargeable": true,
+                                        "amenityType": "BAGGAGE",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    },
+                                    {
+                                        "description": "PRE RESERVED SEAT ASSIGNMENT",
+                                        "isChargeable": true,
+                                        "amenityType": "PRE_RESERVED_SEAT",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    },
+                                    {
+                                        "description": "HOT MEAL",
+                                        "isChargeable": false,
+                                        "amenityType": "MEAL",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    },
+                                    {
+                                        "description": "NAME CORRECTION",
+                                        "isChargeable": true,
+                                        "amenityType": "TRAVEL_SERVICES",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    },
+                                    {
+                                        "description": "BASIC SEAT",
+                                        "isChargeable": false,
+                                        "amenityType": "BRANDED_FARES",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    },
+                                    {
+                                        "description": "REFUND",
+                                        "isChargeable": true,
+                                        "amenityType": "BRANDED_FARES",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    },
+                                    {
+                                        "description": "CHANGEABLE TICKET",
+                                        "isChargeable": true,
+                                        "amenityType": "BRANDED_FARES",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "segmentId": "3",
+                                "cabin": "ECONOMY",
+                                "fareBasis": "VLRSTU1",
+                                "brandedFare": "ECOST",
+                                "brandedFareLabel": "ECOSTANDARD",
+                                "class": "V",
+                                "includedCheckedBags": {
+                                    "weight": 35,
+                                    "weightUnit": "KG"
+                                },
+                                "includedCabinBags": {
+                                    "weight": 7,
+                                    "weightUnit": "KG"
+                                },
+                                "amenities": [
+                                    {
+                                        "description": "EXTRA BAGGAGE PER ONE KILOGRAM",
+                                        "isChargeable": true,
+                                        "amenityType": "BAGGAGE",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    },
+                                    {
+                                        "description": "PRE RESERVED SEAT ASSIGNMENT",
+                                        "isChargeable": true,
+                                        "amenityType": "PRE_RESERVED_SEAT",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    },
+                                    {
+                                        "description": "HOT MEAL",
+                                        "isChargeable": false,
+                                        "amenityType": "MEAL",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    },
+                                    {
+                                        "description": "NAME CORRECTION",
+                                        "isChargeable": true,
+                                        "amenityType": "TRAVEL_SERVICES",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    },
+                                    {
+                                        "description": "BASIC SEAT",
+                                        "isChargeable": false,
+                                        "amenityType": "BRANDED_FARES",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    },
+                                    {
+                                        "description": "REFUND",
+                                        "isChargeable": true,
+                                        "amenityType": "BRANDED_FARES",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    },
+                                    {
+                                        "description": "CHANGEABLE TICKET",
+                                        "isChargeable": true,
+                                        "amenityType": "BRANDED_FARES",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "segmentId": "4",
+                                "cabin": "PREMIUM_ECONOMY",
+                                "fareBasis": "VLRSTU1",
+                                "brandedFare": "ECOST",
+                                "brandedFareLabel": "ECOSTANDARD",
+                                "class": "U",
+                                "includedCheckedBags": {
+                                    "weight": 35,
+                                    "weightUnit": "KG"
+                                },
+                                "includedCabinBags": {
+                                    "weight": 7,
+                                    "weightUnit": "KG"
+                                },
+                                "amenities": [
+                                    {
+                                        "description": "EXTRA BAGGAGE PER ONE KILOGRAM",
+                                        "isChargeable": true,
+                                        "amenityType": "BAGGAGE",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    },
+                                    {
+                                        "description": "PRE RESERVED SEAT ASSIGNMENT",
+                                        "isChargeable": true,
+                                        "amenityType": "PRE_RESERVED_SEAT",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    },
+                                    {
+                                        "description": "HOT MEAL",
+                                        "isChargeable": false,
+                                        "amenityType": "MEAL",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    },
+                                    {
+                                        "description": "NAME CORRECTION",
+                                        "isChargeable": true,
+                                        "amenityType": "TRAVEL_SERVICES",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    },
+                                    {
+                                        "description": "BASIC SEAT",
+                                        "isChargeable": false,
+                                        "amenityType": "BRANDED_FARES",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    },
+                                    {
+                                        "description": "REFUND",
+                                        "isChargeable": true,
+                                        "amenityType": "BRANDED_FARES",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    },
+                                    {
+                                        "description": "CHANGEABLE TICKET",
+                                        "isChargeable": true,
+                                        "amenityType": "BRANDED_FARES",
+                                        "amenityProvider": {
+                                            "name": "BrandedFare"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
             {
                 "type": "flight-offer",
                 "id": "1",
@@ -605,6 +1054,10 @@ async function getData(auth, data) {
     return value;
   }
 }
+  function convertEurToInr(eurAmount, rate = 90) {
+    const inr = eurAmount * rate;
+    return `₹${inr.toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
+  }
 
 export default async function decorate(block) {
   const auth = await getAccessToken();
@@ -664,18 +1117,20 @@ export default async function decorate(block) {
   //   `;
   //   tbody.appendChild(row);
   // });
-   flights.forEach((flight) => {
+   flights[0].body.data.forEach((flight,index) => {
     debugger
-    const itineraries = flight.body.data;
-    const from = flight.body.data[0].itineraries[0].segments[0].departure.iataCode;
-    const to = flight.body.data[0].itineraries[0].segments[1].arrival.iataCode;
+    const from = flight.itineraries[0].segments[0].departure.iataCode;
+    const to = flight.itineraries[0].segments[1].arrival.iataCode;
 
-    const departureDate = flight.body.data[0].lastTicketingDate ;
-    const returnDate = flight.body.data[0].lastTicketingDateTime;
+    const departureDate = flight.lastTicketingDate ;
+    const returnDate = flight.lastTicketingDateTime;
     const dates = departureDate && returnDate ? `${departureDate} - ${returnDate}` : '—';
 
-    const fare = flight.travelerPricings?.[0]?.fareOption || 'Economy';
-    const price = flight.price?.grandTotal ? `€${flight.price.grandTotal}` : '—';
+    const fare = flight.travelerPricings[0].fareDetailsBySegment[0].cabin;
+    
+    const inrPrice = convertEurToInr(flight.price.grandTotal);
+    console.log(inrPrice);
+    const price = inrPrice;
 
     const row = document.createElement('tr');
     row.innerHTML = `
@@ -686,7 +1141,6 @@ export default async function decorate(block) {
       <td>
         <div class="price-cell">
           <strong>${price}</strong><br/>
-          <small>Just now</small>
         </div>
       </td>
       <td><a href="#book" class="book-now-button">Book now</a></td>
