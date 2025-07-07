@@ -70,14 +70,14 @@ footer .footer.block>div .section:not(:last-of-type) {
   display: flex;
   flex-direction: column;
   gap: 8px;
-
 }
 
 .footer.block .section:first-of-type .default-content-wrapper>ul>li>ul>li a {
   font-size: 14px;
-  line-height: 21px;
+  line-height: 18px;
   color: #fff;
   font-weight: 500;
+  font-family: 'HelveticaNeueRegular';
 }
 
 .footer.block .section:nth-child(2) {

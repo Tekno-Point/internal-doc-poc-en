@@ -16,8 +16,9 @@
     > ul
     > li
     > a {
-    font-family: "Roboto";
-    font-size: 16px;
+        /* font-family change */
+    font-family: "HelveticaNeueRegular"; 
+    font-size: 17px;
     font-weight: 400;
     text-decoration: underline;
     color: #0088dd;
@@ -74,6 +75,9 @@
     > li:last-child
     > u {
     text-decoration: none;
+    font-family: 'HelveticaNeueRegular';
+    line-height: 1.5px;
+    color: #424345;
 }
 
 .dailycheap-header-wrapper > .dailycheap-header > div:first-child > div > h2 {
@@ -89,7 +93,7 @@
 .dailycheap-header > div:nth-child(2) {
     display: flex;
     justify-content: space-between;
-    gap: 40px;
+    gap: 20px;
 }
 
 .dailycheap-header > div:nth-child(2) > div {
@@ -98,7 +102,7 @@
 
 .dailycheap-header > div:nth-child(2) > div > p {
     cursor: inherit;
-    font-family: "Helvetica Nue, Helvetica, Roboto";
+    font-family: "Roboto";
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -113,6 +117,10 @@
     > div:nth-child(2) {
     display: flex;
     justify-content: flex-start;
+}
+
+.dailycheap-header-wrapper > .dailycheap-header{
+    padding: 5px 0 5px 0;
 }
 
 .dailycheap-header-wrapper > .dailycheap-header > div:nth-child(3) {
@@ -138,6 +146,14 @@
      border-radius: 5px;
      padding: 10px;
 }
+.dailycheap-header-wrapper
+    > .dailycheap-header
+    > div:nth-child(3)
+    > div
+    > input:hover {
+    border-radius: 5px;
+    outline: 4px solid rgba(102, 151, 230, 0.5);
+}
 
 
 .dailycheap-header-wrapper
@@ -151,10 +167,20 @@
 @media (max-width:768px){
   .cheapflightsbreadcrumb-wrapper > .cheapflightsbreadcrumb > div > div > ul{
     flex-wrap: wrap;
+    gap: 0 15px;
+    line-height: 1.5;
   }
+
+  .dailycheap-header-wrapper > .dailycheap-header > div:first-child > div > h2 {
+    font-size: 28px;
+    }
 
   .dailycheap-header-wrapper > .dailycheap-header > div:nth-child(3){
     flex-wrap: wrap;
+  }
+
+  .cheapflightsbreadcrumb-wrapper > .cheapflightsbreadcrumb > div > div > ul > li::after {
+    top: 15px;
   }
 
   .dailycheap-header-wrapper
@@ -164,5 +190,9 @@
     > input{
       padding: 5px;
       font-size: 15px;
+    }
+
+    .cheapflightsbreadcrumb-wrapper > .cheapflightsbreadcrumb > div > div > ul > li:last-child > u{
+        font-size: 16px;
     }
 }

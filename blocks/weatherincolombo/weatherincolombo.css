@@ -7,7 +7,7 @@
   justify-content: flex-end;
   align-items: center;
   gap: 10px;
-  margin-top: 10px;
+  margin: 10px 0 25px;
   flex-wrap: wrap; /* Optional: helps on smaller screens */
 }
 
@@ -15,14 +15,19 @@
   font-weight: 500;
   font-size: 16px;
   margin: 0;
+  color: #424345;
+  font-family: 'HelveticaNeueRegular';
+  line-height: 1.5;
 }
 
 .weather-unit-dropdown {
   padding: 6px 12px;
-  font-size: 14px;
+  font-size: 16px;
   border-radius: 6px;
   border: 1px solid #ccc;
   background-color: #fff;
+  font-family: "HelveticaNeueRegular";
+  line-height: 1.5;
   cursor: pointer;
   appearance: none; /* Removes default arrow in some browsers */
   -webkit-appearance: none;
@@ -32,6 +37,20 @@
   background-position: right 10px center;
   background-size: 16px;
   padding-right: 36px; /* Extra space for arrow */
+  height: 32px;
+  width: 160px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.19);
+  outline: none;
+}
+
+.weather-unit-dropdown > option{
+  height: 32px;
+  font-family: "HelveticaNeueRegular";
+  height: 30px;
+}
+
+.weather-unit-dropdown > option:hover {
+  cursor: pointer;
 }
 
 /* Wrapper to align all cards */
@@ -40,8 +59,8 @@
   /* flex-wrap: wrap; */
   justify-content: center;
   gap: 6px;
-  padding: 20px;
-  margin: 0 auto;
+  padding: 20px 0;
+  margin: 35px auto 70px;
   list-style: none;
   max-width: 1200px;
   box-sizing: border-box;
@@ -55,7 +74,9 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   /* padding: 20px; */
   text-align: center;
+  cursor: pointer;
   transition: transform 0.2s ease-in-out;
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);
 }
 
 .weatherincolombo-container .cards.block > ul > li:hover {
@@ -86,8 +107,10 @@
 
 /* Icon section */
 .weatherincolombo-container .cards-card-body:first-child {
-  background-color: #e0e0e0;
+  background-color: #D4D4D4;;
   padding: 20px 10px;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
 }
 
 .weatherincolombo-container .cards-card-body:first-child img {
@@ -111,16 +134,51 @@
 
 .weatherincolombo-container .cards-card-body[data-align="center"] p {
   margin: 4px 0;
-  font-size: 14px;
-  color: #666;
+  font-size: 12px;
+  color: black;
+  font-family: 'HelveticaNeueRegular';
+  line-height: 1.5;
+}
+
+.weatherincolombo-container .cards-card-body[data-align="center"] p:nth-child(4) {
+  font-size: 16px;
 }
 
 .weatherincolombo-container .cards-card-body[data-align="center"] p:nth-of-type(2) {
-  color: #007BFF;
+  color: #0088FA;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 18px;
+  font-family: 'roboto';
 }
 #weather-in-colombo{
-    font-size: 40px;
-    font-family: "Roboto";
+    font-size: 30px;
+    font-family: "roboto";
+    margin-top: 100px;
+}
+
+
+@media screen and (max-width:900px){
+  .weatherincolombo > div:nth-child(2) {
+    flex-direction: column;
+    align-items: end;
+    gap: 2px;
+  }
+  .weatherincolombo > div:nth-child(2)> div:nth-child(2) {
+    width: 100%;
+  }
+  .weatherincolombo > div:nth-child(2) p {
+    font-size: 14px;
+  }
+  .weatherincolombo-container .cards.block > ul{
+    overflow-x: hidden;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .weatherincolombo-container .cards.block > ul > li {
+    max-width: unset;
+  }
+  .weather-unit-dropdown {
+    width: 100%;
+    height: 48px;
+  }
 }

@@ -37,3 +37,12 @@
 .swiper-button-next {
     color: #007bff;
 }
+/* .swipercust >div>div> .swiper-slide {
+    margin-right: 5px;
+} */
+.swiper-wrapper .swiper-slide {
+    margin-right: 5px;
+}
+.swipercust >div>div> .swiper-slide:hover{
+    background-color: #1F3C90;
+}

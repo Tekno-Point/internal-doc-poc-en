@@ -269,7 +269,8 @@ header nav .nav-tools {
   align-items: center;
   height: auto;
   /* max-width: 100%; */
-  max-width: 1520px;
+  /* max-width: 1520px; */
+  max-width: 1170px;
   width: 100%;
   padding: 0;
   gap: 0;
@@ -317,7 +318,7 @@ header nav .nav-tools {
   display: flex;
   justify-content: center;
   /* gap: 2%; */
-  padding: 0 15px;
+  padding: 0 0 0 150px;
   width: 59%;
 }
 
@@ -735,6 +736,7 @@ header nav .nav-tools {
   .block .nav-wrapper nav .nav-tools {
     padding: 0;
     width: 100%;
+    /* display: none; */
   }
 
   .block .nav-wrapper nav .nav-tools .search-wrapper,

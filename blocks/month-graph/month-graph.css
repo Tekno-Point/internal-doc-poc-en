@@ -6,7 +6,7 @@
 
 
 .section.month-graph-container>.month-graph-wrapper {
-    width: 100%;
+    width: 74%;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -43,26 +43,46 @@
 .bar {
     width: 100%;
     height: 150px;
-    background-color: #cceeff;
+    background-color: #e5f6fe;
     border-radius: 4px 4px 0 0;
 }
 .bar:hover {
     background-color: #0080bb;
+    cursor: pointer;
 }
-.day-num,
-.day-name {
-    font-size: 12px;
+.day-num {
+    font-family: helveticaNeue-Bold;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.3px;
+    text-transform: none;
+    color: #424345;
     text-align: center;
     margin-top: 4px;
-    color: #333;
+}
+
+.day-name {
+    font-family: HelveticaNeueRegular;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-transform: none;
+    color: #424345;
+    margin-top: 0.125rem;
 }
 
 .month-label {
     position: absolute;
-    bottom: -30px;
+    bottom: -35px;
     font-weight: bold;
-    font-size: 14px;
-    color: #333;
+    font-size: 16px;
+    color: #424345;
+    font-family: 'HelveticaNeueRegular';
+    letter-spacing: 1px;
 }
 
 .tooltip {
@@ -97,7 +117,13 @@
 
 @media (max-width:768px){
   .month-graph{
-    overflow-x: scroll;
-    overflow-y: none;
+    scrollbar-width: none;
+    overflow-y: hidden;
+    padding-bottom: 20px;
+  }
+  .section.month-graph-container>.month-graph-wrapper {
+    width: 85%;
+    padding: 20px 10px 0;
+    height: 335px;
   }
 }
