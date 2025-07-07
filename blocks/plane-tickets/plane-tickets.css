@@ -1,6 +1,7 @@
 /* Section container */
 .plane-tickets-wrapper{
-    max-width: 1130px !important
+    max-width: 1130px !important;
+    padding-left: 0;
 }
 
 .book-now-button {
@@ -305,5 +306,10 @@ input::-webkit-calendar-picker-indicator {
 
     .plane-tickets{
       padding: 20px;
+    }
+}
+@media (min-width: 769px) and (max-width: 1200px){
+    .plane-tickets-wrapper{
+        padding-left: 40px;
     }
 }

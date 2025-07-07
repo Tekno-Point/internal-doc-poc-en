@@ -127,3 +127,18 @@
     height: 335px;
   }
 }
+@media (min-width:769px) and (max-width:1200px){
+  .month-graph{
+    scrollbar-width: none;
+    overflow-y: hidden;
+    padding-bottom: 20px;
+  }
+  .month-graph-wrapper{
+    padding-left: 40px;
+  }
+  .section.month-graph-container>.month-graph-wrapper {
+    width: 85%;
+    padding: 40px 32px 25px 30px;
+    height: 335px;
+  }
+}

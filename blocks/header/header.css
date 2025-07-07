@@ -744,3 +744,17 @@ header nav .nav-tools {
     display: none;
   }
 }
+@media (min-width:901px) and (max-width:1070px){
+  .block nav .columns>div div:first-of-type p:first-of-type, .block nav .columns>div div:first-of-type p:first-of-type img {
+    width: 150px;
+  }
+  .block .nav-wrapper nav .nav-sections .default-content-wrapper:first-of-type ul li {
+    width: 150px;
+  }
+  .block .nav-wrapper nav .nav-sections .default-content-wrapper:first-of-type ul li a {
+    padding: 8px 0px
+  }
+  header nav .nav-sections ul {
+    width: 160%;
+  }
+}
