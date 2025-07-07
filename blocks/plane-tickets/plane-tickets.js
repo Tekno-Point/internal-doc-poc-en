@@ -1942,24 +1942,22 @@ export default async function decorate(block) {
       <div class="from">
     <label for="from">From</label>
     <input type="text" id="from" list="from-options" placeholder="Mumbai - India (BOM)" />
-    
-    <ul id="from-options">
-        <li>Mumbai - India (BOM)</li>
-        <li>Delhi - India (DEL)</li>
-        <li>Bangalore - India (BLR)</li>
-        <li>Chennai - India (MAA)</li>
-    </ul>
+    <datalist id="from-options">
+      <option value="Colombo - Sri Lanka (CMB)">
+      <option value="Bangkok - Thailand (BKK)">
+      <option value="Singapore (SIN)">
+      <option value="Dubai - UAE (DXB)">
+    </datalist>
   </div>
       <div class="to">
     <label for="to">To</label>
     <input type="text" id="to" list="to-options" placeholder="Colombo - Sri Lanka (CMB)" />
-    
-    <ul id="to-options">
-        <li>Mumbai - India (BOM)</li>
-        <li>Delhi - India (DEL)</li>
-        <li>Bangalore - India (BLR)</li>
-        <li>Chennai - India (MAA)</li>
-    </ul>
+    <datalist id="to-options">
+      <option value="Colombo - Sri Lanka (CMB)">
+      <option value="Bangkok - Thailand (BKK)">
+      <option value="Singapore (SIN)">
+      <option value="Dubai - UAE (DXB)">
+    </datalist>
   </div>
 </div>
     </div>
@@ -1983,19 +1981,6 @@ export default async function decorate(block) {
     </p>
   `;
   // Sample Data
-
-//   trial for search input starts
-    const fromInput = document.getElementById('from');
-  const fromList = document.getElementById('from-options');
-
-  const toInput = document.getElementById('to');
-  const toList = document.getElementById('to-options');
-
-  setupSearchDropdown(fromInput, fromList);
-  setupSearchDropdown(toInput, toList);
-//   trial for search input ends
-
-
   function renderList(flights) {
     const tbody = block.querySelector('#ticket-rows');
     tbody.innerHTML = ''
@@ -2046,105 +2031,41 @@ const toAirports = [
   "Singapore (SIN)",
 ];
 
-// function populateDatalist(id, options) {
-//   const datalist = document.getElementById(id);
-//   datalist.innerHTML = "";
-//   options.forEach((val) => {
-//     const opt = document.createElement("option");
-//     opt.value = val;
-//     datalist.appendChild(opt);
-//   });
-// }
-
-// populateDatalist("from-options", fromAirports);
-// populateDatalist("to-options", toAirports);
-//   const fromInput = block.querySelector('#from')
-//   const toInput = block.querySelector('#to')
-//   fromInput.addEventListener('focusout', inputHandler);
-//   toInput.addEventListener('focusout', inputHandler);
-//   async function inputHandler() {
-//     const from = fromInput.value.trim();
-//     const to = toInput.value.trim();
-//     if(from && to){
-//       const auth = await getAccessToken()
-//       const data = await getData(auth , {
-//       originLocationCode:  getIATACode(from),
-//       destinationLocationCode:  getIATACode(to),
-//       departureDate: getDate(3),
-//       returnDate: getDate(7),
-//       adults: '1',
-//       includedAirlineCodes: 'TG',
-//       max: '10',
-// })
-
-// renderList(data);
-
-
-//     }
-//   }
-}
-
-function setupSearchDropdown(input, list) {
-  const options = Array.from(list.querySelectorAll('li'));
-
-  // Basic dropdown styling
-  list.style.display = 'none';
-  list.style.position = 'absolute';
-  list.style.zIndex = '999';
-  list.style.background = '#fff';
-  list.style.border = '1px solid #ddd';
-  list.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
-  list.style.width = input.offsetWidth + 'px';
-  list.style.maxHeight = '250px';
-  list.style.overflowY = 'auto';
-  list.style.borderRadius = '8px';
-  list.style.marginTop = '8px';
-  list.style.padding = '0';
-
-  // Filter logic
-  input.addEventListener('input', () => {
-    const value = input.value.toLowerCase();
-    let hasMatch = false;
-
-    options.forEach((li) => {
-      if (li.textContent.toLowerCase().includes(value)) {
-        li.style.display = 'block';
-        hasMatch = true;
-      } else {
-        li.style.display = 'none';
-      }
-    });
-
-    list.style.display = hasMatch ? 'block' : 'none';
-  });
-
-  input.addEventListener('focus', () => {
-    options.forEach((li) => (li.style.display = 'block'));
-    list.style.display = 'block';
-  });
-
-  input.addEventListener('blur', () => {
-    setTimeout(() => {
-      list.style.display = 'none';
-    }, 200);
-  });
-
-  options.forEach((li) => {
-    li.style.padding = '12px 16px';
-    li.style.cursor = 'pointer';
-    li.style.fontSize = '15px';
-    li.style.borderBottom = '1px solid #eee';
-
-    li.addEventListener('mouseover', () => {
-      li.style.backgroundColor = '#f5f5f5';
-    });
-    li.addEventListener('mouseout', () => {
-      li.style.backgroundColor = '#fff';
-    });
-
-    li.addEventListener('click', () => {
-      input.value = li.textContent;
-      list.style.display = 'none';
-    });
+function populateDatalist(id, options) {
+  const datalist = document.getElementById(id);
+  datalist.innerHTML = "";
+  options.forEach((val) => {
+    const opt = document.createElement("option");
+    opt.value = val;
+    datalist.appendChild(opt);
   });
 }
+
+populateDatalist("from-options", fromAirports);
+populateDatalist("to-options", toAirports);
+  const fromInput = block.querySelector('#from')
+  const toInput = block.querySelector('#to')
+  fromInput.addEventListener('focusout', inputHandler);
+  toInput.addEventListener('focusout', inputHandler);
+  async function inputHandler() {
+    const from = fromInput.value.trim();
+    const to = toInput.value.trim();
+    if(from && to){
+      const auth = await getAccessToken()
+      const data = await getData(auth , {
+      originLocationCode:  getIATACode(from),
+      destinationLocationCode:  getIATACode(to),
+      departureDate: getDate(3),
+      returnDate: getDate(7),
+      adults: '1',
+      includedAirlineCodes: 'TG',
+      max: '10',
+})
+
+renderList(data);
+
+
+    }
+  }
+}
+
