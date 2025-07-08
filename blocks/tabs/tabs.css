@@ -152,7 +152,7 @@
         font-size: 14px;
     }
 
-    .tabs{
+    .tabs {
         margin-top: 40px;
     }
 }
@@ -415,7 +415,7 @@ input[type="date"] {
         font-size: 14px;
     }
     .tabs.form-tabs .tabs-panel form > fieldset .field-wrapper {
-            margin-right : 10px
+        margin-right: 10px;
     }
     /* .tabs.form-tabs .tabs-panel form > fieldset {
         flex-direction: column;
@@ -481,7 +481,7 @@ input[type="date"] {
     color: #424345;
     font-family: "Roboto";
     background: #ffffffbf;
-        font-weight: 100;
+    font-weight: 100;
     font-size: revert-layer;
 }
 
@@ -493,9 +493,21 @@ input[type="date"] {
     display: none;
 }
 
+.tabs > .tabs-panel > div {
+    max-width: 1240px;
+}
 
-@media (max-width : 786px){
-    .tabs > .tabs-panel > div > h1{
-        font-size: 24px;
+@media (max-width: 786px) {
+    .tabs > .tabs-panel > div > h1 {
+        font-size: 15px;
+        line-height: 1.4;
+    }
+
+    .tabs > .tabs-panel > div {
+        max-width: 320px;
+    }
+
+    .tabs.form-tabs .tabs-panel form .field-wrapper.fares-wrapper {
+        width: 100%;
     }
 }

@@ -265,6 +265,7 @@
     .dailycheap-header-wrapper > .dailycheap-header > div:nth-child(2) > div:nth-child(2){
         position: absolute;
         top: 850px;
+        display: none;
     }
 } 
 @media (min-width:328px) and (max-width:344px){
@@ -289,6 +290,7 @@
     .dailycheap-header-wrapper > .dailycheap-header > div:nth-child(2) > div:nth-child(2){
         position: absolute;
         top: 750px;
+        display: none;
     }
 } 
 @media (min-width:464px)and (max-width:470px){
