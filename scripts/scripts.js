@@ -221,6 +221,7 @@ const createTextArea = (fd) => {
 const createInput = (fd) => {
   const field = document.createElement('input');
   field.type = fd.Type;
+  field.setAttribute('data-iata-code', fd['iata-code']);
   setCommonAttributes(field, fd);
 
   const fieldWrapper = createFieldWrapper(fd);

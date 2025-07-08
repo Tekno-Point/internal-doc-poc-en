@@ -2027,7 +2027,7 @@ export default async function decorate(block) {
       const departure = new Date(segment.departure.at);
       const departureTime = departure.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
       const departureDate = departure.toLocaleDateString('en-GB');
-
+      const totalPrice = parseFloat(flight.price.grandTotal).toLocaleString('en-US', {style: 'currency',currency: 'USD'});
       const duration = flight.itineraries[0].duration.replace('PT', '').toLowerCase();
       const fare = flight.travelerPricings[0].fareDetailsBySegment[1].cabin;
       const price = convertEurToInr(flight.price.grandTotal);
@@ -2078,15 +2078,20 @@ export default async function decorate(block) {
       const durationDiv = document.createElement('div');
       durationDiv.className = 'duration';
       durationDiv.textContent = `Duration: ${duration}`;
+
       const departureDiv = document.createElement('div');
       departureDiv.className = 'departure';
       departureDiv.textContent = `Departure: ${departureTime}`;
+
+      const priceDiv = document.createElement('div');
+      priceDiv.className = 'Price';
+      priceDiv.textContent = `Price: ${totalPrice}`;
 
       const button = document.createElement('button');
       button.className = 'book-now-button';
       button.textContent = 'Book Now';
 
-      airlineDetails.append(heading, detailDiv, durationDiv, departureDiv, button);
+      airlineDetails.append(heading, detailDiv, durationDiv, departureDiv,priceDiv, button);
       card.append(flightInfo, airlineDetails);
       cardWrapper.appendChild(card);
     });

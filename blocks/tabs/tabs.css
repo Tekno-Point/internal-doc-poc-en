@@ -105,8 +105,8 @@
 
 .tabs.form-tabs .tabs-panel form > div {
     display: flex;
-    border: 1px solid #cccccc;
-    padding: 20px 16px;
+    /* border: 1px solid #cccccc;
+    padding: 20px 16px; */
     margin-top: 17px;
     border-radius: 8px;
     gap: 10px;
@@ -475,14 +475,13 @@ input[type="date"] {
 } */
 .tabs > .tabs-panel > div > h1 {
     margin: 0px;
-    padding: 25px 30px;
+    padding: 20px 22px;
     border-radius: 5px 5px 0px 0px;
-    /* font-size: 24px; */
+    font-size: 30px;
     color: #424345;
     font-family: "Roboto";
     background: #ffffffbf;
     font-weight: 100;
-    font-size: revert-layer;
 }
 
 .tabs > .tabs-panel > div > p {
@@ -513,5 +512,10 @@ input[type="date"] {
 }
 
 .button.disabled {
-  opacity: 0.8;
+    opacity: 0.8;
+}
+
+
+.section .tabs-wrapper{
+    padding: 62px 32px;
 }

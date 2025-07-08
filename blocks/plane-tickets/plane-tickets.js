@@ -1929,9 +1929,9 @@ async function getData(auth, data = {
     return value;
   }
 }
-function convertEurToInr(eurAmount, rate = 90) {
-    const inr = eurAmount * rate;
-    return `₹${Math.round(inr).toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
+function convertEurToUsd(eurAmount, rate = 1.1) {
+    const usd = eurAmount * rate; // EUR to USD rate (adjust as needed)
+    return `$${Math.round(usd).toLocaleString('en-US', { maximumFractionDigits: 2 })}`;
 }
 
 export default async function decorate(block) {
@@ -1944,7 +1944,7 @@ export default async function decorate(block) {
     <div class="plane-filters">
       <div class="from">
     <label for="from">From</label>
-    <input type="text" id="from" list="from-options" placeholder="Mumbai - India (BOM)" />
+    <input type="text" id="from" list="from-options" placeholder="${getMetadata("fromcity")}" />
     <datalist id="from-options">
       <option value="Colombo - Sri Lanka (CMB)">
       <option value="Bangkok - Thailand (BKK)">
@@ -1954,7 +1954,7 @@ export default async function decorate(block) {
   </div>
       <div class="to">
     <label for="to">To</label>
-    <input type="text" id="to" list="to-options" placeholder="Colombo - Sri Lanka (CMB)" />
+    <input type="text" id="to" list="to-options" placeholder="${getMetadata('tocity')}" />
     <datalist id="to-options">
       <option value="Colombo - Sri Lanka (CMB)">
       <option value="Bangkok - Thailand (BKK)">
@@ -1984,44 +1984,45 @@ export default async function decorate(block) {
     </p>
   `;
   // Sample Data
-  function renderList(flights) {
+ function renderList(flights) {
     const tbody = block.querySelector('#ticket-rows');
-    tbody.innerHTML = ''
-   flights.body.data.forEach((flight,index) => {
-    const from = flight.itineraries[0].segments[0].departure.iataCode;
-    const to = flight.itineraries[0].segments[0].arrival.iataCode;
+    tbody.innerHTML = '';
+   
+    flights.body.data.forEach((flight, index) => {
+        const from = flight.itineraries[0].segments[0].departure.iataCode;
+        const to = flight.itineraries[0].segments[0].arrival.iataCode;
 
-    const departureDate = flight.itineraries[0].segments[0].departure.from;
+        const departureDate = flight.itineraries[0].segments[0].departure.from;
+        const returnDate = flight.itineraries[0].segments[0].arrival.at;
+        const dates = departureDate && returnDate ? `${departureDate} - ${returnDate}` : '—';
 
-    const returnDate = flight.itineraries[0].segments[0].arrival.at;
-    const dates = departureDate && returnDate ? `${departureDate} - ${returnDate}` : '—';
+        const fare = flight.travelerPricings[0].fareDetailsBySegment[1].cabin;
+        
+        // Convert to USD instead of INR
+        const usdPrice = convertEurToUsd(flight.price.grandTotal);
+        console.log(usdPrice);
+        const price = usdPrice;
 
-    const fare = flight.travelerPricings[0].fareDetailsBySegment[1].cabin;
-    
-    const inrPrice = convertEurToInr(flight.price.grandTotal);
-    console.log(inrPrice);
-    const price = inrPrice;
-    if(!index){
-            const fare = flight.travelerPricings[0].fareDetailsBySegment[1].cabin;
-        document.querySelector('.tabs-panel h1 strong a').textContent = price;
-    }
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${from}</td>
-      <td>${to}</td>
-      <td>${fare}</td>
-      <td>${dates}</td>
-      <td>
-        <div class="price-cell">
-          <strong>${price}</strong><br/>
-        </div>
-      </td>
-      <td><a href="#book" class="book-now-button">Book now</a></td>
-    `;
-    tbody.appendChild(row);
-   });
-    
-  }
+        if (!index) {
+            document.querySelector('.tabs-panel h1 strong a').textContent = price;  // Update main price
+        }
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${from}</td>
+            <td>${to}</td>
+            <td>${fare}</td>
+            <td>${dates}</td>
+            <td>
+                <div class="price-cell">
+                    <strong>${price}</strong><br/>
+                </div>
+            </td>
+            <td><a href="#book" class="book-now-button">Book now</a></td>
+        `;
+        tbody.appendChild(row);
+    });
+}
 
   renderList(flights);
   const fromAirports = [
