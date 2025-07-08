@@ -1972,8 +1972,12 @@ export default async function decorate(block) {
   clickDropdown(block);
    
    const form = block.querySelector('form');
+  const submit = form.querySelector('button[type="submit"]');
+
    form.addEventListener('submit', async function(e) {
     e.preventDefault();
+    submit.classList.add('disabled');
+
     const auth = await getAccessToken();
     const data = await getData(auth , {
         originLocationCode: this.source.dataset.iataCode,
@@ -1989,7 +1993,7 @@ export default async function decorate(block) {
     block.querySelectorAll('.flight-card').forEach(card => card.remove());
 
     const countries = new Intl.DisplayNames(['en'], { type: 'region' });
-    const locations = data.body.dictionaries.locations;
+    const locations = data?.body?.dictionaries?.locations;
     
     const cardWrapper = document.createElement('div');
     cardWrapper.classList.add("card-wrapper");
@@ -2087,5 +2091,6 @@ export default async function decorate(block) {
       cardWrapper.appendChild(card);
     });
     block.appendChild(cardWrapper);
+    submit.classList.remove('disabled');
   });
 }
