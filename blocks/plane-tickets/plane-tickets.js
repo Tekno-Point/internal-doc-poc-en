@@ -2002,8 +2002,7 @@ export default async function decorate(block) {
     console.log(inrPrice);
     const price = inrPrice;
     if(!index){
-            const fare = flight.travelerPricings[0].fareDetailsBySegment[1].cabin;
-        document.querySelector('.tabs-panel h1 strong a').textContent = price;
+        document.querySelector('.tabs-panel h1 strong a').textContent = price.replace('₹','');
     }
     const row = document.createElement('tr');
     row.innerHTML = `
