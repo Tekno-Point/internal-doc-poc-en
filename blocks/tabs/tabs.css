@@ -151,6 +151,10 @@
         width: 63%;
         font-size: 14px;
     }
+
+    .tabs{
+        margin-top: 40px;
+    }
 }
 
 .tabs.form-tabs .tabs-panel form > div > .field-wrapper::after {
@@ -279,6 +283,10 @@ input[type="date"] {
 
 .tabs.form-tabs .tabs-panel form > fieldset .field-wrapper {
     margin-right: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 10px;
 }
 
 .tabs.form-tabs .tabs-panel form .field-wrapper.fares-wrapper {
@@ -406,6 +414,9 @@ input[type="date"] {
     .fare-card > .card-count > .card-count-text {
         font-size: 14px;
     }
+    .tabs.form-tabs .tabs-panel form > fieldset .field-wrapper {
+            margin-right : 10px
+    }
     /* .tabs.form-tabs .tabs-panel form > fieldset {
         flex-direction: column;
     } */
@@ -466,10 +477,12 @@ input[type="date"] {
     margin: 0px;
     padding: 25px 30px;
     border-radius: 5px 5px 0px 0px;
-    font-size: 24px;
+    /* font-size: 24px; */
     color: #424345;
     font-family: "Roboto";
     background: #ffffffbf;
+        font-weight: 100;
+    font-size: revert-layer;
 }
 
 .tabs > .tabs-panel > div > p {
@@ -478,4 +491,11 @@ input[type="date"] {
 
 .tabs-wrapper > .tabs > .tabs-list {
     display: none;
+}
+
+
+@media (max-width : 786px){
+    .tabs > .tabs-panel > div > h1{
+        font-size: 24px;
+    }
 }
