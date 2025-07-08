@@ -493,7 +493,7 @@ async function loadFonts() {
 function buildAutoBlocks(main) {
   try {
     loadAutoBlock(main);
-    buildHeroBlock(main);
+    // buildHeroBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -574,3 +574,14 @@ async function loadPage() {
 }
 
 loadPage();
+export function getParams(currurl, key) {
+  const url = new URL(currurl);
+  const params = new URLSearchParams(url.search);
+  return params.get(key);
+}
+
+export function getDate(dateObj) {
+  const today = new Date(dateObj);
+  const formattedDate = today.toISOString().split('T')[0];
+  return formattedDate;
+}

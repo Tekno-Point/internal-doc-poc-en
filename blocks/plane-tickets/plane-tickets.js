@@ -1,3 +1,6 @@
+import { getMetadata } from "../../scripts/aem.js";
+import { getParams } from "../../scripts/scripts.js";
+
 /* eslint-disable */
 const dummyData = {
     "header": {
@@ -1838,7 +1841,7 @@ const dummyData = {
     },
     "errorBody": {}
 };
-
+const url = window.location.href;
 function getIATACode(location) {
 const match = location.match(/\(([^)]+)\)/);
 const code = match ? match[1] : null;
@@ -1890,10 +1893,10 @@ async function getAccessToken() {
 }
 
 async function getData(auth, data = {
-      originLocationCode:  "BOM",
-      destinationLocationCode:  "CMB",
-      departureDate: '2025-07-16',
-      returnDate: '2025-07-30',
+      originLocationCode:  getParams(url,'from') || getMetadata("from") || "BOM",
+      destinationLocationCode:  getParams(url, 'to') || getMetadata("to") || "CMB",
+      departureDate: getDate(3),
+      returnDate: getDate(7),
       adults: '1',
       includedAirlineCodes: 'TG',
       max: '10',
@@ -1986,10 +1989,11 @@ export default async function decorate(block) {
     tbody.innerHTML = ''
    flights.body.data.forEach((flight,index) => {
     const from = flight.itineraries[0].segments[0].departure.iataCode;
-    const to = flight.itineraries[0].segments[1].arrival.iataCode;
+    const to = flight.itineraries[0].segments[0].arrival.iataCode;
 
-    const departureDate = flight.lastTicketingDate ;
-    const returnDate = flight.lastTicketingDateTime;
+    const departureDate = flight.itineraries[0].segments[0].departure.from;
+
+    const returnDate = flight.itineraries[0].segments[0].arrival.at;
     const dates = departureDate && returnDate ? `${departureDate} - ${returnDate}` : '—';
 
     const fare = flight.travelerPricings[0].fareDetailsBySegment[1].cabin;
@@ -1997,7 +2001,10 @@ export default async function decorate(block) {
     const inrPrice = convertEurToInr(flight.price.grandTotal);
     console.log(inrPrice);
     const price = inrPrice;
-
+    if(!index){
+            const fare = flight.travelerPricings[0].fareDetailsBySegment[1].cabin;
+        document.querySelector('.tabs-panel h1 strong a').textContent = price;
+    }
     const row = document.createElement('tr');
     row.innerHTML = `
       <td>${from}</td>
