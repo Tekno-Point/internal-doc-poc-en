@@ -93,11 +93,14 @@
 
 .tabs.form-tabs .tabs-panel form {
     background-color: #fff;
-    border-radius: 8.43px;
+    /* border-radius: 8.43px; */
     border: 0.42px solid #d1d1d1;
     display: flex;
     flex-direction: column-reverse;
     padding: 25px;
+    opacity: 0.9;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .tabs.form-tabs .tabs-panel form > div {
@@ -373,10 +376,10 @@ input[type="date"] {
     font-weight: 600;
 }
 
-.card-wrapper{
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.card-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 @media (max-width: 786px) {
@@ -401,11 +404,11 @@ input[type="date"] {
         border: none;
     }
     .fare-card > .card-count > .card-count-text {
-      font-size: 14px;
+        font-size: 14px;
     }
-    .tabs.form-tabs .tabs-panel form > fieldset{
-      flex-direction: column;
-    }
+    /* .tabs.form-tabs .tabs-panel form > fieldset {
+        flex-direction: column;
+    } */
 }
 
 /* city wrapper css */
@@ -452,4 +455,27 @@ input[type="date"] {
 
 .show .city-wrapper {
     display: block;
+}
+
+/* .tabs > .tabs-panel > .button-container >p> form > #form-tripfs > .field-wrapper {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+} */
+.tabs > .tabs-panel > div > h1 {
+    margin: 0px;
+    padding: 25px 30px;
+    border-radius: 5px 5px 0px 0px;
+    font-size: 24px;
+    color: #424345;
+    font-family: "Roboto";
+    background: #ffffffbf;
+}
+
+.tabs > .tabs-panel > div > p {
+    margin: 0px;
+}
+
+.tabs-wrapper > .tabs > .tabs-list {
+    display: none;
 }

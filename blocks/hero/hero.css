@@ -37,3 +37,15 @@
     padding: 40px 32px;
   }
 }
+
+
+.hero-container{
+  position: relative;
+}
+
+.hero-container>.hero-wrapper{
+ position: absolute;
+    top: -40px;
+    right: 0px;
+    left: 0px;
+}
