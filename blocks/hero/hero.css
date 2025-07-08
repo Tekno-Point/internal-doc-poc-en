@@ -32,8 +32,30 @@
   height: 100%;
 }
 
+.hero>div>div>picture>img{
+  min-height: 400px;
+}
+
 @media (width >= 900px) {
   .hero {
     padding: 40px 32px;
   }
+}
+
+
+@media (max-width : 786px){
+  .hero>div>div>picture>img{
+    min-height: 790px;
+  }
+}
+
+.hero-container{
+  position: relative;
+}
+
+.hero-container>.hero-wrapper{
+ position: absolute;
+    top: -40px;
+    right: 0px;
+    left: 0px;
 }
