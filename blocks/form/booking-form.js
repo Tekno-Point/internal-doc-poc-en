@@ -75,3 +75,13 @@ export function clickDropdown(block){
         }
     })
 }
+
+export function dateDisable(block) {
+    const startInput = block.querySelector('form .departure-date input');
+    const endInput = document.querySelector('form .return-date input');
+
+    startInput.addEventListener('change', function () {
+        const selectedDate = this.value;
+        endInput.min = selectedDate; // Disable earlier dates in end date picker
+    });
+}
