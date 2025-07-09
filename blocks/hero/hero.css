@@ -8,7 +8,9 @@
   padding: 40px 24px;
   min-height: 300px;
 }
-
+.hero-banner{
+  height: 350px;
+}
 .hero h1 {
   max-width: 1200px;
   margin-left: auto;
@@ -30,8 +32,30 @@
   height: 100%;
 }
 
+.hero>div>div>picture>img{
+  min-height: 400px;
+}
+
 @media (width >= 900px) {
   .hero {
     padding: 40px 32px;
   }
+}
+
+
+@media (max-width : 786px){
+  .hero>div>div>picture>img{
+    min-height: 790px;
+  }
+}
+
+.hero-container{
+  position: relative;
+}
+
+.hero-container>.hero-wrapper{
+ position: absolute;
+    top: -40px;
+    right: 0px;
+    left: 0px;
 }

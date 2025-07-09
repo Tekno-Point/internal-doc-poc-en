@@ -1,0 +1,104 @@
+@import url("./swiper-bundle.min.css");
+.swiper-wrapper {
+    width: 100%;
+    padding: 20px 12px;
+    display: flex;
+    justify-content: center;
+}
+
+.swiper-slide {
+    max-width: 348px;
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Darker and deeper shadow */
+    margin: 9px 0 9px 9px;
+    text-align: center;
+    font-family: sans-serif;
+    cursor: pointer;
+    padding: 20px;
+}
+.swiper-slide:hover{
+    background-color: #1F3C90;
+    color: #FFFFFF;
+}
+.swiper-slide div:hover{
+    color: #FFFFFF;
+}
+
+.swiper-slide p:nth-child(1){
+    margin: 6px 0;
+    font-family: roboto;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.2;
+    letter-spacing: normal;
+    text-transform: none;
+}
+.swiper-slide p:nth-child(2){
+    font-family: roboto;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-transform: none;
+}
+.swiper-slide p:nth-child(3){
+    font-family: roboto;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-transform: none;
+}
+.swiper-slide p:nth-child(4){
+    font-family: roboto;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-transform: none;
+}
+
+    
+    
+
+.swipercust {
+    padding: 0px 40px 0px 40px;
+}
+
+.swiper-button-prev {
+    position: absolute;
+    left: 0px;
+}
+.swiper-button-next {
+    position: absolute;
+    right: 0px;
+
+}
+.swiper-button-prev,
+.swiper-button-next {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.swiper-wrapper .swiper-slide {
+    margin-right: 5px;
+}
+.swipercust >div>div> .swiper-slide:hover{
+    background-color: #1F3C90;
+}
+
+@media (max-width:768px){
+    .swiper-wrapper{
+        justify-content: flex-start;
+    }
+    .swiper-slide{
+        width: 90% !important;
+    }
+    
+}

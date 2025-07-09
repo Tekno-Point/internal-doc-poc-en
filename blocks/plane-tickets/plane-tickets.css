@@ -1,0 +1,371 @@
+/* Section container */
+.plane-tickets-wrapper{
+    max-width: 1130px !important;
+    padding-left: 0;
+}
+
+.book-now-button {
+    display: none;
+}
+.plane-tickets {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    /* max-width: 1100px; */
+    /* margin: auto; */
+    padding: 32px 0px 0px 0px;
+}
+
+/* Header title */
+.plane-tickets h2 {
+    color: #0070c9;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    font-family: "Roboto";
+    line-height: 1.2;
+}
+
+/* Filter input section */
+.plane-filters {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.plane-filters label {
+    display: block;
+    font-family: "HelveticaNeueRegular";
+    font-weight: 400;
+    margin-bottom: 6px;
+    line-height: 1.5;
+    font-size: 14px;
+    color: #424345;
+}
+
+.plane-filters input {
+    padding: 10px 14px;
+    border: 0.3px solid #c8c8c8;
+    border-radius: 6px;
+    width: 365px;
+    font-size: 14px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    outline: none;
+}
+.plane-filters input:before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-image: url('../../icons/take-off.png'); 
+    background-repeat: no-repeat;
+    background-size: contain;
+    pointer-events: none;
+    border: 1px solid #e5e7eb;
+}
+.plane-filters input::after, 
+.plane-filters input::before {
+    border: 1px solid #e5e7eb;
+}
+
+.plane-table {
+    overflow-x: auto;
+}
+
+/* Table styling */
+.plane-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+.plane-table th{
+    color: #424345;
+    line-height: 1.5;
+    height: 50px;
+    font-family: 'helveticaNeue-Bold';
+    padding: 16px;
+    font-size: 16px;
+    text-align: left;
+    border-bottom: 1px solid #777777;
+}
+
+.plane-table td {
+    padding: 16px;
+    text-align: left;
+    line-height: 1.5;
+    font-size: 14px;
+    color: #424345;
+    font-family: "HelveticaNeueRegular";
+    height: 70px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+#ticket-rows:hover{
+    cursor: pointer;
+    background-color: rgba(59, 130, 246, .5);
+}
+
+.plane-table thead {
+    background-color: #f9f9f9;
+}
+
+/* .plane-table th {
+    color: #333;
+    font-weight: 600;
+} */
+
+/* Price cell styling */
+.price-cell strong {
+    color: #0070c9;
+    font-weight: 600;
+    font-size: 16px;
+    font-family: "HelveticaNeueRegular";
+    line-height: 1.5;
+}
+
+.price-cell small {
+    display: block;
+    color: #666;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* Fare note at bottom */
+.fare-note {
+    font-size: 12px;
+    color: #424345;
+    line-height: 1.5;
+    font-family: "'HelveticaNeueRegular";
+    margin: 40px 0 100px;
+}
+
+.section.plane-tickets-container > .plane-tickets-wrapper {
+    padding: 0px;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 5px;
+  color: #1a1a1a;
+}
+
+.airport-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.airport-input-wrapper .icon {
+  position: absolute;
+  left: 10px;
+  font-size: 18px;
+  color: #888;
+  pointer-events: none;
+}
+
+.airport-input-wrapper input {
+  width: 100%;
+  padding: 10px 10px 10px 35px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s;
+}
+
+.airport-input-wrapper input:focus {
+  border-color: #0078d4;
+  outline: none;
+}
+
+/* Optional: Smooth datalist dropdown look */
+.plane-tickets>input::-webkit-calendar-picker-indicator {
+  display: none !important;
+}
+
+/* Make sure the .from and .to are position relative */
+.plane-filters .from,
+.plane-filters .to {
+  position: relative;
+}
+
+.plane-filters .from::before{
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 70%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background-image: url('../../icons/take-off.png'); /* <-- update this */
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+.plane-filters .to::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 70%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background-image: url('../../icons/landing.png'); /* <-- update this */
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+/* Push text inside the input */
+.plane-filters .from input,
+.plane-filters .to input {
+  padding-left: 40px; /* Make space for icon */
+  height: 40px;
+  box-sizing: border-box;
+}
+
+
+@media screen and (max-width: 768px) {
+    .plane-table table{
+        display: block;
+    }
+
+    .plane-table table thead {
+        display: none;
+    }
+
+    .plane-table tbody{
+        display: flex;
+        flex-direction: column;
+    }
+    .plane-table tr{
+        display: contents;
+        float: right;
+    }
+
+    .plane-table td:nth-child(1)::before{
+        content: 'From';
+        font-weight: bold;
+        font-size: 17px;
+        letter-spacing: 0.5px;
+        color: #424345;
+        font-family: "HelveticaNeueRegular";
+    }
+    .plane-table td:nth-child(2)::before{
+        content: 'To';
+        font-weight: bold;
+        font-size: 17px;
+        letter-spacing: 0.5px;
+        color: #424345;
+        font-family: "HelveticaNeueRegular";
+    }
+    .plane-table td:nth-child(3)::before{
+        content: 'Fare Type';
+        font-weight: bold;
+        font-size: 17px;
+        letter-spacing: 0.5px;
+        color: #424345;
+        font-family: "HelveticaNeueRegular";
+    }
+    .plane-table td:nth-child(4)::before{
+        content: 'Dates';
+        font-weight: bold;
+        font-size: 17px;
+        letter-spacing: 0.5px;
+        color: #424345;
+        font-family: "HelveticaNeueRegular";
+    }
+    .plane-table td:nth-child(5)::before{
+        content: 'Price';
+        font-weight: bold;
+        font-size: 17px;
+        letter-spacing: 0.5px;
+        color: #424345;
+        font-family: "HelveticaNeueRegular";
+    }
+    /* .plane-table table,
+    .plane-table tbody,
+    .plane-table tr, */
+    .plane-table td {
+        display: block;
+        width: 100%;
+        justify-content: space-between;
+        display: flex;
+        align-items: baseline;
+;
+    }
+
+    .plane-table tr {
+        background: #fff;
+        margin-bottom: 16px;
+        border-radius: 12px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        padding: 16px;
+    }
+
+    .plane-table td {
+        padding: 4px 0;
+        font-size: 14px;
+        color: #333;
+        border: none;
+    }
+
+    .plane-table td strong {
+        font-size: 16px;
+        color: #007bff;
+    }
+
+    .plane-table .price-cell {
+        margin-top: 8px;
+    }
+
+    .plane-filters {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .plane-filters .from,
+    .plane-filters .to {
+        width: 100%;
+    }
+
+    .plane-filters input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+    }
+    .book-now-button {
+        display: block;
+        margin-top: 8px;
+        background-color: #007bff;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+        font-size: 14px;
+        width: 100%;
+    }
+    .book-now-button {
+        display: block;
+    }
+
+    .plane-tickets{
+      padding: 20px;
+    }
+}
+@media (min-width: 769px) and (max-width: 1200px){
+    .plane-tickets-wrapper{
+        padding-left: 40px;
+    }
+}

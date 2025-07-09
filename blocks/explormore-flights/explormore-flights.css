@@ -1,0 +1,88 @@
+.Section.explormore-flights-container {
+    /* max-width: 1200px; */
+    margin: 0 auto;
+    /* padding: 40px 120px; */
+    font-family: Arial, sans-serif;
+}
+
+.explormore-flights-container h2 {
+    text-align: left;
+    color: #0088DD;
+    font-size: 30px;
+    margin-bottom: 32px;
+    font-family: "roboto" ;
+}
+
+/* Use flex on the UL to make columns */
+.explormore-flights-container ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 60px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    max-width: 1100px;
+}
+
+/* Each <li> becomes a flex item to form column blocks */
+.explormore-flights-container li {
+    flex: 0 0 calc(33.33% - 40px); /* 3 columns with spacing */
+    margin-bottom: 5px;
+}
+
+/* Link styling */
+.explormore-flights-container a {
+    text-decoration: none;
+    font-size: 16px;
+    text-decoration: underline;
+    font-family: 'HelveticaNeueRegular';
+    color: #0088DD;
+    line-height: 1.5;
+}
+
+.explormore-flights-container a:hover {
+    color: #042540;
+}
+.content3-div-hide {
+    display: none;
+}
+
+.content3-div-show {
+    display: block;
+}
+
+.view-more-btn {
+    font-size: 16px;
+    width: 146px;
+    text-align: center;
+    display: block;
+    margin: 20px auto 0 auto; /* top margin, auto left/right for center */
+    border-radius: 20px;
+    /* background: #4197D3; */
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: -0.14px;
+    padding: 10px 15px;
+    display: block;
+    cursor: pointer;
+     background-color: #0088dd;
+    color: #ffffff;
+    font-family: 'HelveticaNeueRegular';
+    border-radius: 5px;
+    text-transform: uppercase;
+    height: 48px;
+}
+
+
+/* Responsive: stack in one column */
+@media (max-width: 768px) {
+    .explormore-flights-container ul {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .explormore-flights-container li {
+        flex: 0 0 100%;
+    }
+}
