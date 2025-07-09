@@ -1,3 +1,5 @@
+@import "../swipercust/swiper-bundle.min.css";
+
 .tabs .tabs-list {
     display: flex;
     gap: 0.5ch;
@@ -105,8 +107,8 @@
 
 .tabs.form-tabs .tabs-panel form > div {
     display: flex;
-    border: 1px solid #cccccc;
-    padding: 20px 16px;
+    /* border: 1px solid #cccccc;
+    padding: 20px 16px; */
     margin-top: 17px;
     border-radius: 8px;
     gap: 10px;
@@ -325,11 +327,18 @@ input[type="date"] {
     /* gap: 20px; */
 }
 
-.tabs.form-tabs > div > .flight-card {
+.tabs.form-tabs > div > .flight-card,
+.section.tabs-container
+    > .tabs-wrapper
+    > .tabs
+    > .card-wrapper
+    > .swiper-wrapper
+    > .flight-card {
     min-height: 220px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
+    justify-content: space-around;
     gap: 32px;
     background: linear-gradient(180deg, #ffffff 0%, #ecf2ff 100%);
     box-shadow: 0px 4px 4px 0px #0640ad33;
@@ -337,9 +346,17 @@ input[type="date"] {
     font-family: "roboto";
     color: #0f1e7de5;
     font-size: 12px;
+    margin-top: 15px;
 }
 
-.tabs.form-tabs > div > .flight-card > .flight-info {
+.tabs.form-tabs > div > .flight-card > .flight-info,
+.section.tabs-container
+    > .tabs-wrapper
+    > .tabs
+    > .card-wrapper
+    > .swiper-wrapper
+    > .flight-card
+    > .flight-info {
     max-width: 500px;
     width: 100%;
     min-height: 180px;
@@ -348,39 +365,86 @@ input[type="date"] {
     gap: 30px;
     justify-content: center;
     align-items: center;
+    padding-right: 33px;
 }
 
-.tabs.form-tabs > div > .flight-card > .flight-info > .from-info > strong {
+.tabs.form-tabs > div > .flight-card > .flight-info > .from-info > strong,
+.section.tabs-container
+    > .tabs-wrapper
+    > .tabs
+    > .card-wrapper
+    > .swiper-wrapper
+    > .flight-card
+    > .flight-info
+    > strong {
     color: white;
     background: #0f1e7d;
     padding: 2px;
     border-radius: 2px;
 }
 
-.tabs.form-tabs > div > .flight-card > .airline-details {
+.tabs.form-tabs > div > .flight-card > .airline-details,
+.section.tabs-container
+    > .tabs-wrapper
+    > .tabs
+    > .card-wrapper
+    > .swiper-wrapper
+    > .flight-card
+    > .airline-details {
     max-width: 309px;
     width: 100%;
 }
 
-.tabs.form-tabs > div > .flight-card > .airline-details {
+.tabs.form-tabs > div > .flight-card > .airline-details,
+.section.tabs-container
+    > .tabs-wrapper
+    > .tabs
+    > .card-wrapper
+    > .swiper-wrapper
+    > .flight-card
+    > .airline-details {
     display: flex;
     flex-direction: column;
     gap: 9px;
 }
 
-.tabs.form-tabs > div > .flight-card > .airline-details > h4 {
+.tabs.form-tabs > div > .flight-card > .airline-details > h4,
+.section.tabs-container
+    > .tabs-wrapper
+    > .tabs
+    > .card-wrapper
+    > .swiper-wrapper
+    > .flight-card
+    > .airline-details
+    > h4 {
     font-size: 14px;
     padding: 0px;
 }
 
-.tabs.form-tabs > div > .flight-card > .airline-details > button {
+.tabs.form-tabs > div > .flight-card > .airline-details > button,
+.section.tabs-container
+    > .tabs-wrapper
+    > .tabs
+    > .card-wrapper
+    > .swiper-wrapper
+    > .flight-card
+    > .airline-details
+    > button {
     background-color: #0f1e7d;
     color: white;
     font-weight: 800;
     cursor: pointer;
 }
 
-.tabs.form-tabs > div > .flight-card > .airline-details > div {
+.tabs.form-tabs > div > .flight-card > .airline-details > div,
+.section.tabs-container
+    > .tabs-wrapper
+    > .tabs
+    > .card-wrapper
+    > .swiper-wrapper
+    > .flight-card
+    > .airline-details
+    > div {
     font-weight: 600;
 }
 
@@ -475,14 +539,13 @@ input[type="date"] {
 } */
 .tabs > .tabs-panel > div > h1 {
     margin: 0px;
-    padding: 25px 30px;
+    padding: 20px 22px;
     border-radius: 5px 5px 0px 0px;
-    /* font-size: 24px; */
+    font-size: 30px;
     color: #424345;
     font-family: "Roboto";
     background: #ffffffbf;
     font-weight: 100;
-    font-size: revert-layer;
 }
 
 .tabs > .tabs-panel > div > p {
@@ -513,5 +576,123 @@ input[type="date"] {
 }
 
 .button.disabled {
-  opacity: 0.8;
+    opacity: 0.8;
+}
+
+.section .tabs-wrapper {
+    padding: 62px 32px;
+}
+.tabs > .card-wrapper {
+    border-radius: 10px;
+}
+
+.tabs > .card-wrapper > .swiper-wrapper > .flight-card {
+    max-width: 100%;
+    margin: 0px;
+    border-radius: 10px;
+}
+.tabs.form-tabs > .card-wrapper {
+    overflow: hidden;
+}
+.tabs.form-tabs
+    > .card-wrapper
+    > .swiper-wrapper
+    > .flight-card
+    > .flight-info
+    > :hover {
+    color: #0f1e7de5;
+}
+.tabs.form-tabs
+    > .card-wrapper
+    > .swiper-wrapper
+    > .flight-card
+    > .flight-info
+    > .from-info:hover {
+    color: #0f1e7de5;
+}
+.tabs.form-tabs
+    > .card-wrapper
+    > .swiper-wrapper
+    > .flight-card
+    > .flight-info:hover {
+    color: #0f1e7de5;
+}
+.tabs.form-tabs
+    > .card-wrapper
+    > .swiper-wrapper
+    > .flight-card
+    > .flight-info
+    > .to-info:hover {
+    color: #0f1e7de5;
+}
+
+.tabs.form-tabs
+    > .card-wrapper
+    > .swiper-wrapper
+    > .flight-card
+    > .airline-details:hover {
+    color: #0f1e7de5;
+}
+
+.tabs.form-tabs
+    > .card-wrapper
+    > .swiper-wrapper
+    > .flight-card
+    > .airline-details
+    > div:hover {
+    color: #0f1e7de5;
+}
+.tabs.form-tabs > .card-wrapper > .swiper-wrapper {
+    padding: 0px;
+
+}
+.tabs > .card-wrapper > .swiper-wrapper {
+    /* overflow: hidden; */
+    justify-content: start;
+}
+
+.tabs-wrapper {
+    padding: 15px 0px;
+}
+
+@media (max-width: 786px) {
+    .tabs > .card-wrapper > .swiper-wrapper > .flight-card {
+        flex-direction: column;
+    }
+
+    .section.tabs-container
+        > .tabs-wrapper
+        > .tabs
+        > .card-wrapper
+        > .swiper-wrapper
+        > .flight-card
+        > .flight-info {
+        border: none;
+    }
+}
+
+@media (max-width : 430px){
+    
+    .tabs.form-tabs > .card-wrapper > .swiper-wrapper{
+        display: flex;
+        gap: 49px;
+    }
+}
+
+
+@media (max-width : 376px){
+    
+    .tabs.form-tabs > .card-wrapper > .swiper-wrapper{
+        display: flex;
+        gap: 35px;
+    }
+}
+
+
+@media (max-width : 324px){
+    
+    .tabs.form-tabs > .card-wrapper > .swiper-wrapper{
+        display: flex;
+        gap: 26px;
+    }
 }
