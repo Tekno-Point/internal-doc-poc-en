@@ -1932,7 +1932,7 @@ export default async function decorate(block) {
   const flights = await getData(auth);
   block.innerHTML = `
     <div class="plane-header">
-      <h2>Plane Tickets from Mumbai to Colombo on SriLankan Airlines</h2>
+      <h2>Plane Tickets from ${getMetadata('fromcity').split('-')[0]} to ${getMetadata('tocity').split('-')[0]} on SriLankan Airlines</h2>
     </div>
     <div class="plane-filters">
       <div class="from">
