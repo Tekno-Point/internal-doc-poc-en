@@ -1991,8 +1991,7 @@ export default async function decorate(block) {
     flights.body.data.forEach((flight, index) => {
         const from = flight.itineraries[0].segments[0].departure.iataCode;
         const to = flight.itineraries[0].segments[0].arrival.iataCode;
-
-        debugger;
+        
         const departureDate = getFormateDate(flight.itineraries[0].segments[0].departure.at);
         const returnDate = getFormateDate(flight.itineraries[0].segments[0].arrival.at);
             // const departureDate = flight.lastTicketingDate ;
