@@ -1992,8 +1992,11 @@ export default async function decorate(block) {
         const from = flight.itineraries[0].segments[0].departure.iataCode;
         const to = flight.itineraries[0].segments[0].arrival.iataCode;
 
-        const departureDate = flight.itineraries[0].segments[0].departure.from;
-        const returnDate = flight.itineraries[0].segments[0].arrival.at;
+        debugger;
+        const departureDate = getFormateDate(flight.itineraries[0].segments[0].departure.at);
+        const returnDate = getFormateDate(flight.itineraries[0].segments[0].arrival.at);
+            // const departureDate = flight.lastTicketingDate ;
+            // const returnDate = flight.lastTicketingDateTime;
         const dates = departureDate && returnDate ? `${departureDate} - ${returnDate}` : '—';
 
         const fare = flight.travelerPricings[0].fareDetailsBySegment[1].cabin;
@@ -2077,3 +2080,15 @@ renderList(data);
   }
 }
 
+function getFormateDate(input) {
+    // const input = '2025-07-12T21:25:00';
+    const date = new Date(input);
+    // Add 27 days
+    // date.setDate(date.getDate() + 27);
+// Format as MM/DD/YYYY
+    const formatted = `${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')}/${date.getFullYear()}`;
+    return formatted;
+// console.log(formatted); // Output: 08/08/2025
+
+    
+}
