@@ -1,3 +1,4 @@
+import { getMetadata } from '../plugins/experimentation/src/index.js';
 import {
   loadHeader,
   loadFooter,
@@ -571,6 +572,7 @@ async function loadEager(doc) {
   document.documentElement.lang = 'en';
   // Add below snippet early in the eager phase
   if (runExperimentation) {
+    debugger;
     await runExperimentation(document, experimentationConfig);
   }
   decorateTemplateAndTheme();
