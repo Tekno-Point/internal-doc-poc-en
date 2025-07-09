@@ -1,8 +1,13 @@
 let isFetched = false;
 
-export async function fetchData() {
+let iataData;
+export async function fetchIataData() {
     const cityData = await fetch('/srilankan-airlines/api/iata.json');
-    return await cityData.json();
+    if (iataData) {
+        return iataData;
+    }
+    iataData = await cityData.json();
+    return iataData;
 }
 
 export async function cityDropdown(block, wrapperClass, type, inputparent) {
@@ -14,9 +19,17 @@ export async function cityDropdown(block, wrapperClass, type, inputparent) {
     cityWrapper.classList.add('city-wrapper');
     cityWrapper.classList.add(wrapperClass);
 
-    const cities = await fetchData();
+    const cities = await fetchIataData();
+    createCityDom(cities.data, cityWrapper, type)
 
-    cities.data.forEach(city => {
+    wrapper.append(cityWrapper);
+    const event = new CustomEvent("datafetched");
+    window.dispatchEvent(event);
+}
+export function createCityDom(cities,wrapper,type){
+    wrapper.innerHTML = "";
+    console.log(cities)
+    cities.forEach(city => {
         const cityOption = document.createElement('div');
         cityOption.classList.add('city-option');
         const IATA = city[`${type}_IATA`];
@@ -25,12 +38,33 @@ export async function cityDropdown(block, wrapperClass, type, inputparent) {
 
         cityOption.innerHTML = `
             <p class="iata-code">${IATA}</p>
-            <p class="city">${city1}, ${country}</p>`  
+            <p class="city">${city1}, ${country}</p>`
 
-        cityWrapper.append(cityOption);
+        wrapper.append(cityOption);
     });
+}
 
-    wrapper.append(cityWrapper);
+
+export async function inputFilter(block, inputClass,type) {
+    const inputElem = block.querySelector(`${inputClass} input`);
+    const wrapper = block.querySelector(`${inputClass} .city-wrapper`);
+    
+    inputElem.addEventListener('input', (e)=> {
+        const query = e.target.value.toLowerCase();
+        const filteredData = iataData.data.filter(entry => 
+            entry[`${type}_city`].toLowerCase().includes(query) ||
+            entry[`${type}_country`].toLowerCase().includes(query) ||
+            entry[`${type}_IATA`].toLowerCase().includes(query)
+        );
+        const uniqueData = Array.from(
+            new Map(
+                filteredData.map(entry => [entry[`${type}_IATA`], entry])
+            ).values()
+        );
+
+        createCityDom(uniqueData,wrapper,type)
+    
+    })
 }
 
 export async function showData(block, inputClass, wrapperClass, type) {
