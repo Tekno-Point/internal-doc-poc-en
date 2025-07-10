@@ -110,12 +110,38 @@ export function clickDropdown(block){
     })
 }
 
+// export function dateDisable(block) {
+//     const startInput = block.querySelector('form .departure-date input');
+//     const endInput = document.querySelector('form .return-date input');
+
+//     startInput.addEventListener('change', function () {
+//         const selectedDate = this.value;
+//         endInput.min = selectedDate; // Disable earlier dates in end date picker
+//     });
+// }
+
 export function dateDisable(block) {
     const startInput = block.querySelector('form .departure-date input');
-    const endInput = document.querySelector('form .return-date input');
+    const endInput = block.querySelector('form .return-date input');
 
+    // Get today's date in YYYY-MM-DD format
+    const today = new Date().toISOString().split('T')[0];
+
+    // Disable previous dates in start input
+    startInput.min = today;
+
+    // Optional: Disable previous dates in return input too
+    endInput.min = today;
+
+    // Update end date min when start date changes
     startInput.addEventListener('change', function () {
         const selectedDate = this.value;
-        endInput.min = selectedDate; // Disable earlier dates in end date picker
+        endInput.min = selectedDate;
+
+        if (endInput.value && endInput.value < selectedDate) {
+            endInput.value = '';
+        }
     });
+
+    console.log(Date.now());
 }
