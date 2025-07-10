@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-unresolved
 import { toClassName } from "../../scripts/aem.js";
-import { clickDropdown, showData } from "../form/booking-form.js";
-import Swiper from '../swipercust/swiper-bundle.min.js';
+import { clickDropdown, dateDisable, inputFilter, showData } from '../form/booking-form.js';
+import Swiper from "../swipercust/swiper-bundle.min.js";
 
 /* eslint-disable */
 const dummyData = {
@@ -1963,6 +1963,12 @@ export default async function decorate(block) {
   showData(block, ".from-input", "from-wrapper", "source");
   showData(block, ".to-input", "to-wrapper", "destination");
   clickDropdown(block);
+  dateDisable(block);
+  
+  window.addEventListener("datafetched", () => {
+    inputFilter(block, '.from-input','source');
+    inputFilter(block, '.to-input','destination');
+  })
 
   const form = block.querySelector("form");
   const submit = form.querySelector('button[type="submit"]');
@@ -2139,7 +2145,11 @@ function swiperInit() {
     loop: false,
     pagination: {
       el: ".swiper-pagination",
-      clickable:true
+      clickable: true,
     },
   });
 }
+
+
+// filter 
+// cityDropdown.js

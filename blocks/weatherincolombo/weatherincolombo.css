@@ -156,6 +156,12 @@
     margin-top: 100px;
 }
 
+.weatherincolombo>div:nth-child(1)>div>h3{
+  font-family: "roboto";
+      color: #0088DD;
+    font-size: 30px;
+}
+
 
 @media screen and (max-width:900px){
   .weatherincolombo > div:nth-child(2) {
