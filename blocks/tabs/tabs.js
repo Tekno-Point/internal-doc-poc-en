@@ -2053,9 +2053,9 @@ export default async function decorate(block) {
       const fromDiv = document.createElement("div");
       fromDiv.className = "from-info";
       fromDiv.innerHTML = `
-        <strong>${from}</strong> ${fromCity}, ${fromCountry}<br>
-        Terminal ${fromTerminal}<br>
-        ${departureDate}
+        <p class="city"><strong>${from}</strong> ${fromCity}, ${fromCountry}</p>
+        <p class="terminal">Terminal ${fromTerminal}</p>
+        <p class="date">${departureDate}</p>
       `;
 
       const arrowDiv = document.createElement("div");
@@ -2069,9 +2069,9 @@ export default async function decorate(block) {
       const toDiv = document.createElement("div");
       toDiv.className = "to-info";
       toDiv.innerHTML = `
-        <strong>${to}</strong> ${toCity}, ${toCountry}<br>
-        Terminal ${toTerminal}<br>
-        ${departureDate}
+        <p class="city"><strong>${to}</strong> ${toCity}, ${toCountry}</p>
+        <p class="terminal">Terminal ${toTerminal}</p>
+        <p class="date">${departureDate}</p>
       `;
 
       flightInfo.append(fromDiv, arrowDiv, toDiv);
@@ -2079,6 +2079,11 @@ export default async function decorate(block) {
       // Airline Details
       const airlineDetails = document.createElement("div");
       airlineDetails.className = "airline-details";
+
+      const airlineDetailsLeft = document.createElement('div');
+      airlineDetailsLeft.className = 'airline-details-left';
+      const airlineDetailsRight = document.createElement('div');
+      airlineDetailsRight.className = 'airline-details-right';
 
       const heading = document.createElement("h4");
       heading.textContent = "SriLankan Airlines";
@@ -2111,6 +2116,10 @@ export default async function decorate(block) {
         priceDiv,
         button
       );
+      airlineDetailsLeft.append(heading, detailDiv, durationDiv, departureDiv, button);
+      airlineDetailsRight.append(priceDiv);
+      
+      airlineDetails.append(airlineDetailsLeft, airlineDetailsRight);
       card.append(flightInfo, airlineDetails);
       cardWrapper.appendChild(card);
     });
