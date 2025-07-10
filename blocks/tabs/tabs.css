@@ -420,6 +420,18 @@ input[type="date"] {
     padding: 0px;
 }
 
+.tabs.form-tabs > div > .flight-card > .airline-details > h4,
+.section.tabs-container
+    > .tabs-wrapper
+    > .tabs
+    > .card-wrapper
+    > .swiper-wrapper
+    > .flight-card
+    > .airline-details
+    > .Price{
+        font-size: 16px;
+    }
+
 .tabs.form-tabs > div > .flight-card > .airline-details > button,
 .section.tabs-container
     > .tabs-wrapper
