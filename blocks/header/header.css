@@ -322,6 +322,12 @@ header nav .nav-tools {
   width: 59%;
 }
 
+@media(max-width : 786px){
+  .block .nav-wrapper nav .nav-sections{
+    padding: 0px;
+  }
+}
+
 .block .nav-wrapper nav .nav-sections .default-content-wrapper:first-of-type {
   width: 80%;
   display: flex;
@@ -418,6 +424,7 @@ header nav .nav-tools {
   display: flex;
   align-items: center;
   list-style: none;
+  gap: 20px;
 }
 
 .block .nav-wrapper nav .nav-tools .default-content-wrapper ul li:first-of-type ul li strong {
