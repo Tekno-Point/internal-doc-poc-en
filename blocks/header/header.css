@@ -424,7 +424,14 @@ header nav .nav-tools {
   display: flex;
   align-items: center;
   list-style: none;
-  gap: 20px;
+}
+
+.block .nav-wrapper nav .nav-tools .default-content-wrapper ul {
+  gap: 25px;
+}
+
+.block .nav-wrapper nav .nav-tools .default-content-wrapper ul li:first-of-type ul{
+  gap: 0;
 }
 
 .block .nav-wrapper nav .nav-tools .default-content-wrapper ul li:first-of-type ul li strong {
@@ -764,4 +771,20 @@ header nav .nav-tools {
   header nav .nav-sections ul {
     width: 160%;
   }
+}
+
+
+.search-container>.default-content-wrapper>ul>li:nth-child(3)>.button-container>a{
+    display: flex
+;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    color: #0088dd;
+}
+
+
+.search-container>.default-content-wrapper>ul>li:nth-child(2)>.button-container>a{
+  gap: 2px;
 }
