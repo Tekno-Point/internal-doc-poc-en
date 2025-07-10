@@ -427,7 +427,7 @@ header nav .nav-tools {
 }
 
 .block .nav-wrapper nav .nav-tools .default-content-wrapper ul {
-  gap: 25px;
+  gap: 24px;
 }
 
 .block .nav-wrapper nav .nav-tools .default-content-wrapper ul li:first-of-type ul{
