@@ -2000,6 +2000,7 @@ export default async function decorate(block) {
     cardWrapper.classList.add("card-wrapper");
     data.body.data.forEach((flight, index) => {
       const segment = flight.itineraries[0].segments[0];
+      const toSegment = flight.itineraries[1].segments[0]; 
 
       const cityNames = {
         BOM: "Mumbai",
@@ -2016,9 +2017,9 @@ export default async function decorate(block) {
       const fromTerminal = segment.departure.terminal
         ? segment.departure.terminal
         : "1";
-      const to = segment.arrival.iataCode;
-      const toTerminal = segment.arrival.terminal
-        ? segment.arrival.terminal
+      const to = toSegment.departure.iataCode;
+      const toTerminal = toSegment.departure.terminal
+        ? segment.departure.terminal
         : "1";
 
       const fromCity = cityNames[from] || from;
