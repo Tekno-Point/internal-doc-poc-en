@@ -1836,8 +1836,10 @@ async function getAccessToken() {
       authToken: "",
     },
     body: {
-      clientId: "ZJRz6bDFxfRPaABeZOShvesqoatIx0AS",
-      clientSecret: "UNXbe2JgHEJ5BFsp",
+      clientId: "90mlxAxxDduGLaL584G1WYMGs1xsVQJL",
+      // clientId: "ZJRz6bDFxfRPaABeZOShvesqoatIx0AS",
+      // clientSecret: "UNXbe2JgHEJ5BFsp",
+      clientSecret: "fK99sDAvUij7GakT",
       grantType: "client_credentials",
     },
   });
@@ -2118,7 +2120,7 @@ export default async function decorate(block) {
       );
       airlineDetailsLeft.append(heading, detailDiv, durationDiv, departureDiv, button);
       airlineDetailsRight.append(priceDiv);
-      
+
       airlineDetails.append(airlineDetailsLeft, airlineDetailsRight);
       card.append(flightInfo, airlineDetails);
       cardWrapper.appendChild(card);
