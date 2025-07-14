@@ -1885,7 +1885,7 @@ async function getData(
     departureDate: getDate(3),
     returnDate: getDate(7),
     adults: "1",
-    includedAirlineCodes: "TG",
+    includedAirlineCodes: "UL",
     max: "10",
   }
 ) {
@@ -2082,7 +2082,7 @@ export default async function decorate(block) {
         departureDate: getDate(3),
         returnDate: getDate(7),
         adults: "1",
-        includedAirlineCodes: "TG",
+        includedAirlineCodes: "UL",
         max: "10",
       });
 
