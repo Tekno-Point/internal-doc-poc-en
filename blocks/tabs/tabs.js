@@ -1996,6 +1996,8 @@ export default async function decorate(block) {
     const countries = new Intl.DisplayNames(["en"], { type: "region" });
     const locations = data?.body?.dictionaries?.locations;
 
+    const blockCardWrapper = block.querySelector('.card-wrapper');
+    blockCardWrapper?.remove();
     const cardWrapper = document.createElement("div");
     cardWrapper.classList.add("card-wrapper");
     data.body.data.forEach((flight, index) => {
@@ -2036,6 +2038,13 @@ export default async function decorate(block) {
         minute: "2-digit",
       });
       const departureDate = departure.toLocaleDateString("en-GB");
+
+      const arrival = new Date(toSegment.departure.at);
+      const arrivalTime = arrival.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+      const arrivalDate = arrival.toLocaleDateString("en-GB");
       const totalPrice = parseFloat(flight.price.grandTotal).toLocaleString(
         "en-US",
         { style: "currency", currency: "USD" }
@@ -2074,7 +2083,7 @@ export default async function decorate(block) {
       toDiv.innerHTML = `
         <p class="city"><strong>${to}</strong> ${toCity}, ${toCountry}</p>
         <p class="terminal">Terminal ${toTerminal}</p>
-        <p class="date">${departureDate}</p>
+        <p class="date">${arrivalDate}</p>
       `;
 
       flightInfo.append(fromDiv, arrowDiv, toDiv);
@@ -2128,13 +2137,13 @@ export default async function decorate(block) {
     });
     block.appendChild(cardWrapper);
     submit.classList.remove("disabled");
+    swiperInit(cardWrapper);
 
-    swiperInit();
   });
 }
 
-function swiperInit() {
-  const cardWrapper = document.querySelector(".card-wrapper");
+function swiperInit(cardWrapper) {
+  // const cardWrapper = document.querySelector(".card-wrapper");
   const SwiperWrapper = document.createElement("div");
   SwiperWrapper.classList.add("swiper-wrapper");
   const swiperPagination = document.createElement("div");
