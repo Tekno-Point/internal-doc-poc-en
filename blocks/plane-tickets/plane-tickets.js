@@ -2002,7 +2002,7 @@ export default async function decorate(block) {
       // const returnDate = flight.lastTicketingDateTime;
       const dates =
         departureDate && returnDate ? `${departureDate} - ${returnDate}` : "—";
-
+        
       const fare = flight.travelerPricings[0].fareDetailsBySegment[1].cabin;
 
       // Convert to USD instead of INR
@@ -2091,7 +2091,16 @@ export default async function decorate(block) {
   }
 }
 
-function getFormateDate(input) {
+function getFormateDate(utcDateStr) {
+ const utcDate = new Date(utcDateStr);
+
+// IST is UTC +5:30 => 330 minutes
+const istOffset = 5.5 * 60 * 60 * 1000; // milliseconds
+const istDate = new Date(utcDate.getTime() + istOffset);
+const ist = istDate.toISOString().replace('T', ' ').slice(0, 19);
+console.log("IST Time:", ist);
+return ist
+  /*
   // const input = '2025-07-12T21:25:00';
   const date = new Date(input);
   // Add 27 days
@@ -2102,4 +2111,4 @@ function getFormateDate(input) {
   ).padStart(2, "0")}/${date.getFullYear()}`;
   return formatted;
   // console.log(formatted); // Output: 08/08/2025
-}
+*/}
