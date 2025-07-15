@@ -2,6 +2,7 @@
 import { toClassName } from "../../scripts/aem.js";
 import { clickDropdown, dateDisable, inputFilter, showData } from '../form/booking-form.js';
 import Swiper from "../swipercust/swiper-bundle.min.js";
+import { div, span } from '../../scripts/dom-helper.js';
 
 /* eslint-disable */
 const dummyData = {
@@ -1918,6 +1919,8 @@ function convertEurToInr(eurAmount, rate = 90) {
   })}`;
 }
 
+var loader = div({class : ['loader-wrapper','hide']},span({class : ['loader']}));
+
 export default async function decorate(block) {
   // build tablist
   // console.log(block)
@@ -1966,7 +1969,8 @@ export default async function decorate(block) {
   showData(block, ".to-input", "to-wrapper", "destination");
   clickDropdown(block);
   dateDisable(block);
-  
+
+  block.appendChild(loader);
   window.addEventListener("datafetched", () => {
     inputFilter(block, '.from-input','source');
     inputFilter(block, '.to-input','destination');
@@ -1978,6 +1982,7 @@ export default async function decorate(block) {
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
     submit.classList.add("disabled");
+    load(true)
 
     const auth = await getAccessToken();
     const data = await getData(auth, {
@@ -2138,7 +2143,7 @@ export default async function decorate(block) {
     block.appendChild(cardWrapper);
     submit.classList.remove("disabled");
     swiperInit(cardWrapper);
-
+    load(false);
   });
 }
 
@@ -2169,6 +2174,14 @@ function swiperInit(cardWrapper) {
       clickable: true,
     },
   });
+}
+
+function load(status) {
+  if(status){
+    return  loader.classList.remove('hide')
+  }else {
+    return  loader.classList.add('hide')
+  }
 }
 
 
