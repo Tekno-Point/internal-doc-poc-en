@@ -96,9 +96,15 @@
 @media (max-width:768px){
     .swiper-wrapper{
         justify-content: flex-start;
+        padding: 10px 0;
     }
     .swiper-slide{
-        width: 90% !important;
+        width: 100%;
+        margin: 0;
+    }
+
+    .swipercust {
+        padding: 0;
     }
     
 }
