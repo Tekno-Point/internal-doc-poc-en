@@ -373,7 +373,7 @@ main .section.highlight {
 } */
 
 .table-wrapper {
-    display: grid;
+    /* display: grid; */
     grid-template-columns: 392px 1fr;
     font-family: "Open Sans", sans-serif;
     background-color: #fff;
