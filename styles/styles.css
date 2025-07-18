@@ -149,6 +149,28 @@ h5 {
     line-height: 30px;
 }
 
+main h1 strong {
+    font-size: 36px;
+    line-height: 45px;
+    color: #282828;
+    font-weight: 700;
+}
+
+main h2 strong {
+    font-size: 19px;
+    line-height: 25px;
+    font-weight: 600;
+    color: #282828;
+}
+
+main ul li {
+    color: #282828;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 22px;
+    margin-bottom: 15px;
+}
+
 p,
 dl,
 ol,
@@ -371,6 +393,8 @@ main>.section {
 
 main>.section>div {
     max-width: 1330px;
+        max-width: 895px;/* Pooja */
+
     margin: auto;
     padding: 0 24px;
 }
@@ -403,4 +427,263 @@ main .section.highlight {
     background-color: var(--light-color);
     margin: 0;
     padding: 40px 0;
+}
+
+
+/* business css */
+
+/* .businessloan>.default-content-wrapper>p{
+          font-size: 16px;
+}
+.businessloan>.default-content-wrapper>h1{
+        font-family: "Montserrat-Bold";
+  margin: 0px;
+          font-size: 36px;
+        line-height: 1.2;
+        max-width: 828px;
+        width: 100%;
+
+}
+.businessloan>.default-content-wrapper>ul{
+  list-style: none;
+  padding: 0px;
+} */
+
+.table-wrapper {
+    /* display: grid; */
+    grid-template-columns: 392px 1fr;
+    font-family: "Open Sans", sans-serif;
+    background-color: #fff;
+    position: relative;
+    gap: 0 2%;
+    padding: 0 80px;
+}
+
+/* #tableofcontent{
+  grid-column: 1;
+  grid-row: 1 / span 5;
+  }
+  #NeedforDaycareBusinessIndia{
+    grid-column: 2;
+    }
+    #StepsStartDaycarBusinessedit{
+      grid-column: 2;
+      }
+      #StepstoApplyBusinessLoan{
+        grid-column: 2;
+        }
+        #FrequentlyAskedQuestions{
+          grid-column: 2;
+}
+#AbouttheAuthor{
+grid-column: 2;
+}
+#toConclude{
+  grid-column: 2;
+  } */
+.table-wrapper .section[data-id="tableofcontent"] {
+    grid-column: 1;
+    position: sticky;
+    top: 70px;
+    padding: 0 15px;
+    margin-top: 0px;
+    padding: 0;
+}
+.table-wrapper .section:not([data-id="tableofcontent"]) {
+    grid-column: 2;
+    padding: 0;
+}
+
+* Left sidebar section */ .table-wrapper .section[data-id="tableofcontent"] {
+    padding-top: 20px;
+    padding-right: 24px;
+    border-right: 1px solid #e0e0e0;
+}
+
+/* Title */
+.table-wrapper .section[data-id="tableofcontent"] .default-content-wrapper > p {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin-bottom: 24px;
+}
+
+/* List container */
+.table-wrapper .section[data-id="tableofcontent"] ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 435px;
+    overflow: auto;
+}
+
+/* List items */
+.table-wrapper .section[data-id="tableofcontent"] li {
+    /* padding: 14px 0; */
+    padding: 30px 82px 30px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Links */
+.table-wrapper .section[data-id="tableofcontent"] li a {
+    font-size: 16px;
+    font-weight: 400;
+    color: #282828;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: font-weight 0.3s ease;
+    position: relative;
+}
+
+/* Arrow on hover */
+.table-wrapper .section[data-id="tableofcontent"] li a:hover::after {
+    content: "›";
+    font-size: 18px;
+    color: #1d1d1f;
+    position: absolute;
+    right: 0;
+}
+
+/* Bold text on hover */
+.table-wrapper .section[data-id="tableofcontent"] li a:hover {
+    font-weight: 600;
+}
+
+.highlight {
+    outline: 2px solid #004aad;
+    transition: outline 0.3s ease;
+}
+
+/* business css */
+
+.businessloan > .default-content-wrapper {
+    padding: 0 80px;
+    max-width: 100%;
+}
+
+.businessloan > .default-content-wrapper > p {
+    font-size: 16px;
+}
+
+.businessloan > .default-content-wrapper > h1 {
+    font-family: "Montserrat-Bold";
+    margin: 0px;
+    font-size: 36px;
+    line-height: 1.2;
+    max-width: 828px;
+    width: 100%;
+}
+
+.businessloan > .default-content-wrapper > ul {
+    list-style: none;
+    padding: 0px;
+}
+
+.businessloan > .default-content-wrapper > ul > li > ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding: 0px;
+}
+
+.businessloan > .default-content-wrapper > ul > li > ul > li > ul {
+    list-style: none;
+    padding: 0px;
+}
+
+.businessloan
+    > .default-content-wrapper
+    > ul
+    > li
+    > ul
+    > li
+    > ul
+    > li:nth-child(1) {
+    font-family: "Montserrat-SemiBold";
+    line-height: normal;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.businessloan
+    > .default-content-wrapper
+    > ul
+    > li
+    > ul
+    > li
+    > ul
+    > li:nth-child(2) {
+    font-family: "Montserrat-Regular";
+    line-height: normal;
+    font-size: 13px;
+    margin-bottom: 8px;
+    font-weight: 400px;
+}
+
+.section[data-id="FrequentlyAskedQuestions"] {
+    padding-bottom: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .table-wrapper {
+        grid-template-columns: 1fr;
+        padding: 0 15px;
+    }
+
+    .businessloan > .default-content-wrapper {
+        padding: 0 15px;
+    }
+
+    .table-wrapper .section[data-id="tableofcontent"] {
+        display: none;
+    }
+
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    .table-wrapper .section[data-id="tableofcontent"] {
+        grid-column: unset;
+    }
+    .table-wrapper .section:not([data-id="tableofcontent"]) {
+        grid-column: 1;
+    }
+
+    .table-wrapper .section[data-id="FrequentlyAskedQuestions"] {
+        padding-bottom: 0;
+    }
+}
+
+.table-wrapper > .section > .default-content-wrapper > h2 {
+    font-family: "Montserrat-Medium, sans-serif";
+    font-size: 44px;
+    color: #282828;
+}
+
+.table-wrapper > .section > .default-content-wrapper > p {
+    font-size: 18px;
+    color: #282828;
+}
+.table-wrapper
+    > .section[data-id="FrequentlyAskedQuestions"]
+    > .default-content-wrapper
+    > p
+    picture
+    img {
+    float: left;
+    width: 110px;
+    height: auto;
+    margin-right: 15px;
+}
+
+@media (max-width: 767px) {
+    .table-wrapper > .section > .default-content-wrapper > h2 {
+        font-size: 32px;
+    }
+    .hero > .hero-2 > div > .button-container > a {
+          margin-top: 20px;
+    }
 }
