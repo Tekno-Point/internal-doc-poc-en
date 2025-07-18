@@ -69,10 +69,10 @@ header .breadcrumbs {
   text-transform: uppercase;
 }
 .breadcrumb>.container-fluid>ul>li>a{
-color: #034ea2;
+color: #EC6608;
 }
 .breadcrumb>.container-fluid>ul>li{
-    color: #034ea2;
+    color: #EC6608;
     font-family:"Montserrat-Regular" ;
 }
 .breadcrumb>.container-fluid>ul>li>a{

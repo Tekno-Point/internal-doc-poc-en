@@ -54,7 +54,7 @@ header nav p {
 }
 
 header nav a:any-link {
-  color: currentcolor;
+  color: #282828;
 }
 
 /* hamburger */
@@ -358,7 +358,7 @@ header nav .nav-sections .default-content-wrapper>ul>li {
 }
 
 header nav .nav-sections .default-content-wrapper>ul {
-  color: #034EA2;
+  color: #282828;
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
@@ -405,7 +405,7 @@ header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li[aria-expa
   color: #000;
   padding: 10px 78px 10px 78px;
   font-size: 14px;
-  color: #034EA2;
+  color: #282828;
 }
 
 header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li[aria-expanded='true']>ul>li:hover a {
@@ -425,6 +425,7 @@ header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li>strong {
   margin-bottom: 10px;
   font-size: 14px;
   font-weight: 400;
+  color: #fff;
 }
 
 header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li[aria-expanded='true']> strong  {
@@ -500,7 +501,7 @@ header nav .nav-tools .default-content-wrapper>ul {
   display: flex;
   flex-direction: row;
   gap: 22px;
-  color: #034EA2;
+  color: #282828;
   align-items: center;
   justify-content: end;
 }
@@ -571,18 +572,18 @@ button {
 
 header nav .nav-tools .default-content-wrapper>ul>li>ul>li {
   padding: 5px 10px;
-  color: #034EA2;
+  color: #EC6608;
 }
 
 header nav .nav-tools .default-content-wrapper>ul>li>ul>li:hover {
-  background-color: #034EA2;
+  background-color: #EC6608;
   color: #fff;
   text-decoration: none;
 }
 
-
 header nav .nav-tools .default-content-wrapper>ul>li>ul>li:hover a {
   text-decoration: none;
+  color: #fff;
 }
 
 header nav .nav-tools .default-content-wrapper>ul>li>ul>li>a {
@@ -592,7 +593,8 @@ header nav .nav-tools .default-content-wrapper>ul>li>ul>li>a {
 .button.primary {
   padding: 8px 24px;
   font-size: 14px;
-  background-color: #034EA2;
+  background-color: #EC6608;
+  ;
   color: #fff;
   border-radius: 7px;
 }
@@ -600,7 +602,7 @@ header nav .nav-tools .default-content-wrapper>ul>li>ul>li>a {
 header nav .nav-tools .default-content-wrapper>p .button.primary {
   padding: 11px 29px;
   font-size: 14px;
-  background-color: #034EA2;
+  background-color: #EC6608;
   color: #fff;
   border-radius: 7px;
   font-family: Montserrat-SemiBold, sans-serif;
