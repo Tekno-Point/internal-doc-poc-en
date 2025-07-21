@@ -154,6 +154,7 @@ main h1 strong {
     line-height: 45px;
     color: #282828;
     font-weight: 700;
+    margin-bottom: 16px;
 }
 
 main h2 strong {
@@ -161,6 +162,10 @@ main h2 strong {
     line-height: 25px;
     font-weight: 600;
     color: #282828;
+}
+
+main ul {
+    padding-left: 20px;
 }
 
 main ul li {
@@ -179,6 +184,14 @@ pre,
 blockquote {
     margin-top: 0.8em;
     margin-bottom: 0.25em;
+}
+
+main p {
+    color: #282828;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 22px;
+    padding-bottom: 16px;
 }
 
 code,

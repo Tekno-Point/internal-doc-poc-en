@@ -48,7 +48,7 @@
 
 /* Hide old header breadcrumbs if present */
 .section>div.breadcrumb-wrapper{
-  padding: 0 80px;
+  /* padding: 0 80px; */
   /* max-width: 100%; */
 }
 
