@@ -700,3 +700,33 @@ grid-column: 2;
           margin-top: 20px;
     }
 }
+
+/* ria live chat */
+#ymDivBar {
+    display: none !important;
+}
+
+.ria-live-chat {
+    width: fit-content;
+    z-index: 50;
+    position: fixed;
+    bottom: 18px;
+    right: 4rem;
+    margin: 0;
+    padding: 0;
+
+    @media (width<900px) {
+        display: none;
+    }
+}
+
+.ria-live-chat .default-content-wrapper {
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+/* dummy-container (used for gtm) */
+#dummy-container {
+    display: none;
+}
