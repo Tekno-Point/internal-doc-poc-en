@@ -13,6 +13,39 @@ import {
   loadCSS,
 } from './aem.js';
 
+const experimentationConfig = {
+  prodHost: 'www.my-site.com',
+  audiences: {
+    mobile: () => window.innerWidth < 600,
+    desktop: () => window.innerWidth >= 600,
+    // define your custom audiences here as needed
+  }
+};
+
+let runExperimentation;
+let showExperimentationOverlay;
+const isExperimentationEnabled = document.head.querySelector('[name^="experiment"],[name^="campaign-"],[name^="audience-"],[property^="campaign:"],[property^="audience:"]')
+  || [...document.querySelectorAll('.section-metadata div')].some((d) => d.textContent.match(/Experiment|Campaign|Audience/i));
+if (isExperimentationEnabled) {
+  ({
+    loadEager: runExperimentation,
+    loadLazy: showExperimentationOverlay,
+  } = await import('../plugins/experimentation/src/index.js'));
+}
+
+
+window.aem.plugins.add('experimentation', { // use window.hlx instead of your project has this
+  condition: () =>
+    // page level metadata
+    document.head.querySelector('[name^="experiment"],[name^="campaign-"],[name^="audience-"]')
+    // decorated section metadata
+    || document.querySelector('.section[class*=experiment],.section[class*=audience],.section[class*=campaign]')
+    // undecorated section metadata
+    || [...document.querySelectorAll('.section-metadata div')].some((d) => d.textContent.match(/Experiment|Campaign|Audience/i)),
+  options: experimentationConfig,
+  url: '/plugins/experimentation/src/index.js',
+});
+
 function wrapImgsInLinks(container) {
   const pictures = container.querySelectorAll("picture");
   pictures.forEach((pic) => {
@@ -27,10 +60,10 @@ function wrapImgsInLinks(container) {
 export function autolinkForm(element) {
   element.querySelectorAll('a').forEach(async function (origin) {
     console.log(origin.href);
-      if (origin && origin.href && origin.href.includes('email-form')) {
-        decorateForm(origin.closest('ul'))
-      }
-    });
+    if (origin && origin.href && origin.href.includes('email-form')) {
+      decorateForm(origin.closest('ul'))
+    }
+  });
 }
 /**
  * Builds hero block and prepends to main in a new section.
@@ -84,7 +117,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
-    wrapImgsInLinks(main);
+  wrapImgsInLinks(main);
 }
 
 /**
@@ -95,6 +128,9 @@ async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
+  if (runExperimentation) {
+    await runExperimentation(document, experimentationConfig);
+  }
   if (main) {
     decorateMain(main);
     document.body.classList.add('appear');
@@ -109,6 +145,7 @@ async function loadEager(doc) {
   } catch (e) {
     // do nothing
   }
+
 }
 
 /**
@@ -128,6 +165,9 @@ async function loadLazy(doc) {
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
+  if (showExperimentationOverlay) {
+    await showExperimentationOverlay(document, experimentationConfig);
+  }
 }
 
 function appendNextElements(container, nextElement) {
@@ -163,7 +203,7 @@ async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
-    decorateWrapper(document.querySelector('main'));
+  decorateWrapper(document.querySelector('main'));
 }
 
 loadPage();
@@ -178,11 +218,11 @@ document.addEventListener("DOMContentLoaded", () => {
     "FrequentlyAskedQuestions": "FrequentlyAskedQuestions"
   };
   console.log(scrollMap);
-  
+
   document.querySelectorAll('.section[data-id="tableofcontent"] li a').forEach(link => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
-      const id = new URL(link.href).hash.replace('#','');
+      const id = new URL(link.href).hash.replace('#', '');
       const targetId = scrollMap[id];
       const target = document.querySelector(`.section[data-id="${targetId}"]`);
       target?.scrollIntoView({ behavior: "smooth", block: "start" });
