@@ -11,13 +11,22 @@ import {
   loadSection,
   loadSections,
   loadCSS,
+  toClassName,
 } from './aem.js';
+
+const geoPromise = (async () => {
+  // Replace with your actual geo service endpoint
+  // const resp = await fetch('https://geo.example.com/lookup');
+  // return resp.json();
+})();
 
 const experimentationConfig = {
   prodHost: 'www.my-site.com',
   audiences: {
     mobile: () => window.innerWidth < 600,
     desktop: () => window.innerWidth >= 600,
+    us: async () => (await geoPromise).region === 'us',
+    eu: async () => (await geoPromise).region === 'eu',
     // define your custom audiences here as needed
   }
 };
@@ -34,17 +43,12 @@ if (isExperimentationEnabled) {
 }
 
 
-window.aem.plugins.add('experimentation', { // use window.hlx instead of your project has this
-  condition: () =>
-    // page level metadata
-    document.head.querySelector('[name^="experiment"],[name^="campaign-"],[name^="audience-"]')
-    // decorated section metadata
-    || document.querySelector('.section[class*=experiment],.section[class*=audience],.section[class*=campaign]')
-    // undecorated section metadata
-    || [...document.querySelectorAll('.section-metadata div')].some((d) => d.textContent.match(/Experiment|Campaign|Audience/i)),
-  options: experimentationConfig,
-  url: '/plugins/experimentation/src/index.js',
-});
+const AUDIENCES = {
+  mobile: () => window.innerWidth < 600,
+  desktop: () => window.innerWidth >= 600,
+  // define your custom audiences here as needed
+};
+
 
 function wrapImgsInLinks(container) {
   const pictures = container.querySelectorAll("picture");
