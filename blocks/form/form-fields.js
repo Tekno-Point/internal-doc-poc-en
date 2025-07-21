@@ -1,4 +1,5 @@
 import { toClassName } from '../../scripts/aem.js';
+import {ADD_TRAVELLERS} from './add-travellers.js'
 
 function createFieldWrapper(fd) {
   const fieldWrapper = document.createElement('div');
@@ -22,11 +23,23 @@ function generateFieldId(fd, suffix = '') {
 function createLabel(fd) {
   const label = document.createElement('label');
   label.id = generateFieldId(fd, '-label');
-  label.textContent = fd.Label || fd.Name;
   label.setAttribute('for', fd.Id);
+
   if (fd.Mandatory.toLowerCase() === 'true' || fd.Mandatory.toLowerCase() === 'x') {
     label.dataset.required = true;
   }
+
+  if (fd.Icon) {
+    const imgWrapper = document.createElement('div');
+    const img = document.createElement('img');
+    img.src = '/icons/' + fd.Icon;
+    imgWrapper.append(img);
+    label.append(imgWrapper);
+  }
+
+  const textNode = document.createTextNode(fd.Label || fd.Name);
+  label.append(textNode);
+
   return label;
 }
 
@@ -213,6 +226,70 @@ const createRadio = (fd) => {
   return { field, fieldWrapper };
 };
 
+const createLink = (fd) => {
+  const fieldWrapper = createFieldWrapper(fd);
+  const link = document.createElement('a');
+  link.href = fd.Value;
+  link.textContent = fd.Label;
+  link.id = fd.Id;
+  link.target = fd.target || "_blank";
+  fieldWrapper.append(link);
+
+  return { field: link, fieldWrapper };
+};
+
+const createCounter = (fd) => {
+  const fieldWrapper = createFieldWrapper(fd);
+
+  const counterWrapper = document.createElement('div');
+  const incCounter = document.createElement('button');
+  const decCounter = document.createElement('button');
+
+  incCounter.classList.add('incrementer');
+  incCounter.textContent = '+';
+  incCounter.type = 'button';
+
+  decCounter.classList.add('decrementer');
+  decCounter.textContent = '-';
+  decCounter.type = 'button';
+
+  const field = document.createElement('input');
+  setCommonAttributes(field, fd);
+  field.value = 0;
+  field.readOnly = true;
+  field.type = 'number';
+  field.min = 0;
+
+  // incCounter.addEventListener('click', () => {
+  //   field.value = parseInt(field.value) + 1;
+  //   decCounter.disabled = false;
+  // });
+
+  // decCounter.addEventListener('click', () => {
+  //   const currentValue = parseInt(field.value);
+  //   if (currentValue > parseInt(field.min)) {
+  //     field.value = currentValue - 1;
+  //   }
+  //   if (parseInt(field.value) <= parseInt(field.min)) {
+  //     decCounter.disabled = true;
+  //   }
+  // });
+
+  // ADD_TRAVELLERS(fd)
+
+  // decCounter.disabled = true;
+
+  counterWrapper.append(decCounter, field, incCounter);
+
+  const label = createLabel(fd);
+  field.setAttribute('aria-labelledby', label.id);
+  fieldWrapper.prepend(label);
+
+  fieldWrapper.append(counterWrapper);
+
+  return { field, fieldWrapper };
+}
+
 const FIELD_CREATOR_FUNCTIONS = {
   select: createSelect,
   heading: createHeading,
@@ -224,6 +301,8 @@ const FIELD_CREATOR_FUNCTIONS = {
   fieldset: createFieldset,
   checkbox: createCheckbox,
   radio: createRadio,
+  link: createLink,
+  counter: createCounter
 };
 
 export default async function createField(fd, form) {
