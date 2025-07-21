@@ -50,7 +50,8 @@ header nav p {
 }
 
 header nav a:any-link {
-    color: currentcolor;
+    color: #282828;
+    font-weight: 700;
 }
 
 header nav a:any-link:hover {
@@ -296,7 +297,7 @@ header .nav-top-menu .default-content-wrapper>ul li:first-child a {
         padding: 1rem 1.5rem;
         font-size: 1.3rem;
         font-weight: 600;
-        color: #6c6c6c;
+        color: #282828;
         display: inline-block;
         position: relative;
         cursor: pointer;
@@ -349,7 +350,7 @@ header .nav-top-menu .default-content-wrapper>ul li:first-child a {
     }
 
     header .nav-top-menu .default-content-wrapper>ul:nth-child(2) li ul a {
-        color: #6c6c6c;
+        color: #282828;
         font-size: 1.5rem;
     }
 
