@@ -320,7 +320,7 @@ export async function loadFragment(path) {
   if (path && path.startsWith('/')) {
     // eslint-disable-next-line no-param-reassign
     path = path.replace(/(\.plain)?\.html/, '');
-    const resp = await fetch(endpoint +  `${path}.plain.html`);
+    const resp = await fetch(endpoint + `${path}.plain.html`);
     if (resp.ok) {
       const main = document.createElement('main');
       main.innerHTML = await resp.text();
@@ -336,6 +336,15 @@ export async function loadFragment(path) {
       // eslint-disable-next-line
       decorateMain(main);
       await loadSections(main);
+      main.querySelectorAll('source').forEach(function (el) {
+        const imgURL = new URL(el.srcset)
+        el.srcset = endpoint + imgURL.pathname + imgURL.search
+        // el.srcset = el.srcset.replace('./', (endpoint + '/'))      
+      })
+      main.querySelectorAll('img').forEach(function (el) {
+        const imgURL = new URL(el.src)
+        el.src = endpoint + imgURL.pathname + imgURL.search
+      })
       return main;
     }
   }
@@ -625,19 +634,19 @@ if (targetP) {
   wrapperDiv.appendChild(nextP);
 }
 
-const links = document.querySelectorAll('.section.demo-text .default-content-wrapper p:nth-child(3) a');
+const links = document.querySelectorAll('.section.demo-text .default-content-wrapper ul li');
 
 // Add "active" class to the first one by default
 if (links.length > 0) {
-  links[0].classList.add('active');
+  links[0].querySelector('a').classList.add('active');
 }
 
 // Loop through and add hover listeners
 links.forEach(link => {
   link.addEventListener('mouseenter', () => {
     // Remove "active" from all
-    links.forEach(l => l.classList.remove('active'));
+    links.forEach(l => l.querySelector('a').classList.remove('active'));
     // Add "active" to hovered one
-    link.classList.add('active');
+    link.querySelector('a').classList.add('active');
   });
 });

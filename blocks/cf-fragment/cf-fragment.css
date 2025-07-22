@@ -509,4 +509,18 @@ font-size: 16px;
     .emi-btn span::after{
    margin-bottom: 3px;
 }
+.section.cf-fragment-container .default-content-wrapper h2{
+    font-size: 24px;
+}
+.section.cf-fragment-container .default-content-wrapper p{
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+.emi-btn-wrap div:nth-child(1){
+    background-color: #004c8f;
+    color: #fff;
+}
+.section.cf-fragment-container .default-content-wrapper{
+    padding-top: 20px;
+}
 }
