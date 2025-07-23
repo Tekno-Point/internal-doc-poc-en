@@ -1,6 +1,5 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
-
 /**
  * loads and decorates the footer
  * @param {Element} block The footer block element
@@ -8,13 +7,19 @@ import { loadFragment } from '../fragment/fragment.js';
 export default async function decorate(block) {
   // load footer as fragment
   const footerMeta = getMetadata('footer');
-  const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
-  const fragment = await loadFragment(footerPath);
+  // const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
+  const fragment = await loadFragment(footerMeta);
 
   // decorate footer DOM
   block.textContent = '';
   const footer = document.createElement('div');
   while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
+  
+  const left = footer.querySelector(".columns > div").children[0]
+  left.classList.add('left-col');
+
+  const right = footer.querySelector(".columns > div").children[1]
+  right.classList.add('right-col');
 
   block.append(footer);
 }
