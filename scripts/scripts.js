@@ -34,11 +34,11 @@ if (isExperimentationEnabled) {
   } = await import('../plugins/experimentation/src/index.js'));
 }
 
-// const AUDIENCES = {
-//   mobile: () => window.innerWidth < 600,
-//   desktop: () => window.innerWidth >= 600,
-//   // define your custom audiences here as needed
-// };
+const AUDIENCES = {
+  mobile: () => window.innerWidth < 600,
+  desktop: () => window.innerWidth >= 600,
+  // define your custom audiences here as needed
+};
 
 export const endpoint = 'https://hdfc-poc-dev--internal-aem-eds-poc-en--tekno-point.aem.live'
 /**
