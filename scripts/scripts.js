@@ -13,6 +13,7 @@ import {
   toClassName,
 } from './aem.js';
 
+
 const experimentationConfig = {
   prodHost: 'www.my-site.com',
   audiences: {
@@ -34,11 +35,6 @@ if (isExperimentationEnabled) {
   } = await import('../plugins/experimentation/src/index.js'));
 }
 
-const AUDIENCES = {
-  mobile: () => window.innerWidth < 600,
-  desktop: () => window.innerWidth >= 600,
-  // define your custom audiences here as needed
-};
 
 export const endpoint = 'https://hdfc-poc-dev--internal-aem-eds-poc-en--tekno-point.aem.live'
 /**
@@ -641,14 +637,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 });
-async function loadPage() {
-  await loadEager(document);
-  await loadLazy(document);
-  loadDelayed();
-  decorateWrapper(document.querySelector("main"));
-}
-
-loadPage();
 
 const targetP = document.querySelector('.section.demo-text .default-content-wrapper p:nth-child(6)');
 const nextP = document.querySelector('.section.demo-text .default-content-wrapper p:nth-child(7)');
