@@ -14,11 +14,19 @@ import {
 } from './aem.js';
 
 
+const geoPromise = (async () => {
+  // Replace with your actual geo service endpoint
+  // const resp = await fetch('https://geo.example.com/lookup');
+  // return resp.json();
+})();
+
 const experimentationConfig = {
   prodHost: 'www.my-site.com',
   audiences: {
     mobile: () => window.innerWidth < 600,
     desktop: () => window.innerWidth >= 600,
+    us: async () => (await geoPromise).region === 'us',
+    eu: async () => (await geoPromise).region === 'eu',
     // define your custom audiences here as needed
   }
 };
@@ -27,13 +35,20 @@ let runExperimentation;
 let showExperimentationOverlay;
 const isExperimentationEnabled = document.head.querySelector('[name^="experiment"],[name^="campaign-"],[name^="audience-"],[property^="campaign:"],[property^="audience:"]')
   || [...document.querySelectorAll('.section-metadata div')].some((d) => d.textContent.match(/Experiment|Campaign|Audience/i));
-console.log(isExperimentationEnabled);
 if (isExperimentationEnabled) {
   ({
     loadEager: runExperimentation,
     loadLazy: showExperimentationOverlay,
   } = await import('../plugins/experimentation/src/index.js'));
 }
+
+
+const AUDIENCES = {
+  mobile: () => window.innerWidth < 600,
+  desktop: () => window.innerWidth >= 600,
+  // define your custom audiences here as needed
+};
+
 
 
 export const endpoint = 'https://hdfc-poc-dev--internal-aem-eds-poc-en--tekno-point.aem.live'
@@ -566,17 +581,17 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  if (showExperimentationOverlay) {
-    await showExperimentationOverlay(document, experimentationConfig);
-  }
-
   loadHeader(doc.querySelector("header"));
   loadFooter(doc.querySelector("footer"));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
   loadAutoBlock(doc);
+ if (showExperimentationOverlay) {
+    await showExperimentationOverlay(document, experimentationConfig);
+  }
 }
+
 
 /**
  * Loads everything that happens a lot later,
@@ -637,6 +652,15 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 });
+
+async function loadPage() {
+  await loadEager(document);
+  await loadLazy(document);
+  loadDelayed();
+  decorateWrapper(document.querySelector("main"));
+}
+
+loadPage();
 
 const targetP = document.querySelector('.section.demo-text .default-content-wrapper p:nth-child(6)');
 const nextP = document.querySelector('.section.demo-text .default-content-wrapper p:nth-child(7)');
