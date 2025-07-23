@@ -13,6 +13,33 @@ import {
   toClassName,
 } from './aem.js';
 
+const experimentationConfig = {
+  prodHost: 'www.my-site.com',
+  audiences: {
+    mobile: () => window.innerWidth < 600,
+    desktop: () => window.innerWidth >= 600,
+    // define your custom audiences here as needed
+  }
+};
+
+let runExperimentation;
+let showExperimentationOverlay;
+const isExperimentationEnabled = document.head.querySelector('[name^="experiment"],[name^="campaign-"],[name^="audience-"],[property^="campaign:"],[property^="audience:"]')
+  || [...document.querySelectorAll('.section-metadata div')].some((d) => d.textContent.match(/Experiment|Campaign|Audience/i));
+console.log(isExperimentationEnabled);
+if (isExperimentationEnabled) {
+  ({
+    loadEager: runExperimentation,
+    loadLazy: showExperimentationOverlay,
+  } = await import('../plugins/experimentation/src/index.js'));
+}
+
+// const AUDIENCES = {
+//   mobile: () => window.innerWidth < 600,
+//   desktop: () => window.innerWidth >= 600,
+//   // define your custom audiences here as needed
+// };
+
 export const endpoint = 'https://hdfc-poc-dev--internal-aem-eds-poc-en--tekno-point.aem.live'
 /**
  * Moves all the attributes from a given elmenet to another given element.
@@ -339,7 +366,7 @@ export async function loadFragment(path) {
       main.querySelectorAll('source').forEach(function (el) {
         const imgURL = new URL(el.srcset)
         el.srcset = endpoint + imgURL.pathname + imgURL.search
-        // el.srcset = el.srcset.replace('./', (endpoint + '/'))      
+        // el.srcset = el.srcset.replace('./', (endpoint + '/'))       
       })
       main.querySelectorAll('img').forEach(function (el) {
         const imgURL = new URL(el.src)
@@ -508,6 +535,9 @@ export function decorateMain(main) {
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
+  if (runExperimentation) {
+    await runExperimentation(document, experimentationConfig);
+  }
   document.documentElement.lang = "en";
   decorateTemplateAndTheme();
   const main = doc.querySelector("main");
@@ -539,6 +569,10 @@ async function loadLazy(doc) {
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
+
+  if (showExperimentationOverlay) {
+    await showExperimentationOverlay(document, experimentationConfig);
+  }
 
   loadHeader(doc.querySelector("header"));
   loadFooter(doc.querySelector("footer"));
