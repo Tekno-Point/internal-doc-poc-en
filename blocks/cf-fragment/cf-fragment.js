@@ -200,9 +200,9 @@ export default async function decorate(block) {
   });
 });
 
-if (window.matchMedia("(max-width: 768px)").matches) {
-  document.querySelectorAll(".emi-btn").classList.remove('active');
-}
+// if (window.matchMedia("(max-width: 768px)").matches) {
+//   document.querySelectorAll(".emi-btn").classList.remove('active');
+// }
 
     const monthlyPayableAmountEl = block.querySelector('#monthly-payable-amount');
     const principalAmountDisplayEl = block.querySelector('#principal-amount-display');
