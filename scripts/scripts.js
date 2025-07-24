@@ -21,7 +21,7 @@ const geoPromise = (async () => {
 })();
 
 const experimentationConfig = {
-  prodHost: 'www.my-site.com',
+  prodHost: 'https://hdfc-poc-dev--internal-doc-poc-en--tekno-point.aem.live',
   audiences: {
     mobile: () => window.innerWidth < 600,
     desktop: () => window.innerWidth >= 600,
