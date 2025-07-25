@@ -49,7 +49,10 @@ export function domEl(tag, ...items) {
     items = rest;
 
     Object.entries(attributes).forEach(([key, value]) => {
-      if (!key.toLowerCase().startsWith('on')) {
+      if (typeof value === 'boolean') {
+        if (value) element.setAttribute(key, '');
+        else element.removeAttribute(key);
+      } else if (!key.toLowerCase().startsWith('on')) {
         element.setAttribute(key, Array.isArray(value) ? value.join(' ') : value);
       } else {
         element.addEventListener(key.substring(2).toLowerCase(), value);
@@ -97,3 +100,6 @@ export function article(...items) { return domEl('article', ...items); }
 export function strong(...items) { return domEl('strong', ...items); }
 export function select(...items) { return domEl('select', ...items); }
 export function option(...items) { return domEl('option', ...items); }
+export function section(...items) { return domEl('section', ...items); }
+export function sup(...items) { return domEl('sup', ...items); }
+export function script(...items) { return domEl('script', ...items); }
