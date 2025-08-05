@@ -20,7 +20,7 @@ const geoPromise = (async () => {
 })();
 
 const experimentationConfig = {
-  prodHost: 'https://hdfc-poc-dev--internal-doc-poc-en--tekno-point.aem.live',
+  prodHost: 'https://poonawalafin--internal-doc-poc-en--tekno-point.aem.live',
   audiences: {
     mobile: () => window.innerWidth < 600,
     desktop: () => window.innerWidth >= 600,
