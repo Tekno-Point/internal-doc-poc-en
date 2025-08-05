@@ -13,6 +13,45 @@ import {
   loadCSS,
 } from './aem.js';
 
+const geoPromise = (async () => {
+  // Replace with your actual geo service endpoint
+  // const resp = await fetch('https://geo.example.com/lookup');
+  // return resp.json();
+})();
+
+const experimentationConfig = {
+  prodHost: 'https://hdfc-poc-dev--internal-doc-poc-en--tekno-point.aem.live',
+  audiences: {
+    mobile: () => window.innerWidth < 600,
+    desktop: () => window.innerWidth >= 600,
+    us: async () => (await geoPromise).region === 'us',
+    eu: async () => (await geoPromise).region === 'eu',
+    // define your custom audiences here as needed
+  }
+};
+
+let runExperimentation;
+let showExperimentationOverlay;
+const isExperimentationEnabled = document.head.querySelector('[name^="experiment"],[name^="campaign-"],[name^="audience-"],[property^="campaign:"],[property^="audience:"]')
+  || [...document.querySelectorAll('.section-metadata div')].some((d) => d.textContent.match(/Experiment|Campaign|Audience/i));
+if (isExperimentationEnabled) {
+  ({
+    loadEager: runExperimentation,
+    loadLazy: showExperimentationOverlay,
+  } = await import('../plugins/experimentation/src/index.js'));
+}
+
+
+const AUDIENCES = {
+  mobile: () => window.innerWidth < 600,
+  desktop: () => window.innerWidth >= 600,
+  // define your custom audiences here as needed
+};
+
+
+
+export const endpoint = 'https://poonawalafin--internal-aem-eds-poc-en--tekno-point.aem.live'
+
 function wrapImgsInLinks(container) {
   const pictures = container.querySelectorAll("picture");
   pictures.forEach((pic) => {
@@ -94,6 +133,9 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  if (runExperimentation) {
+    await runExperimentation(document, experimentationConfig);
+  }
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
@@ -128,6 +170,9 @@ async function loadLazy(doc) {
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
+  if (showExperimentationOverlay) {
+    await showExperimentationOverlay(document, experimentationConfig);
+  }
 }
 
 function appendNextElements(container, nextElement) {
