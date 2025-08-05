@@ -30,7 +30,8 @@
       "title": "Accessibility Mode",
       "environments": [
         "preview",
-        "dev"
+        "dev",
+        "edit"
       ],
       "event": "accessibility-mode"
     }
