@@ -19,7 +19,7 @@ const geoPromise = (async () => {
 })();
 
 const experimentationConfig = {
-  prodHost: 'www.my-site.com',
+  prodHost: 'https://poonawalafin--internal-doc-poc-en--tekno-point.aem.live/poonawalafin/experimental/poonawala-exp',
   audiences: {
     mobile: () => window.innerWidth < 600,
     desktop: () => window.innerWidth >= 600,
