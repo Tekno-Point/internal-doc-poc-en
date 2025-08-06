@@ -85,9 +85,22 @@ color: #034ea2;
 .breadcrumb>.container-fluid>ul>li:nth-child(1){
     list-style: none;
 }
+@media (min-width: 769px) and (max-width: 1024px) {
+  .breadcrumb > .container-fluid > ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+  .breadcrumb > .container-fluid > ul > li:not(:last-child) {
+    margin-right: 25px; 
+  }
 
+  .breadcrumb > .container-fluid > ul > li:last-child {
+    margin-top: 8px; 
+  }
+}
 @media (max-width: 768px) {
- .breadcrumb{
+  .breadcrumb {
     display: none;
- }
+  }
 }
