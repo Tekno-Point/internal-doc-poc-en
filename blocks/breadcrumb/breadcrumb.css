@@ -85,7 +85,7 @@ color: #034ea2;
 .breadcrumb>.container-fluid>ul>li:nth-child(1){
     list-style: none;
 }
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1024px) {
   .breadcrumb > .container-fluid > ul {
     display: flex;
     flex-wrap: wrap;
@@ -99,7 +99,7 @@ color: #034ea2;
     margin-top: 8px; 
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .breadcrumb {
     display: none;
   }
