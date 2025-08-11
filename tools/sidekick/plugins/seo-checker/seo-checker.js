@@ -1,5 +1,3 @@
-import { createElement } from "../../../../scripts/scripts.js";
-
 function runSeoAudit() {
     const audit = {
         title: document.title,
@@ -17,7 +15,10 @@ function runSeoAudit() {
     return audit;
 }
 
-function showSeoPanel(auditResults) {
+async function showSeoPanel(auditResults) {
+
+    const { createElement } = await import(`${window.hlx.codeBasePath}/scripts/scripts.js`);
+
     const panel = createElement('div', { id: 'seo-checker-panel', class: 'seo-checker' });
     const header = createElement('div', { class: 'seo-checker-header' });
     const title = createElement('h2', { class: 'seo-checker-title' }, 'SEO Audit Results');
@@ -40,12 +41,12 @@ function showSeoPanel(auditResults) {
     document.body.append(panel);
 }
 
-export default function init() {
+export default async function init() {
     const existingPanel = document.getElementById('seo-checker-panel');
     if (existingPanel) {
         remove.existingPanel();
         return;
     }
     const auditResults = runSeoAudit();
-    showSeoPanel(auditResults);
+    await showSeoPanel(auditResults);
 }
