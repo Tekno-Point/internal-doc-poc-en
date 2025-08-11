@@ -1,57 +1,93 @@
-#seo-checker-panel {
-  position: fixed;
-  top: 60px;
-  right: 20px;
-  width: 350px;
-  max-height: 80vh;
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  z-index: 9999;
-  font-family: sans-serif;
-  color: #333;
-  display: flex;
-  flex-direction: column;
+/* Add a class to the body to handle the panel's animation */
+body.seo-panel-active #seo-checker-panel {
+  transform: translateX(0);
 }
 
+/* Main panel styling for the side-panel look */
+#seo-checker-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 360px; /* A common width for side panels */
+  height: 100vh;
+  background-color: #252525; /* Dark theme background */
+  color: #f1f1f1; /* Light text for dark theme */
+  box-shadow: -4px 0 15px rgba(0, 0, 0, 0.25);
+  z-index: 10000;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  /* Animation setup */
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Header styling */
 .seo-checker-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 15px;
-  background-color: #e0e0e0;
-  border-bottom: 1px solid #ccc;
-  border-radius: 8px 8px 0 0;
+  padding: 1rem 1.5rem;
+  background-color: #1a1a1a;
+  flex-shrink: 0;
 }
 
 .seo-checker-title {
   margin: 0;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .seo-checker-close {
   background: none;
   border: none;
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: 300;
   cursor: pointer;
-  padding: 0 5px;
-  color: #555;
+  padding: 0;
+  color: #aaa;
+  transition: color 0.2s;
 }
 
+.seo-checker-close:hover {
+  color: #fff;
+}
+
+/* Score display styling */
+.seo-score {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #00e0a1; /* A nice bright color for the score */
+}
+
+/* Progress bar styling */
+.seo-progress-bar-container {
+  width: 100%;
+  height: 6px;
+  background-color: #444;
+  flex-shrink: 0;
+}
+
+.seo-progress-bar {
+  height: 100%;
+  background-color: #00e0a1;
+  transition: width 0.5s ease-in-out;
+}
+
+/* Main content area */
 .seo-checker-content {
-  padding: 15px;
+  padding: 1rem 1.5rem;
   overflow-y: auto;
 }
 
 .seo-item {
   display: flex;
   justify-content: space-between;
-  padding: 8px 0;
-  border-bottom: 1px solid #eee;
-  font-size: 14px;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #444;
+  font-size: 0.9rem;
 }
 
 .seo-item:last-child {
@@ -59,11 +95,12 @@
 }
 
 .seo-key {
-  font-weight: bold;
-  padding-right: 10px;
+  font-weight: 500;
+  padding-right: 1rem;
+  color: #ccc;
 }
 
 .seo-value {
   text-align: right;
-  word-break: break-all;
+  word-break: break-word;
 }
