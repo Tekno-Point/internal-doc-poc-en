@@ -12,6 +12,8 @@ import {
   loadCSS,
 } from './aem.js';
 
+import initAccessibilityMode from '../tools/sidekick/plugins/accessibility-mode/accessibility-mode.js';
+
 const geoPromise = (async () => {
   // Replace with your actual geo service endpoint
   // const resp = await fetch('https://geo.example.com/lookup');
@@ -51,7 +53,6 @@ const AUDIENCES = {
  * @param {String} scope The scope/prefix for the metadata
  * @returns an array of HTMLElement nodes that match the given scope
  */
-import initAccessibilityMode from '../tools/sidekick/plugins/accessibility-mode/accessibility-mode.js';
 
 let isA11yModeActive = false;
 
