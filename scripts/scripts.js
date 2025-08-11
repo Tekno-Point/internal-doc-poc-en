@@ -12,6 +12,8 @@ import {
   loadCSS,
 } from './aem.js';
 
+import initAccessibilityMode from '../tools/sidekick/plugins/accessibility-mode/accessibility-mode.js';
+
 const geoPromise = (async () => {
   // Replace with your actual geo service endpoint
   // const resp = await fetch('https://geo.example.com/lookup');
@@ -51,6 +53,9 @@ const AUDIENCES = {
  * @param {String} scope The scope/prefix for the metadata
  * @returns an array of HTMLElement nodes that match the given scope
  */
+
+let isA11yModeActive = false;
+
 export function getAllMetadata(scope) {
   return [...document.head.querySelectorAll(`meta[property^="${scope}:"],meta[name^="${scope}-"]`)]
     .reduce((res, meta) => {
@@ -63,6 +68,45 @@ export function getAllMetadata(scope) {
 }
 
 
+/**
+ * Create an element with the given tag and properties.
+ * @param {string} tagName The tag name for the element.
+ * @param {object} [props] The properties to apply.
+ * @param {string|Element|Element[]} [html] The content to add.
+ * @returns {HTMLElement} The created element.
+ */
+export function createElement(tagName, props, html) {
+  const elem = document.createElement(tagName);
+  if (props) {
+    Object.keys(props).forEach((propName) => {
+      const val = props[propName];
+      if (propName === 'class') {
+        const classesArr = (typeof val === 'string') ? [val] : val;
+        elem.classList.add(...classesArr);
+      } else {
+        elem.setAttribute(propName, val);
+      }
+    });
+  }
+
+  if (html) {
+    const appendEl = (el) => {
+      if (el instanceof HTMLElement || el instanceof SVGElement) {
+        elem.append(el);
+      } else {
+        elem.insertAdjacentHTML('beforeend', el);
+      }
+    };
+
+    if (Array.isArray(html)) {
+      html.forEach(appendEl);
+    } else {
+      appendEl(html);
+    }
+  }
+
+  return elem;
+}
 /**
  * Moves all the attributes from a given elmenet to another given element.
  * @param {Element} from the element to copy attributes from
@@ -79,6 +123,37 @@ export function moveAttributes(from, to, attributes) {
       to.setAttribute(attr, value);
       from.removeAttribute(attr);
     }
+  });
+}
+
+const accessibilityMode = async (e) => {
+  const pluginButton = e.target.shadowRoot.querySelector('plugin-action-bar')
+    ? e.target.shadowRoot.querySelector('plugin-action-bar').shadowRoot.querySelector('.accessibility-mode')
+    : e.target.shadowRoot.querySelector('.accessibility-mode > button');
+
+  isA11yModeActive = !isA11yModeActive;
+
+  if (isA11yModeActive) {
+    pluginButton.style.backgroundColor = '#4e9a17';
+    pluginButton.style.color = '#fff';
+  } else {
+    pluginButton.removeAttribute('style');
+  }
+
+  document.querySelector('body').classList.toggle('accessibility-mode-active');
+  await initAccessibilityMode(isA11yModeActive);
+};
+
+const sk = document.querySelector('aem-sidekick') || document.querySelector('helix-sidekick');
+
+if (sk) {
+  sk.addEventListener('custom:accessibility-mode', accessibilityMode);
+} else {
+  document.addEventListener('sidekick-ready', () => {
+    const sk = document.querySelector('aem-sidekick') || document.querySelector('helix-sidekick');
+    sk.addEventListener('custom:accessibility-mode', accessibilityMode);
+  }, {
+    once: true,
   });
 }
 
