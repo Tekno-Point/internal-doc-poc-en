@@ -1,4 +1,4 @@
-import { createElement } from "../../../../scripts/scripts";
+import { createElement } from "../../../../scripts/scripts.js";
 
 function runSeoAudit() {
     const audit = {
