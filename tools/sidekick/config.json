@@ -26,16 +26,6 @@
       "includePaths": ["**.docx**"]
     },
     {
-      "id": "accessibility-mode",
-      "title": "Accessibility Mode",
-      "environments": [
-        "preview",
-        "dev",
-        "edit"
-      ],
-      "event": "accessibility-mode"
-    },
-    {
       "id": "seo-checker",
       "title": "SEO Checker",
       "environments": [ "preview", "dev", "edit" ],
