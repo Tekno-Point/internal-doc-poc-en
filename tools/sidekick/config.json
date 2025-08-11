@@ -38,7 +38,7 @@
     {
       "id": "seo-checker",
       "title": "SEO Checker",
-      "environments": [ "preview", "dev", "edit" ],
+      "environments": [ "preview", "dev", "edit","live" ],
       "event": "seo-checker"
     }
   ]

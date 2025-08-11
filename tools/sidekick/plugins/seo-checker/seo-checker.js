@@ -1,4 +1,3 @@
-// Function to calculate the score based on audit results
 function calculateSeoScore(audit) {
   const weights = {
     'Title': 15,
@@ -49,10 +48,9 @@ function runSeoAudit() {
     'Favicon': document.querySelector('link[rel*="icon"]') ? '✅ Present' : '❌ Missing',
   };
   const score = calculateSeoScore(audit);
-  return { audit, score }; // Return both audit details and the score
+  return { audit, score }; 
 }
 
-// Updated panel function to display the score
 async function showSeoPanel({ audit, score }) {
   const { createElement } = await import(`${window.hlx.codeBasePath}/scripts/scripts.js`);
   
@@ -71,7 +69,6 @@ async function showSeoPanel({ audit, score }) {
 
   header.append(title, scoreDisplay, closeButton);
 
-  // Progress Bar
   const progressBarContainer = createElement('div', { class: 'seo-progress-bar-container' });
   const progressBar = createElement('div', { class: 'seo-progress-bar' });
   progressBar.style.width = `${scorePercentage}%`;
@@ -88,15 +85,14 @@ async function showSeoPanel({ audit, score }) {
 
   panel.append(header, progressBarContainer, content);
   document.body.append(panel);
-  // Use a timeout to allow the element to be added to the DOM before adding the class for animation
+  // timeout to allow the element to be added to the DOM before adding the class for animation
   setTimeout(() => document.body.classList.add('seo-panel-active'), 10);
 }
 
-// Updated init function to handle the new return object and body class
 export default async function init() {
   // We need to import this function to use it
   const { loadCSS } = await import(`${window.hlx.codeBasePath}/scripts/aem.js`);
-  // Add this line to load the stylesheet
+  // this line loads the stylesheet
   await loadCSS(`${window.hlx.codeBasePath}/tools/sidekick/plugins/seo-checker/seo-checker.css`);
 
   const existingPanel = document.getElementById('seo-checker-panel');
