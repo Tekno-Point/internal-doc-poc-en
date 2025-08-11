@@ -1,0 +1,69 @@
+#seo-checker-panel {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  width: 350px;
+  max-height: 80vh;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+  font-family: sans-serif;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+}
+
+.seo-checker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 15px;
+  background-color: #e0e0e0;
+  border-bottom: 1px solid #ccc;
+  border-radius: 8px 8px 0 0;
+}
+
+.seo-checker-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.seo-checker-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0 5px;
+  color: #555;
+}
+
+.seo-checker-content {
+  padding: 15px;
+  overflow-y: auto;
+}
+
+.seo-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.seo-item:last-child {
+  border-bottom: none;
+}
+
+.seo-key {
+  font-weight: bold;
+  padding-right: 10px;
+}
+
+.seo-value {
+  text-align: right;
+  word-break: break-all;
+}

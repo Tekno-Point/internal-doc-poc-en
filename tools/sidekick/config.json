@@ -34,6 +34,12 @@
         "edit"
       ],
       "event": "accessibility-mode"
+    },
+    {
+      "id": "seo-checker",
+      "title": "SEO Checker",
+      "environments": [ "preview", "dev", "edit" ],
+      "event": "seo-checker"
     }
   ]
 }
