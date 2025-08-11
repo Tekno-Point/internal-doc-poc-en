@@ -148,12 +148,12 @@ const accessibilityMode = async (e) => {
 const sk = document.querySelector('aem-sidekick') || document.querySelector('helix-sidekick');
 
 if (sk) {
-  // sk.addEventListener('custom:accessibility-mode', accessibilityMode);
+  sk.addEventListener('custom:accessibility-mode', accessibilityMode);
   sk.addEventListener('custom:seo-checker', initSeoChecker);
 } else {
   document.addEventListener('sidekick-ready', () => {
     const sk = document.querySelector('aem-sidekick') || document.querySelector('helix-sidekick');
-    // sk.addEventListener('custom:accessibility-mode', accessibilityMode);
+    sk.addEventListener('custom:accessibility-mode', accessibilityMode);
     sk.addEventListener('custom:seo-checker', initSeoChecker); 
 
   }, {
