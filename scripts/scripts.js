@@ -13,6 +13,7 @@ import {
 } from './aem.js';
 
 import initAccessibilityMode from '../tools/sidekick/plugins/accessibility-mode/accessibility-mode.js';
+import initSeoChecker from '../tools/sidekick/plugins/seo-checker/seo-checker.js';
 
 const geoPromise = (async () => {
   // Replace with your actual geo service endpoint
@@ -34,7 +35,7 @@ const experimentationConfig = {
 let runExperimentation;
 let showExperimentationOverlay;
 const isExperimentationEnabled = document.head.querySelector('[name^="experiment"],[name^="campaign-"],[name^="audience-"],[property^="campaign:"],[property^="audience:"]')
-    || [...document.querySelectorAll('.section-metadata div')].some((d) => d.textContent.match(/Experiment|Campaign|Audience/i));
+  || [...document.querySelectorAll('.section-metadata div')].some((d) => d.textContent.match(/Experiment|Campaign|Audience/i));
 if (isExperimentationEnabled) {
   ({
     loadEager: runExperimentation,
@@ -148,10 +149,13 @@ const sk = document.querySelector('aem-sidekick') || document.querySelector('hel
 
 if (sk) {
   sk.addEventListener('custom:accessibility-mode', accessibilityMode);
+  sk.addEventListener('custom:seo-checker', initSeoChecker);
 } else {
   document.addEventListener('sidekick-ready', () => {
     const sk = document.querySelector('aem-sidekick') || document.querySelector('helix-sidekick');
     sk.addEventListener('custom:accessibility-mode', accessibilityMode);
+    sk.addEventListener('custom:seo-checker', initSeoChecker); 
+
   }, {
     once: true,
   });
@@ -258,7 +262,7 @@ async function loadEager(doc) {
  */
 async function loadLazy(doc) {
   autolinkModals(doc);
-  
+
   const main = doc.querySelector('main');
   await loadSections(main);
 
