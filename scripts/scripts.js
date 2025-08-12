@@ -802,3 +802,35 @@ links.forEach(link => {
     link.querySelector('a').classList.add('active');
   });
 });
+
+  const section = document.querySelector(".section.demo-text.wrapperleft");
+  const picture = section.querySelector("picture");
+  const sources = picture.querySelectorAll("source");
+  const img = picture.querySelector("img");
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Load the <source> tags (swap data-srcset if you're using data-srcset)
+        sources.forEach(source => {
+          if (source.dataset.srcset) {
+            source.srcset = source.dataset.srcset;
+          }
+        });
+
+        // Load the <img> tag
+        if (img.dataset.src) {
+          img.src = img.dataset.src;
+        }
+
+        // Stop observing once loaded
+        obs.unobserve(section);
+      }
+    });
+  }, {
+    threshold: 0.1 // Trigger when 10% is visible
+  });
+
+  if (section) {
+    observer.observe(section);
+  }
