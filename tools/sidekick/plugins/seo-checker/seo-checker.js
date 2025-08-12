@@ -11,16 +11,15 @@
  * Main initialization function
  * Handles toggle functionality and launches SEO audit
  */
-
-import {quickSEOCheck,downloadSEOReport} from './seo-audit.js';
-
+import {quickSEOCheck,downloadSEOReport,performSEOAudit} from './seo-audit.js';
+import {transformSEOResults, showSeoPanel} from './seo-panel.js';
 
 export default async function init() {
   // Import required functions
   const { loadCSS } = await import(`${window.hlx.codeBasePath}/scripts/aem.js`);
   
   // Load external CSS file (optional since we can inject styles)
-  // await loadCSS(`${window.hlx.codeBasePath}/tools/sidekick/plugins/seo-checker/seo-panel.css`);
+  await loadCSS(`${window.hlx.codeBasePath}/tools/sidekick/plugins/seo-checker/seo-checker.css`);
   
   // Check if panel already exists and toggle it
   const existingPanel = document.getElementById('seo-checker-panel');
@@ -53,6 +52,8 @@ export default async function init() {
       issues: seoResults.summary.critical.length
     });
     
+    // const seocheckercss = import('../seo-checker/seo-checker.css');
+    // loadCSS(seocheckercss)
   } catch (error) {
     console.error('SEO Audit failed:', error);
     hideInitialLoading();
@@ -107,6 +108,7 @@ function showInitialLoading() {
   document.head.appendChild(style);
   
   document.body.appendChild(loading);
+  
 }
 
 /**

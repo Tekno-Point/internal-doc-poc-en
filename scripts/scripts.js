@@ -76,14 +76,23 @@ export function getAllMetadata(scope) {
  * @param {string|Element|Element[]} [html] The content to add.
  * @returns {HTMLElement} The created element.
  */
+/**
+ * Create an element with the given tag and properties.
+ * @param {string} tagName The tag name for the element.
+ * @param {object} [props] The properties to apply.
+ * @param {string|Element|Element[]} [html] The content to add.
+ * @returns {HTMLElement} The created element.
+ */
 export function createElement(tagName, props, html) {
   const elem = document.createElement(tagName);
   if (props) {
     Object.keys(props).forEach((propName) => {
       const val = props[propName];
       if (propName === 'class') {
-        const classesArr = (typeof val === 'string') ? [val] : val;
-        elem.classList.add(...classesArr);
+        const classesArr = (typeof val === 'string') ? val.split(' ') : val;
+        classesArr.forEach(function (cls) {
+          cls && elem.classList.add(cls);
+        })
       } else {
         elem.setAttribute(propName, val);
       }

@@ -3,8 +3,11 @@
  * Modern interface for displaying SEO audit results
  */
 
+import { downloadSEOReport, performSEOAudit } from "./seo-audit.js";
+
 // Transform function to map SEO audit results to the panel format
-function transformSEOResults(seoResults) {
+
+export function transformSEOResults(seoResults) {
   return {
     audit: {
       // Title and meta data
@@ -66,7 +69,7 @@ function transformSEOResults(seoResults) {
 }
 
 // Main panel creation function
-async function showSeoPanel({ audit, score, scoreInterpretation }) {
+export async function showSeoPanel({ audit, score, scoreInterpretation }) {
   const { createElement } = await import(`${window.hlx.codeBasePath}/scripts/scripts.js`);
   const scorePercentage = typeof score === 'number' ? score : Math.round((score.score / score.maxScore) * 100);
   
@@ -102,7 +105,7 @@ async function showSeoPanel({ audit, score, scoreInterpretation }) {
   });
 }
 
-function createPanelHeader(createElement, scorePercentage, panel) {
+export function createPanelHeader(createElement, scorePercentage, panel) {
   const header = createElement('div', { class: 'seo-header' });
   
   const headerContent = createElement('div', { class: 'seo-header-content' });

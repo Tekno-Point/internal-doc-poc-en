@@ -3,7 +3,7 @@
  * Analyzes current page and generates detailed SEO report
  * @returns {Object} Complete SEO audit report with scores and recommendations
  */
-function performSEOAudit() {
+export function performSEOAudit() {
     const report = {
         url: window.location.href,
         timestamp: new Date().toISOString(),
