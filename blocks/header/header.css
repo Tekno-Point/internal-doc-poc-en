@@ -209,11 +209,13 @@ header nav .nav-sections ul>li>ul>li {
     /* font-weight: 600; */
     font-weight: 400;
   }
+
   header nav .nav-sections .nav-drop strong {
-   display: block;
+    display: block;
   }
 
-  header nav .nav-sections .nav-drop p::after, header nav .nav-sections .nav-drop strong::after {
+  header nav .nav-sections .nav-drop p::after,
+  header nav .nav-sections .nav-drop strong::after {
     content: '';
     display: inline-block;
     position: absolute;
@@ -228,7 +230,8 @@ header nav .nav-sections ul>li>ul>li {
     rotate: 135deg;
   }
 
-  header nav .nav-sections .nav-drop[aria-expanded='true'] p::after, header nav .nav-sections .nav-drop[aria-expanded='true'] strong::after {
+  header nav .nav-sections .nav-drop[aria-expanded='true'] p::after,
+  header nav .nav-sections .nav-drop[aria-expanded='true'] strong::after {
     top: 31%;
     right: -4px;
     /* bottom: 0.5em; */
@@ -236,7 +239,8 @@ header nav .nav-sections ul>li>ul>li {
     rotate: 315deg;
   }
 
-  header nav .nav-sections .nav-drop[aria-expanded='true']>p, header nav .nav-sections .nav-drop[aria-expanded='true']>strong {
+  header nav .nav-sections .nav-drop[aria-expanded='true']>p,
+  header nav .nav-sections .nav-drop[aria-expanded='true']>strong {
     font-weight: 400;
     color: #000;
     font-family: Montserrat-Bold, sans-serif;
@@ -344,7 +348,8 @@ header nav .nav-sections .nav-drop[aria-expanded='true'] .inner-ul li[aria-expan
   rotate: 401deg;
 }
 
-header nav .nav-sections .nav-drop[aria-expanded='true'] .inner-ul p::after, header nav .nav-sections .nav-drop[aria-expanded='true'] .inner-ul strong::after {
+header nav .nav-sections .nav-drop[aria-expanded='true'] .inner-ul p::after,
+header nav .nav-sections .nav-drop[aria-expanded='true'] .inner-ul strong::after {
   width: 7px;
   height: 7px;
   border: 2px solid currentcolor;
@@ -421,20 +426,22 @@ header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li>p {
   font-size: 14px;
   font-weight: 500;
 }
+
 header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li>strong {
   margin-bottom: 10px;
   font-size: 14px;
   font-weight: 400;
 }
 
-header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li[aria-expanded='true']> strong  {
+header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li[aria-expanded='true']>strong {
   display: block;
   margin-bottom: 10px;
   font-size: 14px;
   font-weight: 500;
 }
 
-header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li[aria-expanded='true']>p, header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li[aria-expanded='true']> strong {
+header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li[aria-expanded='true']>p,
+header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li[aria-expanded='true']>strong {
   color: rgb(106, 188, 255);
   font-size: 15px;
 }
@@ -613,7 +620,7 @@ header nav .nav-tools .default-content-wrapper>p .button.primary {
 
   header nav {
     gap: unset;
-    padding: 0 16px;
+    padding: unset;
   }
 
 
@@ -645,12 +652,38 @@ header nav .nav-tools .default-content-wrapper>p .button.primary {
     padding: 21px 0;
     border-bottom: 1px solid #a4baff;
     padding: 21px 0;
+    position: relative;
+    cursor: pointer;
+  }
 
+  header nav .nav-sections .default-content-wrapper>ul>li[aria-expanded='false'] {
+    margin: 0 16px;
+  }
+
+  header nav .nav-sections .default-content-wrapper>ul>li[aria-expanded='true']>ul>li>strong {
+    padding: unset;
+  }
+
+  header nav .nav-sections .default-content-wrapper>ul>li[aria-expanded='true']>ul>li>strong {
+    padding: 10px 24px;
+  }
+
+  header nav .nav-sections .default-content-wrapper>ul>li[aria-expanded='true']>ul>li[aria-expanded='false']>strong {
+    padding: 4px 24px;
   }
 
   header nav .nav-sections .default-content-wrapper>ul>li:first-child {
     border-top: 1px solid #a4baff;
+  }
 
+  header nav .nav-sections .default-content-wrapper>ul>li strong {
+    position: relative;
+    /* width: 100%; */
+    display: block;
+  }
+
+  header nav .nav-sections .default-content-wrapper>ul>li[aria-expanded='true'] strong {
+    padding: 10px 24px;
   }
 
   header nav .nav-sections .default-content-wrapper>ul>li:last-child {
@@ -662,17 +695,50 @@ header nav .nav-tools .default-content-wrapper>p .button.primary {
     position: relative;
   }
 
+
   header nav .nav-sections .default-content-wrapper>ul>li[aria-expanded='true']>ul {
     display: block;
     height: auto;
     /* padding: 10px; */
     background: #27396e;
+    /* padding-top: 10px; */
+    padding: unset;
+  }
+
+  header nav .nav-sections .default-content-wrapper>ul>li[aria-expanded='false']>ul {
+    padding-top: 10px;
+  }
+
+  header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li[aria-expanded='true']>strong {
+    padding: 0 20px;
+    padding: 11px 20px 3px;
+    margin-left: 20px;
+  }
+
+  header nav .nav-sections .nav-drop[aria-expanded='true'] .inner-ul li[aria-expanded='true'] strong::after {
+    left: 2px;
+    border-width: 2px 2px 0 0;
+    right: unset;
+    rotate: -131deg;
+    top: 34%;
+  }
+
+  header .nav-brand{
+    padding: 0 21px;
+  }
+
+  header nav .nav-sections .nav-drop .inner-ul p::after,
+  header nav .nav-sections .nav-drop[aria-expanded='true'] .inner-ul li[aria-expanded='false'] p::after,
+  header nav .nav-sections .nav-drop .inner-ul strong::after,
+  header nav .nav-sections .nav-drop[aria-expanded='true'] .inner-ul li[aria-expanded='false'] strong::after {
+    right: 17px;
   }
 
   header nav .nav-sections .default-content-wrapper>ul>li[aria-expanded='true']>ul>li {
     padding: 5px 20px;
     font-weight: 400;
     position: relative;
+    padding: unset;
   }
 
   header nav .nav-sections .default-content-wrapper>ul>li[aria-expanded='true']>ul>li>a {
@@ -690,6 +756,7 @@ header nav .nav-tools .default-content-wrapper>p .button.primary {
 
   header nav .nav-sections .default-content-wrapper>ul>li[aria-expanded='true']>ul>li[aria-expanded='true'] {
     background-color: #fff;
+    padding: unset;
   }
 
   header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li[aria-expanded='true']>ul {
@@ -699,6 +766,10 @@ header nav .nav-tools .default-content-wrapper>p .button.primary {
     height: 100vh;
     max-height: 100vh;
     z-index: 2;
+    position: unset;
+    width: 100%;
+    padding: inherit;
+    height: max-content;
   }
 
   header nav .nav-sections .default-content-wrapper>ul>li.nav-drop>ul>li[aria-expanded='true']>ul>li {
@@ -706,8 +777,10 @@ header nav .nav-tools .default-content-wrapper>p .button.primary {
     padding: 10px 20px;
   }
 
-  header nav .nav-sections .default-content-wrapper >ul >li[aria-expanded='true'] {
+  header nav .nav-sections .default-content-wrapper>ul>li[aria-expanded='true'] {
     color: #000;
+    position: relative;
+    margin: unset;
   }
 
   header nav .nav-sections .nav-drop[aria-expanded='true'] .inner-ul>li[aria-expanded='true'] p {
@@ -722,7 +795,8 @@ header nav .nav-tools .default-content-wrapper>p .button.primary {
 
   }
 
-  header nav .nav-sections .nav-drop p::after, header nav .nav-sections .nav-drop strong::after {
+  header nav .nav-sections .nav-drop p::after,
+  header nav .nav-sections .nav-drop strong::after {
     content: "";
     display: inline-block;
     position: absolute;
@@ -743,7 +817,8 @@ header nav .nav-tools .default-content-wrapper>p .button.primary {
     background: linear-gradient(#0056b3 0 0) center / 2px 100% no-repeat, linear-gradient(#0056b3 0 0) center / 100% 2px no-repeat;
   }
 
-  header nav .nav-sections .nav-drop[aria-expanded='true'] p::after,  header nav .nav-sections .nav-drop[aria-expanded='true'] strong::after {
+  header nav .nav-sections .nav-drop[aria-expanded='true'] p::after,
+  header nav .nav-sections .nav-drop[aria-expanded='true'] strong::after {
     content: "";
     display: inline-block;
     position: absolute;
@@ -767,6 +842,7 @@ header nav .nav-tools .default-content-wrapper>p .button.primary {
     padding: 16px 24px;
     text-align: center;
     border: 1px solid #034EA2;
+    margin: 0 16px;
   }
 
   header nav .nav-sections .default-content-wrapper>p>em>a {
@@ -780,6 +856,8 @@ header nav .nav-tools .default-content-wrapper>p .button.primary {
     background: #034EA2;
     border-radius: 7px;
     padding: 16px 24px;
+    margin: 20px 16px;
+    color: #fff;
   }
 
   header nav .nav-sections .default-content-wrapper>p>strong>a {
