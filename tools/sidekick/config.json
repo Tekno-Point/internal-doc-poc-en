@@ -30,15 +30,14 @@
       "title": "Accessibility Mode",
       "environments": [
         "preview",
-        "dev",
-        "edit"
+        "dev"
       ],
       "event": "accessibility-mode"
     },
     {
       "id": "seo-checker",
       "title": "SEO Checker",
-      "environments": [ "preview", "dev", "edit" ],
+      "environments": [ "preview", "dev","live" ],
       "event": "seo-checker"
     }
   ]
