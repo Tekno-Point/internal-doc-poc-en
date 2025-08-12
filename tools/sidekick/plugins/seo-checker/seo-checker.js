@@ -11,6 +11,10 @@
  * Main initialization function
  * Handles toggle functionality and launches SEO audit
  */
+
+import {quickSEOCheck,downloadSEOReport} from './seo-audit.js';
+
+
 export default async function init() {
   // Import required functions
   const { loadCSS } = await import(`${window.hlx.codeBasePath}/scripts/aem.js`);
@@ -177,7 +181,7 @@ function runSeoAudit() {
 /**
  * Quick access function for developers
  */
-window.seoChecker = {
+window.hlx.seoChecker = {
   init,
   runAudit: runSeoAudit,
   quickCheck: quickSEOCheck,

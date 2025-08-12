@@ -453,7 +453,7 @@ function performSEOAudit() {
 }
 
 // Quick SEO check function for console use
-function quickSEOCheck() {
+export function quickSEOCheck() {
     const report = performSEOAudit();
     console.log(`\n🔍 SEO Score: ${report.overallScore}/100 (${report.scoreInterpretation.grade})`);
     console.log(`📊 Status: ${report.scoreInterpretation.status}\n`);
@@ -472,7 +472,7 @@ function quickSEOCheck() {
 }
 
 // To save report as JSON file
-function downloadSEOReport() {
+export function downloadSEOReport() {
     const report = performSEOAudit();
     const dataStr = JSON.stringify(report, null, 2);
     const dataBlob = new Blob([dataStr], {type: 'application/json'});
