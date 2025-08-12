@@ -111,7 +111,7 @@ export function createPanelHeader(createElement, scorePercentage, panel) {
   const headerContent = createElement('div', { class: 'seo-header-content' });
   
   const titleSection = createElement('div', { class: 'seo-title-section' });
-  const icon = createElement('div', { class: 'seo-icon' }, '🔍');
+  const icon = createElement('div', { class: 'seo-icon' }, createElement('img', {src:'/icons/dept-logo.svg'}));
   const title = createElement('h2', { class: 'seo-title' }, 'SEO Audit');
   const subtitle = createElement('p', { class: 'seo-subtitle' }, 'Page Performance Analysis');
   
