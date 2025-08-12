@@ -13,6 +13,8 @@ import {
   toClassName,
 } from './aem.js';
 
+import initAccessibilityMode from '../tools/sidekick/plugins/accessibility-mode/accessibility-mode.js';
+import initSeoChecker from '../tools/sidekick/plugins/seo-checker/seo-checker.js';
 
 const geoPromise = (async () => {
   // Replace with your actual geo service endpoint
@@ -53,6 +55,74 @@ const AUDIENCES = {
 
 export const endpoint = 'https://hdfc-poc-dev--internal-aem-eds-poc-en--tekno-point.aem.live'
 /**
+ * Gets all the metadata elements that are in the given scope.
+ * @param {String} scope The scope/prefix for the metadata
+ * @returns an array of HTMLElement nodes that match the given scope
+ */
+
+let isA11yModeActive = false;
+
+export function getAllMetadata(scope) {
+  return [...document.head.querySelectorAll(`meta[property^="${scope}:"],meta[name^="${scope}-"]`)]
+    .reduce((res, meta) => {
+      const id = toClassName(meta.name
+        ? meta.name.substring(scope.length + 1)
+        : meta.getAttribute('property').split(':')[1]);
+      res[id] = meta.getAttribute('content');
+      return res;
+    }, {});
+}
+
+
+/**
+ * Create an element with the given tag and properties.
+ * @param {string} tagName The tag name for the element.
+ * @param {object} [props] The properties to apply.
+ * @param {string|Element|Element[]} [html] The content to add.
+ * @returns {HTMLElement} The created element.
+ */
+/**
+ * Create an element with the given tag and properties.
+ * @param {string} tagName The tag name for the element.
+ * @param {object} [props] The properties to apply.
+ * @param {string|Element|Element[]} [html] The content to add.
+ * @returns {HTMLElement} The created element.
+ */
+export function createElement(tagName, props, html) {
+  const elem = document.createElement(tagName);
+  if (props) {
+    Object.keys(props).forEach((propName) => {
+      const val = props[propName];
+      if (propName === 'class') {
+        const classesArr = (typeof val === 'string') ? val.split(' ') : val;
+        classesArr.forEach(function (cls) {
+          cls && elem.classList.add(cls);
+        })
+      } else {
+        elem.setAttribute(propName, val);
+      }
+    });
+  }
+
+  if (html) {
+    const appendEl = (el) => {
+      if (el instanceof HTMLElement || el instanceof SVGElement) {
+        elem.append(el);
+      } else {
+        elem.insertAdjacentHTML('beforeend', el);
+      }
+    };
+
+    if (Array.isArray(html)) {
+      html.forEach(appendEl);
+    } else {
+      appendEl(html);
+    }
+  }
+
+  return elem;
+}
+/**
  * Moves all the attributes from a given elmenet to another given element.
  * @param {Element} from the element to copy attributes from
  * @param {Element} to the element to copy attributes to
@@ -68,6 +138,40 @@ export function moveAttributes(from, to, attributes) {
       to.setAttribute(attr, value);
       from.removeAttribute(attr);
     }
+  });
+}
+
+const accessibilityMode = async (e) => {
+  const pluginButton = e.target.shadowRoot.querySelector('plugin-action-bar')
+    ? e.target.shadowRoot.querySelector('plugin-action-bar').shadowRoot.querySelector('.accessibility-mode')
+    : e.target.shadowRoot.querySelector('.accessibility-mode > button');
+
+  isA11yModeActive = !isA11yModeActive;
+
+  if (isA11yModeActive) {
+    pluginButton.style.backgroundColor = '#4e9a17';
+    pluginButton.style.color = '#fff';
+  } else {
+    pluginButton.removeAttribute('style');
+  }
+
+  document.querySelector('body').classList.toggle('accessibility-mode-active');
+  await initAccessibilityMode(isA11yModeActive);
+};
+
+const sk = document.querySelector('aem-sidekick') || document.querySelector('helix-sidekick');
+
+if (sk) {
+  sk.addEventListener('custom:accessibility-mode', accessibilityMode);
+  sk.addEventListener('custom:seo-checker', initSeoChecker);
+} else {
+  document.addEventListener('sidekick-ready', () => {
+    const sk = document.querySelector('aem-sidekick') || document.querySelector('helix-sidekick');
+    sk.addEventListener('custom:accessibility-mode', accessibilityMode);
+    sk.addEventListener('custom:seo-checker', initSeoChecker); 
+
+  }, {
+    once: true,
   });
 }
 
@@ -512,11 +616,12 @@ function loadAutoBlock(doc) {
     }
   });
 }
+
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
-function buildAutoBlocks(main) {
+function buildAutoBlocks() {
   try {
     // TODO: add auto block, if needed
     loadAutoBlock(main);
@@ -574,6 +679,7 @@ async function loadEager(doc) {
  */
 async function loadLazy(doc) {
   autolinkModals(doc);
+
   const main = doc.querySelector('main');
   await loadSections(main);
 

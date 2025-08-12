@@ -5,7 +5,7 @@
       "id": "library",
       "title": "Library",
       "environments": [ "edit" ],
-      "url": "https://main--wknd--hlxsites.hlx.live/tools/sidekick/library.html",
+      "url": "https://main--internal-doc-poc-en--tekno-point.aem.live/tools/library.html",
       "includePaths": [ "**.docx**" ]
     },
     {
@@ -24,6 +24,21 @@
       "passConfig": true,
       "environments": [ "preview", "live", "edit" ],
       "includePaths": ["**.docx**"]
+    },
+    {
+      "id": "accessibility-mode",
+      "title": "Accessibility Mode",
+      "environments": [
+        "preview",
+        "dev"
+      ],
+      "event": "accessibility-mode"
+    },
+    {
+      "id": "seo-checker",
+      "title": "SEO Checker",
+      "environments": [ "preview", "dev","live" ],
+      "event": "seo-checker"
     }
   ]
 }
