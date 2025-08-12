@@ -621,7 +621,7 @@ function loadAutoBlock(doc) {
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
-function buildAutoBlocks() {
+function buildAutoBlocks(main) {
   try {
     // TODO: add auto block, if needed
     loadAutoBlock(main);
