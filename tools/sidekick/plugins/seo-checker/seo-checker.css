@@ -5,10 +5,13 @@
   left: -400px;
   width: 400px;
   height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-  border-right: 1px solid rgba(255, 255, 255, 0.18);
+  /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+  background: #1E1E1E;
+  /* backdrop-filter: blur(10px); */
+  /* box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37); */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  /* border-right: 1px solid rgba(255, 255, 255, 0.18); */
+  border-right: 1px solid #333333;
   z-index: 9999;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -26,14 +29,17 @@ body.seo-panel-active {
 }
 
 /* Header & Score Section */
-.seo-header, .seo-score-section {
+.seo-header,
+.seo-score-section {
   /* FIX: Pin these sections to the top so they don't scroll */
   flex-shrink: 0;
 }
 
 .seo-header {
-  background: rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  /* background: rgba(255, 255, 255, 0.1); */
+  background: #2A2A2A;
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.2); */
+  border-bottom: 1px solid #333333;
   padding: 20px;
 }
 
@@ -47,12 +53,12 @@ body.seo-panel-active {
   flex: 1;
 }
 
-.seo-icon{
+.seo-icon {
   font-size: 24px;
   margin-bottom: 8px;
 }
 
-.seo-icon img{
+.seo-icon img {
   width: 100px;
 }
 
@@ -60,14 +66,15 @@ body.seo-panel-active {
   margin: 0 0 4px 0;
   font-size: 24px;
   font-weight: 700;
-  color: white;
   line-height: 1.2;
+  color: #F1F1F1;
 }
 
 .seo-subtitle {
   margin: 0;
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.8);
+  /* color: rgba(255, 255, 255, 0.8); */
+  color: #9E9E9E;
   font-weight: 400;
 }
 
@@ -171,11 +178,30 @@ body.seo-panel-active {
   font-size: 14px;
 }
 
-.seo-grade-a { background: #10b981; color: white; }
-.seo-grade-b { background: #3b82f6; color: white; }
-.seo-grade-c { background: #f59e0b; color: white; }
-.seo-grade-d { background: #ef4444; color: white; }
-.seo-grade-f { background: #dc2626; color: white; }
+.seo-grade-a {
+  background: #10b981;
+  color: white;
+}
+
+.seo-grade-b {
+  background: #3b82f6;
+  color: white;
+}
+
+.seo-grade-c {
+  background: #f59e0b;
+  color: white;
+}
+
+.seo-grade-d {
+  background: #ef4444;
+  color: white;
+}
+
+.seo-grade-f {
+  background: #dc2626;
+  color: white;
+}
 
 .seo-status {
   color: rgba(255, 255, 255, 0.9);
@@ -193,9 +219,11 @@ body.seo-panel-active {
 .seo-tab-buttons {
   display: flex;
   /* background: rgba(255, 255, 255, 0.1); */
-  background:  #514a7e;
+  /* background: #514a7e; */
+  background:black;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  position: sticky; /* Makes the tabs stick to the top of the scrolling area */
+  position: sticky;
+  /* Makes the tabs stick to the top of the scrolling area */
   top: 0;
   z-index: 1;
 }
@@ -237,32 +265,100 @@ body.seo-panel-active {
 .seo-content::-webkit-scrollbar {
   width: 6px;
 }
+
 .seo-content::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.1);
 }
+
 .seo-content::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.3);
   border-radius: 3px;
 }
+
 .seo-content::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.5);
 }
 
 /* (The rest of the styles for metrics, issues, etc. remain the same) */
-.seo-metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.seo-metric-card { background: rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 16px; border-left: 4px solid; }
-.seo-metric-card.seo-good { border-left-color: #10b981; }
-.seo-metric-card.seo-warning { border-left-color: #f59e0b; }
-.seo-metric-card.seo-error { border-left-color: #ef4444; }
-.seo-metric-card.seo-info { border-left-color: #3b82f6; }
-.seo-metric-label { font-size: 12px; color: rgba(255, 255, 255, 0.7); margin-bottom: 4px; }
-.seo-metric-value { font-size: 16px; font-weight: 600; color: white; }
-.seo-issue-section { margin-bottom: 24px; }
-.seo-issue-title { font-size: 16px; color: white; margin: 0 0 12px 0; font-weight: 600; }
-.seo-issue-item { background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 6px; color: white; margin-bottom: 8px; font-size: 14px; }
-.seo-issue-item.critical { background: rgba(239, 68, 68, 0.2); border-left: 3px solid #ef4444; }
-.seo-issue-item.warning { background: rgba(245, 158, 11, 0.2); border-left: 3px solid #f59e0b; }
-.seo-no-issues { text-align: center; padding: 40px 20px; color: #10b981; font-size: 18px; font-weight: 600; }
+.seo-metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.seo-metric-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+  border-left: 4px solid;
+}
+
+.seo-metric-card.seo-good {
+  border-left-color: #10b981;
+}
+
+.seo-metric-card.seo-warning {
+  border-left-color: #f59e0b;
+}
+
+.seo-metric-card.seo-error {
+  border-left-color: #ef4444;
+}
+
+.seo-metric-card.seo-info {
+  border-left-color: #3b82f6;
+}
+
+.seo-metric-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 4px;
+}
+
+.seo-metric-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+}
+
+.seo-issue-section {
+  margin-bottom: 24px;
+}
+
+.seo-issue-title {
+  font-size: 16px;
+  color: white;
+  margin: 0 0 12px 0;
+  font-weight: 600;
+}
+
+.seo-issue-item {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px;
+  border-radius: 6px;
+  color: white;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.seo-issue-item.critical {
+  background: rgba(239, 68, 68, 0.2);
+  border-left: 3px solid #ef4444;
+}
+
+.seo-issue-item.warning {
+  background: rgba(245, 158, 11, 0.2);
+  border-left: 3px solid #f59e0b;
+}
+
+.seo-no-issues {
+  text-align: center;
+  padding: 40px 20px;
+  color: #10b981;
+  font-size: 18px;
+  font-weight: 600;
+}
+
 /* Technical Content */
 .seo-tech-item {
   display: flex;
@@ -289,10 +385,12 @@ body.seo-panel-active {
   background: #10b981;
   color: white;
 }
+
 .seo-tech-item.seo-error .seo-status-icon {
   background: #ef4444;
   color: white;
 }
+
 .seo-tech-item.seo-warning .seo-status-icon {
   background: #f59e0b;
   color: white;
