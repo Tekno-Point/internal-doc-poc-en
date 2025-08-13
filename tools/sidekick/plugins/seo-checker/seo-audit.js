@@ -3,7 +3,7 @@
  * Analyzes current page and generates detailed SEO report
  * @returns {Object} Complete SEO audit report with scores and recommendations
  */
-export function performSEOAudit() {
+export async function performSEOAudit() {
     const report = {
         url: window.location.href,
         timestamp: new Date().toISOString(),
@@ -236,64 +236,72 @@ export function performSEOAudit() {
         };
     }
 
-    // 6. Link Analysis
-    function analyzeLinks() {
-        const internalLinks = [];
-        const externalLinks = [];
-        const brokenLinks = [];
-        
-        const links = document.querySelectorAll('a[href]');
-        let score = 0;
-        const issues = [];
-        const recommendations = [];
+    // 6. Link Analysis (Asynchronous)
+async function analyzeLinks() {
+    const allLinks = [...document.querySelectorAll('a[href]')];
+    const internalLinks = [];
+    const externalLinks = [];
+    const brokenLinks = [];
+    const redirectedLinks = [];
+    let score = 100;
 
-        links.forEach(link => {
-            const href = link.getAttribute('href');
-            const text = link.textContent.trim();
-            const isExternal = href && (href.startsWith('http') && !href.includes(window.location.hostname));
-            
-            const linkData = {
-                href: href ? href.substring(0, 100) : '',
-                text: text.substring(0, 50),
-                isExternal,
-                hasTitle: !!link.getAttribute('title'),
-                hasNofollow: link.getAttribute('rel') && link.getAttribute('rel').includes('nofollow')
-            };
+    // Use a Set to only check unique URLs, which is more efficient
+    const uniqueUrls = new Set(allLinks.map(link => link.href));
 
-            if (isExternal) {
-                externalLinks.push(linkData);
-                if (!linkData.hasNofollow && !href.includes('trustworthy-domain.com')) {
-                    recommendations.push('Consider adding rel="nofollow" to external links');
-                }
-            } else {
-                internalLinks.push(linkData);
+    const promises = [...uniqueUrls].map(url => 
+        fetch(url, { method: 'HEAD' }).catch(err => ({ error: true, url, reason: err.message }))
+    );
+
+    // Promise.allSettled waits for all checks to complete, even if some fail
+    const results = await Promise.allSettled(promises);
+
+    results.forEach(result => {
+        if (result.status === 'fulfilled') {
+            const response = result.value;
+            if (response.error) {
+                // This typically catches CORS errors or network failures
+                brokenLinks.push({ url: response.url, status: 'CORS or Network Error' });
+                score -= 5;
+            } else if (response.status >= 400) {
+                // 404 Not Found, 403 Forbidden, etc.
+                brokenLinks.push({ url: response.url, status: response.status });
+                score -= 10;
+            } else if (response.redirected) {
+                redirectedLinks.push({ url: response.url, status: response.status });
+                score -= 2; // Small penalty for redirects
             }
+        } else {
+            // Promise was rejected (e.g., invalid URL)
+            brokenLinks.push({ url: result.reason.url, status: 'Failed to fetch' });
+            score -= 5;
+        }
+    });
+    
+    // Categorize links after checking
+    allLinks.forEach(link => {
+        const isExternal = link.href && (link.href.startsWith('http') && !link.href.includes(window.location.hostname));
+        if(isExternal) {
+            externalLinks.push(link.href);
+        } else {
+            internalLinks.push(link.href);
+        }
+    });
 
-            // Check for generic link text
-            if (['click here', 'read more', 'more info', 'here'].includes(text.toLowerCase())) {
-                issues.push(`Generic link text: "${text}"`);
-            }
-        });
+    const issues = brokenLinks.map(l => `Broken link (${l.status}): ${l.url}`);
+    const recommendations = redirectedLinks.map(l => `Redirected link: ${l.url}`);
 
-        // Score based on link structure
-        if (internalLinks.length > 0) score += 40;
-        if (externalLinks.length > 0 && externalLinks.length < 10) score += 30;
-        if (links.length > 0) score += 30;
-
-        return {
-            score: Math.min(score, 100),
-            totalLinks: links.length,
-            internalLinks: internalLinks.length,
-            externalLinks: externalLinks.length,
-            linkData: {
-                internal: internalLinks.slice(0, 5),
-                external: externalLinks.slice(0, 5)
-            },
-            issues,
-            recommendations,
-            weight: 10
-        };
-    }
+    return {
+        score: Math.max(0, score),
+        totalLinks: allLinks.length,
+        internalLinks: internalLinks.length,
+        externalLinks: externalLinks.length,
+        brokenLinks: brokenLinks.length,
+        redirectedLinks: redirectedLinks.length,
+        issues,
+        recommendations,
+        weight: 10
+    };
+}
 
     // 7. Technical SEO
     function analyzeTechnicalSEO() {
