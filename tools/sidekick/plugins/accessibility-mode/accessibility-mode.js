@@ -2,7 +2,7 @@
 import { Sa11y, Lang } from './lib/sa11y.min.js';
 import Sa11yLangEn from './lib/sa11y.lang.en.js';
 import { loadCSS } from '../../../../scripts/aem.js';
-import { createElement } from '../../../../scripts/scripts.js'; 
+import { createElement } from '../../../../scripts/scripts.js';
 import customChecks from './custom-checks/custom-checks.js';
 
 let initializedCounter = 0;

@@ -20,7 +20,6 @@ function closeOnEscape(e) {
     }
   }
 }
-
 function closeOnFocusLost(e) {
   const nav = e.currentTarget;
   if (!nav.contains(e.relatedTarget)) {

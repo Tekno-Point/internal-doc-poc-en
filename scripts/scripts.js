@@ -29,7 +29,7 @@ const experimentationConfig = {
     us: async () => (await geoPromise).region === 'us',
     eu: async () => (await geoPromise).region === 'eu',
     // define your custom audiences here as needed
-  }
+  },
 };
 
 let runExperimentation;
@@ -40,7 +40,7 @@ if (isExperimentationEnabled) {
   ({
     loadEager: runExperimentation,
     loadLazy: showExperimentationOverlay,
-  } = await import('../plugins/experimentation/src/index.js'));
+  } = await import('@adobe/aem-experimentation/src/index.js'));
 }
 
 const AUDIENCES = {
@@ -67,7 +67,6 @@ export function getAllMetadata(scope) {
       return res;
     }, {});
 }
-
 
 /**
  * Create an element with the given tag and properties.
@@ -154,8 +153,7 @@ if (sk) {
   document.addEventListener('sidekick-ready', () => {
     const sk = document.querySelector('aem-sidekick') || document.querySelector('helix-sidekick');
     sk.addEventListener('custom:accessibility-mode', accessibilityMode);
-    sk.addEventListener('custom:seo-checker', initSeoChecker); 
-
+    sk.addEventListener('custom:seo-checker', initSeoChecker);
   }, {
     once: true,
   });
@@ -199,7 +197,6 @@ function autolinkModals(element) {
     }
   });
 }
-
 
 /**
  * Builds all synthetic blocks in a container element.

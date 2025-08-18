@@ -1,6 +1,6 @@
 function runSeoAudit() {
   const audit = {
-    'Title': document.title,
+    Title: document.title,
     'Meta Description': document.querySelector('meta[name="description"]')?.content || '❌ Missing',
     'H1 Count': document.querySelectorAll('h1').length,
     'Viewport Meta Tag': document.querySelector('meta[name="viewport"]') ? '✅ Present' : '❌ Missing',
@@ -10,7 +10,7 @@ function runSeoAudit() {
     'Schema Blocks': document.querySelectorAll('script[type="application/ld+json"]').length,
     'Open Graph Title': document.querySelector('meta[property="og:title"]')?.content || '❌ Missing',
     'Twitter Card': document.querySelector('meta[name="twitter:card"]')?.content || '❌ Missing',
-    'Favicon': document.querySelector('link[rel*="icon"]') ? '✅ Present' : '❌ Missing',
+    Favicon: document.querySelector('link[rel*="icon"]') ? '✅ Present' : '❌ Missing',
   };
   return audit;
 }
