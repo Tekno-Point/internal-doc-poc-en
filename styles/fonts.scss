@@ -4,66 +4,77 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("../fonts/roboto-condensed-bold.woff2") format("woff2");
+  src: url('../fonts/roboto-condensed-bold.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+
 @font-face {
   font-family: roboto;
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("../fonts/roboto-bold.woff2") format("woff2");
+  src: url('../fonts/roboto-bold.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+
 @font-face {
   font-family: roboto;
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("../fonts/roboto-medium.woff2") format("woff2");
+  src: url('../fonts/roboto-medium.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+
 @font-face {
   font-family: roboto;
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("../fonts/roboto-regular.woff2") format("woff2");
+  src: url('../fonts/roboto-regular.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+
 @font-face {
-  font-family: "switz Bold";
-  src: url("../fonts/Switzer-Bold.otf") format("truetype");
+  font-family: 'switz Bold';
+  src: url('../fonts/Switzer-Bold.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "switz Medium";
-  src: url("../fonts/Switzer-Medium.otf") format("truetype");
+  font-family: 'switz Medium';
+  src: url('../fonts/Switzer-Medium.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "switz Black";
-  src: url("../fonts/Switzer-Black.otf") format("truetype");
+  font-family: 'switz Black';
+  src: url('../fonts/Switzer-Black.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "switz Regular";
-  src: url("../fonts/Switzer-Regular.otf") format("truetype");
+  font-family: 'switz Regular';
+  src: url('../fonts/Switzer-Regular.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "switz Thin";
-  src: url("../fonts/Switzer-Thin.otf") format("truetype");
+  font-family: 'switz Thin';
+  src: url('../fonts/Switzer-Thin.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: "switz Light";
-  src: url("../fonts/Switzer-Light.otf") format("truetype");
+  font-family: 'switz Light';
+  src: url('../fonts/Switzer-Light.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
-}/*# sourceMappingURL=fonts.css.map */
+}
+
+$bold: 'switz Bold', sans-serif;
+$medium: 'switz Medium', sans-serif;
+$black: 'switz Black', sans-serif;
+$regular: 'switz Regular', sans-serif;
+$thin: 'switz Thin', sans-serif;
+$light: 'switz Light', sans-serif;
