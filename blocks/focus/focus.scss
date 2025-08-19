@@ -9,8 +9,8 @@
   align-items: flex-start;
   justify-content: space-between;
 }
-.section.focus-container .focus-wrapper .focus-style div:nth-child(1) {
-     flex: 1 1 51%;
+.section.focus-container .focus-wrapper .focus-style > div:nth-child(1) {
+     flex: 1 1 60%;
 }
 .section.focus-container .focus-wrapper .focus-style > div > div > p:nth-child(1) {
   font-size: 3.375rem;
