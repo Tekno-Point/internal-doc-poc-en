@@ -1,0 +1,118 @@
+header.header-wrapper {
+    height: unset;
+    padding-top: 125px;
+}
+
+header.header-wrapper .header.block .nav-wrapper {
+    left: 0;
+    margin: 0 auto;
+    position: fixed;
+    right: 0;
+    top: 24px;
+    width: calc(100% - 3pc);
+    z-index: 100;
+    border-radius: 8px;
+    padding-top: 41px;
+}
+
+header.header-wrapper .header.block .nav-wrapper nav {
+    max-width: unset;
+    padding: unset;
+    height: 56px;
+    box-shadow: 0 7px 10px 0 #0000000a;
+    gap: unset;
+}
+
+/* hamburger Section Css */
+
+header.header-wrapper .header.block .nav-wrapper nav .nav-hamburger {
+    margin: 0;
+}
+
+/* upper Section Css */
+
+header.header-wrapper .header.block .nav-wrapper nav .section.nav-upper-section {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    height: 41px;
+}
+
+header.header-wrapper .header.block .nav-wrapper nav .section.nav-upper-section .default-content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 9pt 40px;
+    align-items: center;
+    background: #fff;
+    border-bottom: .4px solid #96969629;
+    border-radius: 9pt 9pt 0 0;
+
+    /* padding: 24px 40px; */
+}
+
+header.header-wrapper .header.block .nav-wrapper nav .section.nav-upper-section .default-content-wrapper :where(ul, ol) {
+    display: flex;
+    align-items: center;
+    margin: unset;
+    list-style: none;
+    gap: 24px;
+    padding: 0;
+}
+
+header.header-wrapper .header.block .nav-wrapper nav .section.nav-upper-section .default-content-wrapper :where(ul, ol) li {
+    display: flex;
+    font-size: .8125rem;
+    align-items: center;
+    color: #000;
+    cursor: pointer;
+    font-family: 'switz Regular', sans-serif;
+
+    /* font-size: 1rem; */
+    font-weight: 400;
+    line-height: 130%;
+}
+
+
+header.header-wrapper .header.block .nav-wrapper nav .section.nav-upper-section .default-content-wrapper :where(ul, ol) li span {
+    width: 16px;
+    height: 16px;
+    display: block;
+    margin-right: 8px;
+}
+
+header.header-wrapper .header.block .nav-wrapper nav .section.nav-upper-section .default-content-wrapper ul li {
+    /* padding: 0 24px 0 28px; */
+    padding: 0 16px 0 0;
+    position: relative;
+}
+
+header.header-wrapper .header.block .nav-wrapper nav .section.nav-upper-section .default-content-wrapper ul li:first-child::after {
+    border: .6px solid #969696;
+    content: "";
+    height: calc(100% + 1px);
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+header.header-wrapper .header.block .nav-wrapper nav .section.nav-upper-section>.default-content-wrapper>ul>li>strong>em {
+    display: none;
+    color: #302b27;
+    font-size: .75rem;
+}
+
+/* Brand Section Css  */
+
+header.header-wrapper .header.block .nav-wrapper nav .section.nav-brand {
+    margin-left: 16px;
+    max-width: 300px;
+    width: 100%;
+    flex-basis: unset;
+    text-align: center;
+}
+
+header.header-wrapper .header.block .nav-wrapper nav .section.nav-brand .default-content-wrapper picture img{
+    width: 84px;
+    height: 28px;
+}

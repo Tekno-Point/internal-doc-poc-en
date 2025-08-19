@@ -2,58 +2,57 @@
  * SEO Checker Initialization
  * Main entry point for the SEO audit tool
  */
+function baseSeoAudit() {
+  const audit = {
+    Title: document.title,
+    'Meta Description': document.querySelector('meta[name="description"]')?.content || '❌ Missing',
+    'H1 Count': document.querySelectorAll('h1').length,
+    'Viewport Meta Tag': document.querySelector('meta[name="viewport"]') ? '✅ Present' : '❌ Missing',
+    'Language Attribute': document.documentElement.lang || '❌ Missing',
+    'Canonical URL': document.querySelector('link[rel="canonical"]')?.href || '❌ Missing',
+    'Images without Alt Text': Array.from(document.images).filter((img) => !img.alt).length,
+    'Schema Blocks': document.querySelectorAll('script[type="application/ld+json"]').length,
+    'Open Graph Title': document.querySelector('meta[property="og:title"]')?.content || '❌ Missing',
+    'Twitter Card': document.querySelector('meta[name="twitter:card"]')?.content || '❌ Missing',
+    Favicon: document.querySelector('link[rel*="icon"]') ? '✅ Present' : '❌ Missing',
+  };
+  return audit;
+}
 
-// Import dependencies (adjust paths as needed)
-// import './seo-audit.js';
-// import './seo-panel.js';
+import { quickSEOCheck, downloadSEOReport, performSEOAudit } from './seo-audit.js';
+import { transformSEOResults, showSeoPanel } from './seo-panel.js';
 
 /**
  * Main initialization function
  * Handles toggle functionality and launches SEO audit
  */
-import {quickSEOCheck,downloadSEOReport,performSEOAudit} from './seo-audit.js';
-import {transformSEOResults, showSeoPanel} from './seo-panel.js';
-
 export default async function init() {
-  // Import required functions
   const { loadCSS } = await import(`${window.hlx.codeBasePath}/scripts/aem.js`);
-  
-  // Load external CSS file (optional since we can inject styles)
+
+  // Load external CSS
   await loadCSS(`${window.hlx.codeBasePath}/tools/sidekick/plugins/seo-checker/seo-checker.css`);
-  
-  // Check if panel already exists and toggle it
+
   const existingPanel = document.getElementById('seo-checker-panel');
   if (existingPanel) {
     document.body.classList.remove('seo-panel-active');
     existingPanel.remove();
     return;
   }
-  
+
   try {
-    // Show loading indicator (optional)
     showInitialLoading();
-    
-    // Run the comprehensive SEO audit
+
     const seoResults = performSEOAudit();
-    
-    // Transform the results to match the panel's expected format
     const panelData = transformSEOResults(seoResults);
-    
-    // Hide loading indicator
+
     hideInitialLoading();
-    
-    // Show the modern SEO panel
     await showSeoPanel(panelData);
-    
-    // Log success to console for debugging
+
     console.log('SEO Audit completed successfully', {
       score: seoResults.overallScore,
       grade: seoResults.scoreInterpretation.grade,
-      issues: seoResults.summary.critical.length
+      issues: seoResults.summary.critical.length,
     });
-    
-    // const seocheckercss = import('../seo-checker/seo-checker.css');
-    // loadCSS(seocheckercss)
   } catch (error) {
     console.error('SEO Audit failed:', error);
     hideInitialLoading();
@@ -65,7 +64,6 @@ export default async function init() {
  * Show initial loading state
  */
 function showInitialLoading() {
-  // Create a simple loading overlay
   const loading = document.createElement('div');
   loading.id = 'seo-loading-overlay';
   loading.style.cssText = `
@@ -84,7 +82,7 @@ function showInitialLoading() {
     align-items: center;
     gap: 12px;
   `;
-  
+
   loading.innerHTML = `
     <div style="
       width: 16px;
@@ -96,8 +94,7 @@ function showInitialLoading() {
     "></div>
     Running SEO Audit...
   `;
-  
-  // Add spinning animation
+
   const style = document.createElement('style');
   style.textContent = `
     @keyframes spin {
@@ -106,9 +103,8 @@ function showInitialLoading() {
     }
   `;
   document.head.appendChild(style);
-  
+
   document.body.appendChild(loading);
-  
 }
 
 /**
@@ -141,7 +137,7 @@ function showErrorMessage(error) {
     font-size: 14px;
     max-width: 300px;
   `;
-  
+
   errorDiv.innerHTML = `
     <div style="font-weight: 600; margin-bottom: 8px;">
       ⚠️ SEO Audit Failed
@@ -162,10 +158,9 @@ function showErrorMessage(error) {
       Dismiss
     </button>
   `;
-  
+
   document.body.appendChild(errorDiv);
-  
-  // Auto-remove after 5 seconds
+
   setTimeout(() => {
     if (errorDiv.parentNode) {
       errorDiv.remove();
@@ -174,27 +169,20 @@ function showErrorMessage(error) {
 }
 
 /**
- * Helper function for manual triggering
+ * Manual audit trigger
  */
 function runSeoAudit() {
   return performSEOAudit();
 }
 
 /**
- * Quick access function for developers
+ * Quick access for developers
  */
 window.hlx.seoChecker = {
   init,
   runAudit: runSeoAudit,
   quickCheck: quickSEOCheck,
-  downloadReport: downloadSEOReport
+  downloadReport: downloadSEOReport,
 };
 
-// Export for module usage
-export { 
-  init, 
-  runSeoAudit, 
-  showInitialLoading, 
-  hideInitialLoading, 
-  showErrorMessage 
-};
+export { init, runSeoAudit, showInitialLoading, hideInitialLoading, showErrorMessage };

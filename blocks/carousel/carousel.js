@@ -63,6 +63,7 @@ export default function decorate(block) {
   slidesPerView: 4,
   slidesPerGroup: 1, // 👈 scrolls by 1 card per dot
   spaceBetween: 20,
+  autoplay:true,
   navigation: {
     nextEl: rightArrow,
     prevEl: leftArrow,
@@ -73,15 +74,23 @@ export default function decorate(block) {
     centeredSlides: true,   // keep active slide centered
     spaceBetween: 0,
     loop: true,
-    autoPlay:true
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
     },
     768: {
       slidesPerView: 2,
       slidesPerGroup: 1,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
     },
     1024: {
       slidesPerView: 4,
       slidesPerGroup: 1,
+      autoplay:false
     },
   }
 });

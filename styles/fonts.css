@@ -34,36 +34,36 @@
 @font-face {
   font-family: "switz Bold";
   src: url("../fonts/Switzer-Bold.otf") format("truetype");
-  font-weight: normal;
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "switz SemiBold";
+  src: url("../fonts/Switzer-Semibold.otf") format("truetype");
+  font-weight: 600;
   font-style: normal;
 }
 @font-face {
   font-family: "switz Medium";
   src: url("../fonts/Switzer-Medium.otf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "switz Black";
-  src: url("../fonts/Switzer-Black.otf") format("truetype");
-  font-weight: normal;
+  font-weight: 500;
   font-style: normal;
 }
 @font-face {
   font-family: "switz Regular";
   src: url("../fonts/Switzer-Regular.otf") format("truetype");
-  font-weight: normal;
+  font-weight: 400;
   font-style: normal;
 }
 @font-face {
-  font-family: "switz Thin";
-  src: url("../fonts/Switzer-Thin.otf") format("truetype");
-  font-weight: normal;
+  font-family: "switz Italic";
+  src: url("../fonts/Switzer-Italic.otf") format("truetype");
+  font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: "switz Light";
   src: url("../fonts/Switzer-Light.otf") format("truetype");
-  font-weight: normal;
+  font-weight: 300;
   font-style: normal;
 }/*# sourceMappingURL=fonts.css.map */
