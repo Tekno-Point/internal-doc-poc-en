@@ -385,6 +385,8 @@
 }
 .section.carousel-container .carousel-style > .swiper-wrapper > .swiper-slide{
     margin-top: 0px;
+    padding: 16px;
+    box-sizing: border-box;
 }
 .section.carousel-container .carousel-style > .swiper-wrapper > .swiper-slide div {
     display: flex;
@@ -463,4 +465,35 @@
     opacity: .35;
     cursor: auto;
     pointer-events: none
+}
+
+@media (width<768px){
+    .carousel.carousel-style > .btnWrapper {
+    display: none;
+}
+.section.carousel-container .default-content-wrapper p{
+    font-size: 1.75rem;
+    line-height: 2.1pc;
+}
+.section.carousel-container .carousel-style > .swiper-wrapper > .swiper-slide div ul li{
+    margin-bottom: 10px;
+}
+.section.carousel-container .carousel-style > .swiper-wrapper > .swiper-slide div picture img{
+    min-height: 169px;
+    max-height: 169px;
+}
+.section.carousel-container .carousel-style > .swiper-wrapper > .swiper-slide div ul li:nth-child(2){
+    font-size: 1rem;
+    line-height: 1.3pc;
+    letter-spacing: -.16px;
+    min-height: auto;
+}
+.section.carousel-container .carousel-style > .swiper-wrapper > .swiper-slide div ul li:nth-child(3){
+    font-size: .75rem;
+    line-height: 15.6px;
+}
+.section.carousel-container .carousel-style > .swiper-wrapper > .swiper-slide div ol li span img{
+    width: 20px;
+    height: 20px;
+}
 }

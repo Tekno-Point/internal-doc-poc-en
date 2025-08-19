@@ -63,20 +63,17 @@ export default function decorate(block) {
   slidesPerView: 4,
   slidesPerGroup: 1, // 👈 scrolls by 1 card per dot
   spaceBetween: 20,
-//   pagination: {
-//     el: divPagination,
-//     clickable: true,
-//     type: 'bullets',
-//     dynamicBullets: false, // Optional: use true if you want less dots with dynamic resizing
-//   },
   navigation: {
     nextEl: rightArrow,
     prevEl: leftArrow,
   },
   breakpoints: {
     0: {
-      slidesPerView: 1,
-      slidesPerGroup: 1,
+      slidesPerView: 1.15,     // show 1 full + small part of next slide
+    centeredSlides: true,   // keep active slide centered
+    spaceBetween: 0,
+    loop: true,
+    autoPlay:true
     },
     768: {
       slidesPerView: 2,
