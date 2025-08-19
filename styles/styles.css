@@ -362,10 +362,6 @@ main::-webkit-scrollbar-button {
   height: 0;
 }
 
-.section.head-image {
-  margin-top: 132px;
-}
-
 .section.head-image .default-content-wrapper ul {
   display: flex;
   align-items: center;
@@ -481,9 +477,6 @@ main::-webkit-scrollbar-button {
 }
 
 @media (max-width: 768px) {
-  .section.head-image {
-    margin-top: 100px;
-  }
   .section.head-image .default-content-wrapper ul li:nth-child(1) {
     font-size: 0.75rem;
     line-height: 14.7px;
