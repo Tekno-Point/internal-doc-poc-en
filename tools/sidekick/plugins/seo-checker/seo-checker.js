@@ -29,6 +29,7 @@ async function showSeoPanel(auditResults) {
   header.append(title, closeButton);
 
   const content = createElement('div', { class: 'seo-checker-content' });
+  // eslint-disable-next-line no-restricted-syntax
   for (const [key, value] of Object.entries(auditResults)) {
     const item = createElement('div', { class: 'seo-item' });
     const itemKey = createElement('span', { class: 'seo-key' }, `${key}:`);

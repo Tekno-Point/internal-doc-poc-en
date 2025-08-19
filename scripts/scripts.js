@@ -12,6 +12,7 @@ import {
   loadCSS,
 } from './aem.js';
 
+// eslint-disable-next-line import/no-cycle
 import initAccessibilityMode from '../tools/sidekick/plugins/accessibility-mode/accessibility-mode.js';
 import initSeoChecker from '../tools/sidekick/plugins/seo-checker/seo-checker.js';
 
@@ -40,9 +41,11 @@ if (isExperimentationEnabled) {
   ({
     loadEager: runExperimentation,
     loadLazy: showExperimentationOverlay,
+    // eslint-disable-next-line import/no-unresolved
   } = await import('@adobe/aem-experimentation/src/index.js'));
 }
 
+// eslint-disable-next-line no-unused-vars
 const AUDIENCES = {
   mobile: () => window.innerWidth < 600,
   desktop: () => window.innerWidth >= 600,
@@ -60,6 +63,7 @@ let isA11yModeActive = false;
 export function getAllMetadata(scope) {
   return [...document.head.querySelectorAll(`meta[property^="${scope}:"],meta[name^="${scope}-"]`)]
     .reduce((res, meta) => {
+      // eslint-disable-next-line no-undef
       const id = toClassName(meta.name
         ? meta.name.substring(scope.length + 1)
         : meta.getAttribute('property').split(':')[1]);
@@ -151,6 +155,7 @@ if (sk) {
   sk.addEventListener('custom:seo-checker', initSeoChecker);
 } else {
   document.addEventListener('sidekick-ready', () => {
+    // eslint-disable-next-line no-shadow
     const sk = document.querySelector('aem-sidekick') || document.querySelector('helix-sidekick');
     sk.addEventListener('custom:accessibility-mode', accessibilityMode);
     sk.addEventListener('custom:seo-checker', initSeoChecker);
@@ -198,12 +203,74 @@ function autolinkModals(element) {
   });
 }
 
+export async function loadFragment(path) {
+  // if (path && path.startsWith('/')) {
+  if (path) {
+    // eslint-disable-next-line no-param-reassign
+    path = path.replace(/(\.plain)?\.html/, '');
+    const resp = await fetch(`${path}.plain.html`);
+    if (resp.ok) {
+      const main = document.createElement('main');
+      main.innerHTML = await resp.text();
+
+      // reset base path for media to fragment base
+      const resetAttributeBase = (tag, attr) => {
+        main.querySelectorAll(`${tag}[${attr}^="./media_"]`).forEach((elem) => {
+          elem[attr] = new URL(elem.getAttribute(attr), new URL(path, window.location)).href;
+        });
+      };
+      resetAttributeBase('img', 'src');
+      resetAttributeBase('source', 'srcset');
+      // eslint-disable-next-line
+      decorateMain(main);
+      await loadSections(main);
+      return main;
+    }
+  }
+  return null;
+}
+
+function autolinkFragements(element) {
+  element.querySelectorAll('a').forEach((origin) => {
+    if (origin && origin.href && origin.href.includes('/fragment/')) {
+      const parent = origin.parentElement;
+      const div = document.createElement('div');
+      div.append(origin);
+      parent.append(div);
+      loadFragment(div);
+    }
+  });
+}
+
+export default async function decorateFragment(block) {
+  const link = block.querySelector('a');
+  const path = link ? link.getAttribute('href') : block.textContent.trim();
+  const fragment = await loadFragment(path);
+  if (fragment) {
+    const fragmentSection = fragment.querySelector(':scope .section');
+    if (fragmentSection) {
+      block.classList.add(...fragmentSection.classList);
+      block.classList.remove('section');
+      block.replaceChildren(...fragmentSection.childNodes);
+    }
+  }
+}
+
+export function loadAutoBlock(doc) {
+  doc.querySelectorAll('a').forEach((a) => {
+    if (a && a.href && a.href.includes('/fragment/')) {
+      decorateFragment(a.parentElement);
+    }
+  });
+}
+
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
-function buildAutoBlocks() {
+function buildAutoBlocks(main) {
   try {
+    loadAutoBlock(main);
     // TODO: add auto block, if needed
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -259,10 +326,10 @@ async function loadEager(doc) {
  */
 async function loadLazy(doc) {
   autolinkModals(doc);
-
+  autolinkFragements(doc);
   const main = doc.querySelector('main');
   await loadSections(main);
-
+  autolinkFragements(doc);
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
@@ -277,8 +344,9 @@ async function loadLazy(doc) {
   if (showExperimentationOverlay) {
     await showExperimentationOverlay(document, experimentationConfig);
   }
-}
 
+  loadAutoBlock(doc);
+}
 /**
  * Loads everything that happens a lot later,
  * without impacting the user experience.
