@@ -206,7 +206,11 @@ export default async function decorate(block) {
       navSection.querySelectorAll(':scope>ul.inner-ul>li').forEach((subLi) => {
         // subLi?.querySelector(":scope>p, :scope>a")?.addEventListener(isClick, (ele) => {
         // subLi?.querySelector(":scope>li")?.addEventListener(isClick, (ele) => {
-        subLi?.addEventListener(isClick, () => {
+        subLi?.addEventListener(isClick, (e) => {
+          e.stopImmediatePropagation();
+          e.stopPropagation();
+          // debugger;
+          // if (e.target.closest()) return;
           const expanded = subLi?.getAttribute('aria-expanded');
           if (expanded === 'false') {
             navSections.querySelectorAll('.default-content-wrapper > ul > li').forEach((section) => {

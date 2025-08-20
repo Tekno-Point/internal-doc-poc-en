@@ -183,6 +183,10 @@ a:hover {
   text-decoration: underline;
 }
 
+*{
+  box-sizing: border-box;
+}
+
 /* buttons */
 a.button:any-link,
 button {
