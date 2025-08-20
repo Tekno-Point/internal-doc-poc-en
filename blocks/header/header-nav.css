@@ -449,3 +449,20 @@ header.header-wrapper .header.block .nav-wrapper nav .section.nav-sections .defa
 header.header-wrapper .header.block .nav-wrapper nav .section.nav-sections .default-content-wrapper ul>li>ul.inner-ul>li>ul>li>.section.cards-container .cards-wrapper .cards .cards-card-body p.button-container a:hover::after {
     transform: translateX(5px);
 }
+
+/* Nav Tools Css */
+
+header.header-wrapper .header.block .nav-wrapper nav .section.nav-tools {
+    margin-right: 40px;
+}
+
+header.header-wrapper .header.block .nav-wrapper nav .section.nav-tools .default-content-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+header.header-wrapper .header.block .nav-wrapper nav .section.nav-tools .default-content-wrapper p span {
+    width: 35px;
+    height: 35px;
+}
