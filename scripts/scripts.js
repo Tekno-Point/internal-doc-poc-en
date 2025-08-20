@@ -378,5 +378,19 @@ async function loadPage() {
   await loadLazy(document);
   loadDelayed();
 }
+ const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
 
+  let node;
+  while ((node = walker.nextNode())) {
+    if (node.nodeValue.includes("[ Email Address ]")) {
+      // Create input element
+      const input = document.createElement("input");
+      input.type = "email";
+      input.placeholder = "Enter your email";
+      input.className = "footer-input"; // optional class for styling
+
+      // Replace text node with input
+      node.parentNode.replaceChild(input, node);
+    }
+  }
 loadPage();
