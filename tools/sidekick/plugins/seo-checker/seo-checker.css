@@ -422,3 +422,22 @@ body.seo-panel-active {
   font-weight: 600;
   font-size: 14px;
 }
+/* Style for the highlight effect on the main page */
+.seo-highlight {
+  outline: 3px solid #0d6efd !important; /* A bright blue outline */
+  outline-offset: 2px;
+  box-shadow: 0 0 15px rgba(13, 110, 253, 0.7) !important;
+  border-radius: 4px;
+  transition: all 0.3s ease-in-out;
+  scroll-margin-top: 100px; /* Ensures space from top of screen on scroll */
+}
+
+/* Add a pointer cursor to clickable issue items in the panel */
+.seo-issue-item.clickable {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.seo-issue-item.clickable:hover {
+  background: rgba(255, 255, 255, 0.2);
+}

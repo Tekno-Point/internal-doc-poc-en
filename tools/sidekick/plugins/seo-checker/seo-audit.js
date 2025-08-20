@@ -237,49 +237,57 @@ export async function performSEOAudit() {
     }
 
     // 6. Link Analysis
-    async function analyzeLinks() {
-        const allLinks = [...document.querySelectorAll('main a[href]')];
-        const uniqueUrls = new Set(allLinks.map(link => link.href).filter(href => href && href.startsWith('http')));
-        let score = 100;
-        const brokenLinks = [], redirectedLinks = [], internalLinks = [], externalLinks = [];
+   async function analyzeLinks() {
+    const allLinks = [...document.querySelectorAll('main a[href]')];
+    // Use a Map to store the unique URL and its corresponding HTML element
+    const uniqueLinkElements = new Map(allLinks.map(link => [link.href, link]));
 
-        const promises = [...uniqueUrls].map(url =>
-            fetch(url, { method: 'HEAD', mode: 'cors' }).catch(() => ({ url, status: 'Unreachable' }))
-        );
+    let score = 100;
+    const broken = [], redirected = [], unverifiable = [];
 
-        const results = await Promise.allSettled(promises);
+    const promises = [...uniqueLinkElements.keys()].map(url =>
+        fetch(url, { method: 'HEAD', mode: 'cors' }).catch(() => ({ url, status: 'Unreachable' }))
+    );
 
-        for (const result of results) {
-            if (result.status === 'fulfilled' && result.value) {
-                const response = result.value;
-                if (response.status >= 400) {
-                    brokenLinks.push({ url: response.url, status: response.status });
-                    score -= 10;
-                } else if (response.redirected) {
-                    redirectedLinks.push({ url: response.url, status: response.status });
-                    score -= 2;
-                }
-            } else {
-                const urlToLog = result.reason?.url || (result.value?.url || 'Unknown URL');
-                brokenLinks.push({ url: urlToLog, status: 'Unreachable' });
-                score -= 5; // Small penalty for unreachable links
+    const results = await Promise.allSettled(promises);
+
+    for (const result of results) {
+        if (result.status === 'fulfilled' && result.value) {
+            const response = result.value;
+            // Get the original element from our Map
+            const element = uniqueLinkElements.get(response.url);
+            
+            // Create a data object that includes the element
+            const linkData = { url: response.url, status: response.status, element };
+
+            if (response.status === 'Unreachable') {
+                unverifiable.push(linkData);
+            } else if (response.status >= 400) {
+                broken.push(linkData);
+                score -= 10;
+            } else if (response.redirected) {
+                redirected.push(linkData);
+                score -= 2;
             }
         }
-
-        allLinks.forEach(link => {
-            if (link.hostname === window.location.hostname) internalLinks.push(link.href);
-            else externalLinks.push(link.href);
-        });
-
-        const issues = brokenLinks.map(l => `Broken/Unreachable Link (${l.status}): ${l.url.substring(0, 80)}...`);
-        const recommendations = redirectedLinks.map(l => `Redirected Link: ${l.url.substring(0, 80)}...`);
-
-        return {
-            score: Math.max(0, score), totalLinks: allLinks.length, internalLinks: internalLinks.length,
-            externalLinks: externalLinks.length, brokenLinks: brokenLinks.length,
-            redirectedLinks: redirectedLinks.length, issues, recommendations, weight: 10
-        };
     }
+    
+    // The rest of the function needs to be updated to pass the full objects
+    const issues = broken.map(l => ({...l, message: `Broken Link (${l.status}): "${l.element.textContent.trim()}"`}));
+    const recommendations = [
+        ...redirected.map(l => ({...l, message: `Redirected Link: "${l.element.textContent.trim()}"`})),
+        ...unverifiable.map(l => ({...l, message: `Unverifiable Link: "${l.element.textContent.trim()}"`}))
+    ];
+
+    return {
+        score: Math.max(0, score),
+        totalLinks: allLinks.length,
+        // (other properties like internal/external counts can be added if needed)
+        issues, // Now an array of objects
+        recommendations, // Now an array of objects
+        weight: 10
+    };
+}
 
     // 7. Technical SEO
     function analyzeTechnicalSEO() {

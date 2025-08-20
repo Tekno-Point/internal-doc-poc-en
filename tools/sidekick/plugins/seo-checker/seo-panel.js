@@ -331,51 +331,82 @@ function createOverviewContent(createElement, audit) {
 }
 
 function createIssuesContent(createElement, audit) {
-  const issues = createElement('div', { class: 'seo-issues' });
-  
-  // Critical issues section
-  if (audit.criticalIssues && audit.criticalIssues.length > 0) {
-    const criticalSection = createElement('div', { class: 'seo-issue-section' });
-    const criticalTitle = createElement('h3', { class: 'seo-issue-title critical' }, '🚨 Critical Issues');
-    const criticalList = createElement('div', { class: 'seo-issue-list' });
+  const issuesContainer = createElement('div', { class: 'seo-issues' });
+
+  // This helper function does the scrolling and highlighting
+  const highlightElement = (element) => {
+    document.querySelectorAll('.seo-highlight').forEach(el => el.classList.remove('seo-highlight'));
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      element.classList.add('seo-highlight');
+      setTimeout(() => {
+        element.classList.remove('seo-highlight');
+      }, 3000);
+    }
+  };
+
+  // --- Critical Issues Section ---
+  const criticalIssues = audit.criticalIssues || [];
+  if (criticalIssues.length > 0) {
+    const section = createElement('div', { class: 'seo-issue-section' });
+    section.append(createElement('h3', { class: 'seo-issue-title critical' }, '🚨 Critical Issues'));
+    const list = createElement('div', { class: 'seo-issue-list' });
     
-    audit.criticalIssues.forEach(issue => {
+    criticalIssues.forEach(issue => {
       const issueItem = createElement('div', { class: 'seo-issue-item critical' });
-      issueItem.textContent = issue;
-      criticalList.append(issueItem);
+      
+      // --- THIS IS THE FIX ---
+      // Check if the issue is a link object or a simple string
+      if (typeof issue === 'object' && issue.element) {
+        // It's a link object - use its message and make it clickable
+        issueItem.textContent = issue.message;
+        issueItem.classList.add('clickable');
+        issueItem.onclick = () => highlightElement(issue.element);
+      } else {
+        // It's a simple string - just display it
+        issueItem.textContent = issue;
+      }
+      
+      list.append(issueItem);
     });
-    
-    criticalSection.append(criticalTitle, criticalList);
-    issues.append(criticalSection);
+    section.append(list);
+    issuesContainer.append(section);
   }
   
-  // Warnings section
-  if (audit.warnings && audit.warnings.length > 0) {
-    const warningSection = createElement('div', { class: 'seo-issue-section' });
-    const warningTitle = createElement('h3', { class: 'seo-issue-title warning' }, '⚠️ Recommendations');
-    const warningList = createElement('div', { class: 'seo-issue-list' });
-    
-    audit.warnings.slice(0, 10).forEach(warning => {
-      const warningItem = createElement('div', { class: 'seo-issue-item warning' });
-      warningItem.textContent = warning;
-      warningList.append(warningItem);
+  // --- Recommendations Section ---
+  const warnings = audit.warnings || [];
+   if (warnings.length > 0) {
+    const section = createElement('div', { class: 'seo-issue-section' });
+    section.append(createElement('h3', { class: 'seo-issue-title warning' }, '⚠️ Recommendations'));
+    const list = createElement('div', { class: 'seo-issue-list' });
+
+    warnings.forEach(warning => {
+      const issueItem = createElement('div', { class: 'seo-issue-item warning' });
+
+      // Apply the same fix here for recommendations
+      if (typeof warning === 'object' && warning.element) {
+        issueItem.textContent = warning.message;
+        issueItem.classList.add('clickable');
+        issueItem.onclick = () => highlightElement(warning.element);
+      } else {
+        issueItem.textContent = warning;
+      }
+
+      list.append(issueItem);
     });
-    
-    warningSection.append(warningTitle, warningList);
-    issues.append(warningSection);
+    section.append(list);
+    issuesContainer.append(section);
   }
   
   // No issues message
-  if ((!audit.criticalIssues || audit.criticalIssues.length === 0) && 
-      (!audit.warnings || audit.warnings.length === 0)) {
+  if (criticalIssues.length === 0 && warnings.length === 0) {
     const noIssues = createElement('div', { class: 'seo-no-issues' });
-    noIssues.innerHTML = '✅ No critical issues found!';
-    issues.append(noIssues);
+    noIssues.innerHTML = '✅ No critical issues or major recommendations!';
+    issuesContainer.append(noIssues);
   }
-  
-  return issues;
-}
 
+  return issuesContainer;
+}
 function createTechnicalContent(createElement, audit) {
   const technical = createElement('div', { class: 'seo-technical' });
   
