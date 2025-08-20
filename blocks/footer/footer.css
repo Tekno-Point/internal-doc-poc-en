@@ -18,3 +18,9 @@ footer .footer p {
     padding: 40px 32px 24px;
   }
 }
+/* Footer Css */
+.footer-wrapper .footer.block{
+  background: #262626;
+    border-radius: 24px 24px 0 0;
+    padding: 140px 60px 110px;
+}

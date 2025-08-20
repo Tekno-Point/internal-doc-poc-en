@@ -31,3 +31,19 @@
     order: unset;
   }
 }
+/* Columns CSS */
+.section .column-style{
+  color: white;
+}
+.section .column-style > div{
+  align-items: flex-start;
+}
+.section .column-style > div > div:nth-child(1) p:nth-child(1){
+          font-size: 3.375rem;
+        letter-spacing: -1.62px;
+        line-height: 59.4px;
+        color: #fff;
+    font-family: switzer, sans-serif;
+    font-weight: 600;
+    margin: 0 0 5px;
+}
