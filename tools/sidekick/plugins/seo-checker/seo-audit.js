@@ -3,7 +3,7 @@
  * Analyzes current page and generates detailed SEO report
  * @returns {Object} Complete SEO audit report with scores and recommendations
  */
-export function performSEOAudit() {
+export async function performSEOAudit() {
     const report = {
         url: window.location.href,
         timestamp: new Date().toISOString(),
@@ -21,7 +21,7 @@ export function performSEOAudit() {
         const titleElement = document.querySelector('title');
         const title = titleElement ? titleElement.textContent.trim() : '';
         const length = title.length;
-        
+
         let score = 0;
         const issues = [];
         const recommendations = [];
@@ -31,7 +31,7 @@ export function performSEOAudit() {
         } else {
             if (length >= 30 && length <= 60) score += 40;
             else if (length > 0) score += 20;
-            
+
             if (length < 30) recommendations.push('Title too short (< 30 chars)');
             if (length > 60) recommendations.push('Title too long (> 60 chars)');
             if (title.toLowerCase() === title) recommendations.push('Consider title case formatting');
@@ -52,7 +52,7 @@ export function performSEOAudit() {
         const metaDesc = document.querySelector('meta[name="description"]');
         const description = metaDesc ? metaDesc.getAttribute('content').trim() : '';
         const length = description.length;
-        
+
         let score = 0;
         const issues = [];
         const recommendations = [];
@@ -62,7 +62,7 @@ export function performSEOAudit() {
         } else {
             if (length >= 120 && length <= 160) score += 40;
             else if (length > 0) score += 20;
-            
+
             if (length < 120) recommendations.push('Meta description too short (< 120 chars)');
             if (length > 160) recommendations.push('Meta description too long (> 160 chars)');
         }
@@ -81,7 +81,7 @@ export function performSEOAudit() {
     function analyzeHeadings() {
         const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
         const h1s = document.querySelectorAll('h1');
-        
+
         let score = 0;
         const issues = [];
         const recommendations = [];
@@ -92,7 +92,7 @@ export function performSEOAudit() {
         headings.forEach((heading, index) => {
             const level = parseInt(heading.tagName.charAt(1));
             const text = heading.textContent.trim();
-            
+
             structure.push({
                 tag: heading.tagName.toLowerCase(),
                 text: text.substring(0, 100),
@@ -136,7 +136,7 @@ export function performSEOAudit() {
         const content = document.body ? document.body.textContent.trim() : '';
         const wordCount = content.split(/\s+/).filter(word => word.length > 0).length;
         const readingTime = Math.ceil(wordCount / 200); // 200 WPM average
-        
+
         let score = 0;
         const issues = [];
         const recommendations = [];
@@ -152,7 +152,7 @@ export function performSEOAudit() {
 
         // Check for duplicate content (basic)
         const sentences = content.split(/[.!?]+/).filter(s => s.trim().length > 10);
-        const duplicates = sentences.filter((sentence, index) => 
+        const duplicates = sentences.filter((sentence, index) =>
             sentences.indexOf(sentence) !== index
         ).length;
 
@@ -237,61 +237,47 @@ export function performSEOAudit() {
     }
 
     // 6. Link Analysis
-    function analyzeLinks() {
-        const internalLinks = [];
-        const externalLinks = [];
-        const brokenLinks = [];
-        
-        const links = document.querySelectorAll('a[href]');
-        let score = 0;
-        const issues = [];
-        const recommendations = [];
+    async function analyzeLinks() {
+        const allLinks = [...document.querySelectorAll('main a[href]')];
+        const uniqueUrls = new Set(allLinks.map(link => link.href).filter(href => href && href.startsWith('http')));
+        let score = 100;
+        const brokenLinks = [], redirectedLinks = [], internalLinks = [], externalLinks = [];
 
-        links.forEach(link => {
-            const href = link.getAttribute('href');
-            const text = link.textContent.trim();
-            const isExternal = href && (href.startsWith('http') && !href.includes(window.location.hostname));
-            
-            const linkData = {
-                href: href ? href.substring(0, 100) : '',
-                text: text.substring(0, 50),
-                isExternal,
-                hasTitle: !!link.getAttribute('title'),
-                hasNofollow: link.getAttribute('rel') && link.getAttribute('rel').includes('nofollow')
-            };
+        const promises = [...uniqueUrls].map(url =>
+            fetch(url, { method: 'HEAD', mode: 'cors' }).catch(() => ({ url, status: 'Unreachable' }))
+        );
 
-            if (isExternal) {
-                externalLinks.push(linkData);
-                if (!linkData.hasNofollow && !href.includes('trustworthy-domain.com')) {
-                    recommendations.push('Consider adding rel="nofollow" to external links');
+        const results = await Promise.allSettled(promises);
+
+        for (const result of results) {
+            if (result.status === 'fulfilled' && result.value) {
+                const response = result.value;
+                if (response.status >= 400) {
+                    brokenLinks.push({ url: response.url, status: response.status });
+                    score -= 10;
+                } else if (response.redirected) {
+                    redirectedLinks.push({ url: response.url, status: response.status });
+                    score -= 2;
                 }
             } else {
-                internalLinks.push(linkData);
+                const urlToLog = result.reason?.url || (result.value?.url || 'Unknown URL');
+                brokenLinks.push({ url: urlToLog, status: 'Unreachable' });
+                score -= 5; // Small penalty for unreachable links
             }
+        }
 
-            // Check for generic link text
-            if (['click here', 'read more', 'more info', 'here'].includes(text.toLowerCase())) {
-                issues.push(`Generic link text: "${text}"`);
-            }
+        allLinks.forEach(link => {
+            if (link.hostname === window.location.hostname) internalLinks.push(link.href);
+            else externalLinks.push(link.href);
         });
 
-        // Score based on link structure
-        if (internalLinks.length > 0) score += 40;
-        if (externalLinks.length > 0 && externalLinks.length < 10) score += 30;
-        if (links.length > 0) score += 30;
+        const issues = brokenLinks.map(l => `Broken/Unreachable Link (${l.status}): ${l.url.substring(0, 80)}...`);
+        const recommendations = redirectedLinks.map(l => `Redirected Link: ${l.url.substring(0, 80)}...`);
 
         return {
-            score: Math.min(score, 100),
-            totalLinks: links.length,
-            internalLinks: internalLinks.length,
-            externalLinks: externalLinks.length,
-            linkData: {
-                internal: internalLinks.slice(0, 5),
-                external: externalLinks.slice(0, 5)
-            },
-            issues,
-            recommendations,
-            weight: 10
+            score: Math.max(0, score), totalLinks: allLinks.length, internalLinks: internalLinks.length,
+            externalLinks: externalLinks.length, brokenLinks: brokenLinks.length,
+            redirectedLinks: redirectedLinks.length, issues, recommendations, weight: 10
         };
     }
 
@@ -342,7 +328,7 @@ export function performSEOAudit() {
             hasDescription: !!ogDesc,
             hasImage: !!ogImage
         };
-        
+
         if (ogTitle && ogDesc) score += 20;
         else recommendations.push('Add Open Graph tags for social media');
 
@@ -375,7 +361,7 @@ export function performSEOAudit() {
         const inlineScripts = Array.from(scripts).filter(s => !s.src).length;
         perfData.totalScripts = scripts.length;
         perfData.inlineScripts = inlineScripts;
-        
+
         if (inlineScripts > 5) {
             recommendations.push(`${inlineScripts} inline scripts found`);
             score -= 10;
@@ -394,9 +380,9 @@ export function performSEOAudit() {
             const timing = window.performance.timing;
             const loadTime = timing.loadEventEnd - timing.navigationStart;
             perfData.loadTime = loadTime;
-            
+
             if (loadTime > 3000) {
-                issues.push(`Slow load time: ${(loadTime/1000).toFixed(2)}s`);
+                issues.push(`Slow load time: ${(loadTime / 1000).toFixed(2)}s`);
                 score -= 30;
             }
         }
@@ -416,7 +402,7 @@ export function performSEOAudit() {
     report.categories.headings = analyzeHeadings();
     report.categories.content = analyzeContent();
     report.categories.images = analyzeImages();
-    report.categories.links = analyzeLinks();
+    report.categories.links = await analyzeLinks();
     report.categories.technical = analyzeTechnicalSEO();
     report.categories.performance = analyzePerformance();
 
@@ -427,11 +413,11 @@ export function performSEOAudit() {
     Object.values(report.categories).forEach(category => {
         totalWeightedScore += (category.score * category.weight);
         totalWeight += category.weight;
-        
+
         // Categorize issues
         category.issues.forEach(issue => report.summary.critical.push(issue));
         category.recommendations.forEach(rec => report.summary.warnings.push(rec));
-        
+
         if (category.score >= 80) {
             report.summary.passed.push(`${Object.keys(report.categories).find(key => report.categories[key] === category)} passed`);
         }
@@ -441,12 +427,12 @@ export function performSEOAudit() {
 
     // Add score interpretation
     report.scoreInterpretation = {
-        grade: report.overallScore >= 90 ? 'A' : 
-               report.overallScore >= 80 ? 'B' : 
-               report.overallScore >= 70 ? 'C' : 
-               report.overallScore >= 60 ? 'D' : 'F',
-        status: report.overallScore >= 80 ? 'Good' : 
-                report.overallScore >= 60 ? 'Needs Improvement' : 'Poor'
+        grade: report.overallScore >= 90 ? 'A' :
+            report.overallScore >= 80 ? 'B' :
+                report.overallScore >= 70 ? 'C' :
+                    report.overallScore >= 60 ? 'D' : 'F',
+        status: report.overallScore >= 80 ? 'Good' :
+            report.overallScore >= 60 ? 'Needs Improvement' : 'Poor'
     };
 
     return report;
@@ -457,17 +443,17 @@ export function quickSEOCheck() {
     const report = performSEOAudit();
     console.log(`\n🔍 SEO Score: ${report.overallScore}/100 (${report.scoreInterpretation.grade})`);
     console.log(`📊 Status: ${report.scoreInterpretation.status}\n`);
-    
+
     if (report.summary.critical.length > 0) {
         console.log('🚨 Critical Issues:');
         report.summary.critical.forEach(issue => console.log(`  - ${issue}`));
     }
-    
+
     if (report.summary.warnings.length > 0) {
         console.log('⚠️ Recommendations:');
         report.summary.warnings.slice(0, 5).forEach(warning => console.log(`  - ${warning}`));
     }
-    
+
     return report;
 }
 
@@ -475,8 +461,8 @@ export function quickSEOCheck() {
 export function downloadSEOReport() {
     const report = performSEOAudit();
     const dataStr = JSON.stringify(report, null, 2);
-    const dataBlob = new Blob([dataStr], {type: 'application/json'});
-    
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+
     const link = document.createElement('a');
     link.href = URL.createObjectURL(dataBlob);
     link.download = `seo-audit-${new Date().toISOString().split('T')[0]}.json`;

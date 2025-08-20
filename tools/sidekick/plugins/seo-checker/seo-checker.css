@@ -339,6 +339,7 @@ body.seo-panel-active {
   color: white;
   margin-bottom: 8px;
   font-size: 14px;
+  word-break:break-all;
 }
 
 .seo-issue-item.critical {

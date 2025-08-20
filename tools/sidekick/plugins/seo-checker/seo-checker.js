@@ -34,7 +34,7 @@ export default async function init() {
     showInitialLoading();
     
     // Run the comprehensive SEO audit
-    const seoResults = performSEOAudit();
+    const seoResults = await performSEOAudit();
     
     // Transform the results to match the panel's expected format
     const panelData = transformSEOResults(seoResults);
@@ -176,8 +176,8 @@ function showErrorMessage(error) {
 /**
  * Helper function for manual triggering
  */
-function runSeoAudit() {
-  return performSEOAudit();
+async function runSeoAudit() {
+  return await performSEOAudit();
 }
 
 /**

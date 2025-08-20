@@ -138,10 +138,9 @@ export function createPanelHeader(createElement, scorePercentage, panel) {
   refreshBtn.onclick = async () => {
     // Show loading state
     showLoadingState(panel);
-    
     // Re-run the audit and refresh the panel
     try {
-      const newResults = performSEOAudit();
+      const newResults = await performSEOAudit();
       const newPanelData = transformSEOResults(newResults);
       
       // Remove current panel and show new one
