@@ -30,3 +30,8 @@ footer .footer p {
   margin: 0;
   padding: 0;
 }
+@media (width < 768px) {
+  .footer-wrapper .footer.block {
+    padding: 64px 24px;
+  }
+}

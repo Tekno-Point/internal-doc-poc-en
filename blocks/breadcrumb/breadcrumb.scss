@@ -5,6 +5,9 @@
     border-top: .5px solid #adadad;
     box-sizing: border-box;
 }
+    .section.breadcrumb-container{
+    margin-bottom: 0px;
+}
 .section .bd-style.block ul{
     display: flex;
     align-items: center;
@@ -44,6 +47,7 @@
 }   
 
 @media (max-width: 768px) {
+
     .section .bd-style.block ul li,.section .bd-style.block ul li:last-of-type{
         font-size: 12px;
     }

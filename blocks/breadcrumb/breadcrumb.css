@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+.section.breadcrumb-container {
+  margin-bottom: 0px;
+}
+
 .section .bd-style.block ul {
   display: flex;
   align-items: center;
