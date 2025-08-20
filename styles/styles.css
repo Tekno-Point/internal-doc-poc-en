@@ -178,10 +178,6 @@ a:hover {
   text-decoration: underline;
 }
 
-*{
-  box-sizing: border-box;
-}
-
 /* buttons */
 a.button:-moz-any-link {
   box-sizing: border-box;
@@ -364,6 +360,10 @@ main::-webkit-scrollbar-button {
   /* remove arrows */
   width: 0;
   height: 0;
+}
+
+.section.head-image {
+  margin: 0;
 }
 
 .section.head-image .default-content-wrapper ul {

@@ -335,9 +335,9 @@ main::-webkit-scrollbar-button {
 }
 
 // Section Component 1 CSS
-// .section.head-image{
-//   margin-top: 132px;
-// }
+.section.head-image{
+  margin: 0;
+}
 .section.head-image .default-content-wrapper ul{
 	display: flex;
   align-items: center;
