@@ -251,10 +251,17 @@ function autolinkFragements(element) {
   });
 }
 
+// eslint-disable-next-line consistent-return
 export default async function decorateFragment(block) {
   const link = block.querySelector('a');
   const path = link ? link.getAttribute('href') : block.textContent.trim();
   const fragment = await loadFragment(path);
+  if (fragment && block.closest('.nav-sections')) {
+    const fragmentSec = fragment.querySelectorAll('.section');
+    block.replaceChildren(...fragmentSec);
+    block.classList.remove('section');
+    return 1;
+  }
   if (fragment) {
     const fragmentSection = fragment.querySelector(':scope .section');
     if (fragmentSection) {

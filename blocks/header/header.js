@@ -221,7 +221,7 @@ export default async function decorate(block) {
                 li.setAttribute('aria-expanded', 'false');
               });
             });
-            // li.setAttribute('aria-expanded', 'false');
+            subLi.setAttribute('aria-expanded', 'false');
           }
         });
       });
