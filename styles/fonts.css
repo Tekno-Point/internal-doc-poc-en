@@ -66,4 +66,10 @@
   src: url("../fonts/Switzer-Light.otf") format("truetype");
   font-weight: 300;
   font-style: normal;
+}
+@font-face {
+  font-family: "playfair italic";
+  src: url("../fonts/PlayfairDisplay-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
 }/*# sourceMappingURL=fonts.css.map */

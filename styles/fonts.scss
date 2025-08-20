@@ -71,10 +71,9 @@
   font-weight: 300;
   font-style: normal;
 }
-
-$bold: 'switz Bold', sans-serif;
-$italic: 'switz Italic', sans-serif;
-$semi-bold: 'switz SemiBold', sans-serif;
-$medium: 'switz Medium', sans-serif;
-$regular: 'switz Regular', sans-serif;
-$light: 'switz Light', sans-serif;
+@font-face {
+  font-family: 'playfair italic';
+  src: url('../fonts/PlayfairDisplay-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
