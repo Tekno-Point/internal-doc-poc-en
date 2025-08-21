@@ -336,6 +336,9 @@ main::-webkit-scrollbar-button {
   * {
     -webkit-tap-highlight-color: transparent;
   }
+  *{
+  box-sizing: border-box;
+}
 
 // Section Component 1 CSS
 .section.head-image{
