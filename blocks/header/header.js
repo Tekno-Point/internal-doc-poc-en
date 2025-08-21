@@ -111,17 +111,6 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
       // drop.removeEventListener('focus', focusNavSection);
     });
   }
-
-  // enable menu collapse on escape keypress
-  /* if (!expanded || isDesktop.matches) {
-    // collapse menu on escape press
-    window.addEventListener('keydown', closeOnEscape);
-    // collapse menu on focus lost
-    nav.addEventListener('focusout', closeOnFocusLost);
-  } else {
-    window.removeEventListener('keydown', closeOnEscape);
-    nav.removeEventListener('focusout', closeOnFocusLost);
-  } */
 }
 
 /**
@@ -168,7 +157,7 @@ export default async function decorate(block) {
         const imgClone = imgDefaultCon.cloneNode(true);
         li.appendChild(imgClone);
       });
-      // subLiSection.appendChild(imgDefaultCon);
+      // subLiSection.appendChild(imgDefasultCon);
     }));
   }
 
@@ -185,7 +174,10 @@ export default async function decorate(block) {
         navSection.addEventListener('mouseenter', (e) => {
           if (!e.target.closest('.inner-ul')) {
             navSection.setAttribute('aria-expanded', 'true');
-            navSection.querySelector('.inner-ul li').setAttribute('aria-expanded', 'true');
+            const firstLiWithoutU = navSection.querySelector('.inner-ul > li:not(:has(strong u))');
+            if (firstLiWithoutU) {
+              firstLiWithoutU.setAttribute('aria-expanded', 'true');
+            }
           }
         });
         navSection.addEventListener('mouseleave', (e) => {
@@ -206,9 +198,11 @@ export default async function decorate(block) {
       navSection.querySelectorAll(':scope>ul.inner-ul>li').forEach((subLi) => {
         // subLi?.querySelector(":scope>p, :scope>a")?.addEventListener(isClick, (ele) => {
         // subLi?.querySelector(":scope>li")?.addEventListener(isClick, (ele) => {
-        subLi?.addEventListener(isClick, (e) => {
+        if (subLi.querySelector(':scope >strong >u')) return;
+        subLi.querySelector('strong')?.addEventListener(isClick, (e) => {
           e.stopImmediatePropagation();
           e.stopPropagation();
+          // if(e.target.closest(".inner-ul li[aria-expanded='true'] ul"))
           // debugger;
           // if (e.target.closest()) return;
           const expanded = subLi?.getAttribute('aria-expanded');
