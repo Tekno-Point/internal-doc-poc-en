@@ -4,6 +4,15 @@ header.header-wrapper {
     padding-top: 125px;
 }
 
+
+header.header-wrapper.header-down{
+    /* padding: unset; */
+}
+
+header.header-wrapper.header-down .header.block .nav-wrapper{
+    top: -180px;
+}
+
 header.header-wrapper .header.block .nav-wrapper {
     left: 0;
     margin: 0 auto;
@@ -14,6 +23,7 @@ header.header-wrapper .header.block .nav-wrapper {
     z-index: 100;
     border-radius: 8px;
     padding-top: 41px;
+    transition: top 1s;
 }
 
 header.header-wrapper .header.block .nav-wrapper nav {
@@ -340,7 +350,7 @@ header.header-wrapper .header.block .nav-wrapper nav .section.nav-sections .defa
     flex-wrap: wrap;
     align-items: start;
     justify-content: space-between;
-
+    height: max-content;
 }
 
 header.header-wrapper .header.block .nav-wrapper nav .section.nav-sections .default-content-wrapper ul>li>ul.inner-ul>li[aria-expanded='true']>ul:not(:has(.section))>li {

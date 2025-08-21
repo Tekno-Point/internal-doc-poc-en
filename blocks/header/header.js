@@ -269,3 +269,25 @@ export default async function decorate(block) {
     block.append(navWrapper);
   }
 }
+
+let lastScrollY = window.scrollY;
+const threshold = 10; // minimum scroll difference to detect direction
+const header = document.querySelector('header.header-wrapper');
+
+window.addEventListener('scroll', () => {
+  const currentScrollY = window.scrollY;
+  const diff = currentScrollY - lastScrollY;
+
+  if (Math.abs(diff) > threshold) {
+    if (diff > 0) {
+      // scrolling down
+      header.classList.add('header-down');
+      header.classList.remove('header-up');
+    } else {
+      // scrolling up
+      header.classList.add('header-up');
+      header.classList.remove('header-down');
+    }
+    lastScrollY = currentScrollY;
+  }
+});

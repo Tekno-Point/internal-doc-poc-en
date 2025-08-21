@@ -178,6 +178,19 @@ a:hover {
   text-decoration: underline;
 }
 
+<<<<<<< HEAD
+=======
+header.header-wrapper {
+  height: unset;
+  padding-top: 125px;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+>>>>>>> 82fac8f20ac01b0b4ce8bbb7ad75a9fbe4c992d6
 /* buttons */
 a.button:-moz-any-link {
   box-sizing: border-box;
