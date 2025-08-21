@@ -61,6 +61,7 @@
 .section .column-style > div:nth-child(1) > div:nth-child(1)> ul{
   display: flex;
   align-items: center;
+  justify-content: space-around;
 }
 .section .column-style > div:nth-child(1) > div:nth-child(1)> ul li:nth-child(1) input{
   border: none;
@@ -78,6 +79,11 @@
 .section .column-style > div:nth-child(1) > div:nth-child(1) > ul li:nth-child(2) img{
   width: 40px;
   height: 40px;
+  cursor: pointer;
+}
+.section .column-style > div:nth-child(1) > div:nth-child(1) > ul li:nth-child(2) img:hover{
+  transform: translate(5px);
+  transition: transform .5s ease, -webkit-transform .5s ease;
 }
 .section .column-style > div > div:nth-child(2){
   height: 660px;
@@ -155,6 +161,11 @@
 .section .column-style > div:nth-child(2) > div ul li:nth-child(2) img{
   width: 40px;
   height: 40px;
+  cursor: pointer;
+}
+.section .column-style > div:nth-child(2) > div ul li:nth-child(2) img:hover {
+  transform: translate(5px);
+  transition: transform .5s ease, -webkit-transform .5s ease;
 }
 .section .column-style > div:nth-child(2) > div ol{
   display: flex;
@@ -227,6 +238,7 @@ height: 100%;
 .section .column-style > div:nth-child(4) > div img{
   width: 80px;
   height: 28px;
+  cursor: pointer;
 }
 .section .column-style > div:nth-child(4) > div ul{
   display: flex;
@@ -236,6 +248,7 @@ height: 100%;
 .section .column-style > div:nth-child(4) > div ul li img{
    width: 32px;
    height: 32px;
+   cursor: pointer;
 }
 
 @media (width<768px){

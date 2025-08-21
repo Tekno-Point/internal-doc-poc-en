@@ -439,7 +439,8 @@
 .section.carousel-container .carousel-style > .swiper-wrapper > .swiper-slide div ol li:nth-child(1) {
   display: flex;
   align-items: center;
-  font-size: 16px;
+  font-size: 12px;
+  font-family: "switz Regular", sans-serif;
 }
 
 .section.carousel-container .carousel-style > .swiper-wrapper > .swiper-slide div ol li:nth-child(1) .icon-comments {
