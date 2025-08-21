@@ -627,11 +627,13 @@ header.header-wrapper .header.block .nav-wrapper nav .section.nav-tools .default
 @media (width <=787px) {
     header.header-wrapper .header.block .nav-wrapper {
         padding-top: 32px;
-        height: calc(100% - 80px);
+
+        /* height: calc(100% - 80px); */
     }
 
     header.header-wrapper .header.block .nav-wrapper:has(button[aria-label="Close navigation"]) {
         /* padding: unset; */
+        height: calc(100% - 80px);
     }
 
     header.header-wrapper .header.block .nav-wrapper nav {
