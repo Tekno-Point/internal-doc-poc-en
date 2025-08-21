@@ -183,7 +183,13 @@ a:hover {
   text-decoration: underline;
 }
 
-*{
+header.header-wrapper {
+  height: unset;
+  padding-top: 125px;
+}
+
+
+* {
   box-sizing: border-box;
 }
 
