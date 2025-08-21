@@ -36,44 +36,27 @@
 }
 
 @font-face {
-  font-family: 'switz Bold';
-  src: url('../fonts/Switzer-Bold.otf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-}
-@font-face {
   font-family: 'switz SemiBold';
-  src: url('../fonts/Switzer-Semibold.otf') format('truetype');
+  src: url('../fonts/switzer-semibold.woff2') format('woff2');
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
   font-family: 'switz Medium';
-  src: url('../fonts/Switzer-Medium.otf') format('truetype');
+  src: url('../fonts/switzer-medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
 }
 @font-face {
   font-family: 'switz Regular';
-  src: url('../fonts/Switzer-Regular.otf') format('truetype');
+  src: url('../fonts/switzer-regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
 }
-@font-face {
-  font-family: 'switz Italic';
-  src: url('../fonts/Switzer-Italic.otf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'switz Light';
-  src: url('../fonts/Switzer-Light.otf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-}
+
 @font-face {
   font-family: 'playfair italic';
-  src: url('../fonts/PlayfairDisplay-Italic.ttf') format('truetype');
+  src: url('../fonts/playfairdisplay-italic.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
 }

@@ -178,16 +178,6 @@ a:hover {
   text-decoration: underline;
 }
 
-header.header-wrapper {
-  height: unset;
-  padding-top: 125px;
-}
-
-
-* {
-  box-sizing: border-box;
-}
-
 /* buttons */
 a.button:-moz-any-link {
   box-sizing: border-box;
@@ -277,7 +267,7 @@ main > .section {
 }
 
 main > .section > div {
-  max-width: 1044px;
+  max-width: 1092px;
   margin: auto;
   padding: 0 24px;
 }
@@ -381,7 +371,7 @@ main::-webkit-scrollbar-button {
 }
 
 .section.head-image {
-  margin: 20px 0 0 0;
+  margin: 10px 0 0 0;
 }
 
 .section.head-image .default-content-wrapper ul {
