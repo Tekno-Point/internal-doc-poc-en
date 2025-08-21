@@ -333,10 +333,13 @@ main::-webkit-scrollbar-button {
   width: 0;
   height: 0;
 }
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
 
 // Section Component 1 CSS
 .section.head-image{
-  margin: 0;
+  margin: 20px 0 0 0;
 }
 .section.head-image .default-content-wrapper ul{
 	display: flex;
@@ -440,9 +443,9 @@ main::-webkit-scrollbar-button {
 }
 
 @media (max-width: 768px) {
-//   .section.head-image{
-//   margin-top: 100px;
-// }
+  .section.head-image{
+  margin: 0px;
+}
 .section.head-image .default-content-wrapper ul li:nth-child(1){
   font-size: .75rem;
   line-height: 14.7px;

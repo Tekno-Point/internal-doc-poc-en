@@ -362,8 +362,12 @@ main::-webkit-scrollbar-button {
   height: 0;
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 .section.head-image {
-  margin: 0;
+  margin: 20px 0 0 0;
 }
 
 .section.head-image .default-content-wrapper ul {
@@ -481,6 +485,9 @@ main::-webkit-scrollbar-button {
 }
 
 @media (max-width: 768px) {
+  .section.head-image {
+    margin: 0px;
+  }
   .section.head-image .default-content-wrapper ul li:nth-child(1) {
     font-size: 0.75rem;
     line-height: 14.7px;
