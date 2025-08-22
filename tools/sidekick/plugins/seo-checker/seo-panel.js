@@ -127,7 +127,7 @@ export function createPanelHeader(createElement, scorePercentage, panel, audit) 
   const exportBtn = createElement('button', { 
     class: 'seo-action-btn seo-export-btn',
     title: 'Export Report'
-  }, '📊');
+  }, '📄');
   
   const closeBtn = createElement('button', { 
     class: 'seo-action-btn seo-close-btn',
