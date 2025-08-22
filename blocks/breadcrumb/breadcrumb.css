@@ -25,6 +25,7 @@
   line-height: 1.08125rem;
   position: relative;
   margin-right: 15px;
+  cursor: pointer;
 }
 
 .section .bd-style.block ul li:last-of-type {
