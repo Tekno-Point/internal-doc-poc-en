@@ -72,40 +72,40 @@ export function transformSEOResults(seoResults) {
 export async function showSeoPanel({ audit, score, scoreInterpretation }) {
   const { createElement } = await import(`${window.hlx.codeBasePath}/scripts/scripts.js`);
   const scorePercentage = typeof score === 'number' ? score : Math.round((score.score / score.maxScore) * 100);
-  
+
   // Remove existing panel if present
   const existingPanel = document.getElementById('seo-checker-panel');
   if (existingPanel) {
     existingPanel.remove();
     document.body.classList.remove('seo-panel-active');
   }
-  
+
   // Create main panel container
-  const panel = createElement('div', { 
+  const panel = createElement('div', {
     id: 'seo-checker-panel',
     class: 'seo-panel'
   });
-  
-  // Create header section
-  const header = createPanelHeader(createElement, scorePercentage, panel);
-  
+
+  // Pass audit to header for modal popup
+  const header = createPanelHeader(createElement, scorePercentage, panel, audit);
+
   // Create score visualization
   const scoreSection = createScoreSection(createElement, scorePercentage, scoreInterpretation);
-  
+
   // Create content sections with actual audit data
   const content = createContentSections(createElement, audit, scoreInterpretation);
-  
+
   // Assemble panel
   panel.append(header, scoreSection, content);
   document.body.append(panel);
-  
+
   // Add animation class after DOM insertion
   requestAnimationFrame(() => {
     document.body.classList.add('seo-panel-active');
   });
 }
 
-export function createPanelHeader(createElement, scorePercentage, panel) {
+export function createPanelHeader(createElement, scorePercentage, panel, audit) {
   const header = createElement('div', { class: 'seo-header' });
   
   const headerContent = createElement('div', { class: 'seo-header-content' });
@@ -154,9 +154,26 @@ export function createPanelHeader(createElement, scorePercentage, panel) {
   };
   
   exportBtn.onclick = () => {
-    // Export the current audit results
-    downloadSEOReport();
+    // Show the current audit results in a modal popup
+    showReportModal(createElement, audit);
   };
+
+  // Helper to show a modal with the full audit data as JSON
+  function showReportModal(createElement, audit) {
+    // Remove any existing modal
+    const existing = document.querySelector('.seo-modal-overlay');
+    if (existing) existing.remove();
+    const modalOverlay = createElement('div', { class: 'seo-modal-overlay' });
+    const modalContent = createElement('div', { class: 'seo-modal-content' });
+    const closeBtn = createElement('button', { class: 'seo-modal-close' }, '✕');
+    closeBtn.onclick = () => modalOverlay.remove();
+    const title = createElement('h3', { class: 'seo-modal-title' }, 'Full SEO Audit Data');
+    const pre = createElement('pre', { class: 'seo-modal-code' });
+    pre.textContent = JSON.stringify(audit, null, 2);
+    modalContent.append(closeBtn, title, pre);
+    modalOverlay.append(modalContent);
+    document.body.append(modalOverlay);
+  }
   
   closeBtn.onclick = () => {
     document.body.classList.remove('seo-panel-active');

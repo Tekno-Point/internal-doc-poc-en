@@ -1,3 +1,74 @@
+/* SEO Modal Styles */
+.seo-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.45);
+  z-index: 10050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s;
+}
+
+.seo-modal-content {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  padding: 32px 24px 24px 24px;
+  max-width: 700px;
+  width: 90vw;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+.seo-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 20px;
+  color: #374151;
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 1;
+}
+.seo-modal-close:hover {
+  background: #e5e7eb;
+}
+
+.seo-modal-title {
+  margin: 0 0 18px 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+  text-align: left;
+}
+
+.seo-modal-code {
+  background: #f8fafc;
+  color: #334155;
+  font-size: 13px;
+  border-radius: 8px;
+  padding: 18px 14px;
+  overflow-x: auto;
+  max-height: 55vh;
+  font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 /* SEO Panel Styles */
 .seo-panel {
   position: fixed;
