@@ -5,12 +5,12 @@ header.header-wrapper {
 }
 
 
-header.header-wrapper.header-down{
+header.header-wrapper.header-down {
     /* padding: unset; */
 }
 
-header.header-wrapper.header-down .header.block .nav-wrapper{
-    top: -180px;
+header.header-wrapper.header-down .header.block .nav-wrapper {
+    top: -120px;
 }
 
 header.header-wrapper .header.block .nav-wrapper {
@@ -130,6 +130,10 @@ header.header-wrapper .header.block .nav-wrapper nav .section.nav-upper-section>
     line-height: 130%;
 }
 
+header.header-wrapper .header.block .nav-wrapper nav>.section.nav-sections>.default-content-wrapper>ul {
+    gap: 37px;
+}
+
 header.header-wrapper .header.block .nav-wrapper nav>.section.nav-sections,
 header.header-wrapper .header.block .nav-wrapper nav>.section.nav-sections>.default-content-wrapper,
 header.header-wrapper .header.block .nav-wrapper nav>.section.nav-sections>.default-content-wrapper>ul,
@@ -191,14 +195,14 @@ header.header-wrapper .header.block .nav-wrapper nav>.section.nav-sections>.defa
 
 header.header-wrapper .header.block .nav-wrapper nav>.section.nav-sections>.default-content-wrapper>ul>li>strong::after {
     /* background-image: url("/icons/filled-down-arrow.svg"); */
+    right: -18px;
     border: unset;
     background: url("/icons/filled-down-arrow.svg") no-repeat 50% / contain;
     background-size: 13px;
     content: "";
     display: block;
-    left: 100%;
     position: absolute;
-    top: 50%;
+    top: 53%;
     transform: translateY(-50%);
     transition: all .3s ease;
     width: 16px;
