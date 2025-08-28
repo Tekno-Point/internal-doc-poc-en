@@ -310,8 +310,8 @@ function createOptimizedPicture(
   breakpoints.forEach((br) => {
     const source = document.createElement('source');
     if (br.media) source.setAttribute('media', br.media);
-    source.setAttribute('type', 'image/webp');
-    source.setAttribute('srcset', `${pathname}?width=${br.width}&format=webply&optimize=medium`);
+    source.setAttribute('type', 'image/png');
+    source.setAttribute('srcset', `${pathname}?width=${br.width}&format=webp&optimize=high`);
     picture.appendChild(source);
   });
 
@@ -320,14 +320,14 @@ function createOptimizedPicture(
     if (i < breakpoints.length - 1) {
       const source = document.createElement('source');
       if (br.media) source.setAttribute('media', br.media);
-      source.setAttribute('srcset', `${pathname}?width=${br.width}&format=${ext}&optimize=medium`);
+      source.setAttribute('srcset', `${pathname}?width=${br.width}&format=${ext}&optimize=high`);
       picture.appendChild(source);
     } else {
       const img = document.createElement('img');
       img.setAttribute('loading', eager ? 'eager' : 'lazy');
       img.setAttribute('alt', alt);
       picture.appendChild(img);
-      img.setAttribute('src', `${pathname}?width=${br.width}&format=${ext}&optimize=medium`);
+      img.setAttribute('src', `${pathname}?width=${br.width}&format=${ext}&optimize=high`);
     }
   });
 
@@ -761,3 +761,43 @@ export {
   waitForFirstImage,
   wrapTextNodes, 
 };
+
+// ---- Force high-quality image params on all pictures ----
+function rewriteIoParams(url) {
+  try {
+    const u = new URL(url, location.href);
+    // force quality
+    u.searchParams.set('optimize', 'high');
+    // force format (png for visual parity; use 'jpg' if your originals are jpg)
+    u.searchParams.set('format', 'png');
+    return u.pathname + '?' + u.searchParams.toString();
+  } catch (e) {
+    return url;
+  }
+}
+
+function forceHighQuality(root = document) {
+  // remove webp sources so browser can't pick them
+  root.querySelectorAll('picture source[type="image/webp"]').forEach((s) => s.remove());
+
+  root.querySelectorAll('picture source').forEach((s) => {
+    const srcset = s.getAttribute('srcset');
+    if (!srcset) return;
+    s.removeAttribute('type');            // or s.setAttribute('type','image/png');
+    const parts = srcset.split(',').map(p => p.trim());
+    s.setAttribute('srcset', parts.map(rewriteIoParams).join(', '));
+  });
+
+  root.querySelectorAll('picture img').forEach((img) => {
+    if (img.src) img.src = rewriteIoParams(img.src);
+  });
+}
+
+// run ASAP and also catch any pictures added later
+document.addEventListener('DOMContentLoaded', () => forceHighQuality());
+new MutationObserver((muts) => {
+  muts.forEach((m) => m.addedNodes.forEach((n) => {
+    if (n.nodeType === 1) forceHighQuality(n);
+  }));
+}).observe(document.documentElement, { childList: true, subtree: true });
+// ----------------------------------------------------------
